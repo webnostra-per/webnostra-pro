@@ -1,0 +1,99 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ═══════════════════════════════════════════════════════════
+# EDGE FUNCTIONS
+# geo-detect подменяет телефонный код в <select id="countryCode">
+# на основе IP-геолокации. Оставлено только для /phuket-*
+# paid-лендингов - в Astro-формах другой UI контактов.
+# ═══════════════════════════════════════════════════════════
+
+[[edge_functions]]
+  path = "/phuket-*"
+  function = "geo-detect"
+
+# ═══════════════════════════════════════════════════════════
+# SECURITY & PERFORMANCE HEADERS
+# ═══════════════════════════════════════════════════════════
+
+# Глобальные security headers.
+# CSP собран так чтобы разрешить:
+#   - Яндекс.Метрика (mc.yandex.ru, mc.yandex.com, yastatic.net, webvisor)
+#   - Meta Pixel (connect.facebook.net, www.facebook.com)
+#   - Google Fonts (fonts.googleapis.com, fonts.gstatic.com)
+#   - Albato webhook (h.albato.ru)
+#   - Telegram Bot API (api.telegram.org)
+#   - inline-скрипты Astro/аналитики ('unsafe-inline' - обязательно для fbq/ym init)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://connect.facebook.net https://www.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://mc.yandex.ru https://mc.yandex.com https://www.facebook.com https://*.facebook.com; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://connect.facebook.net https://www.facebook.com https://api.telegram.org https://h.albato.ru; frame-src 'self' https://mc.yandex.ru https://www.facebook.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://h.albato.ru https://api.telegram.org; object-src 'none'; upgrade-insecure-requests"
+
+# Статика Astro с кешем на год (asset hash гарантирует актуальность)
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Favicon и OG - кеш неделя (могут обновляться)
+[[headers]]
+  for = "/favicon.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/apple-touch-icon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/og-default.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ═══════════════════════════════════════════════════════════
+# REDIRECTS
+# Легаси-ссылки, исправление опечаток, фолбэки
+# ═══════════════════════════════════════════════════════════
+
+# Нормализация URL: убрать index.html
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+# Старые ссылки на about/contact → новые Astro-маршруты
+[[redirects]]
+  from = "/contact"
+  to = "/contacts/"
+  status = 301
+
+[[redirects]]
+  from = "/about-us"
+  to = "/about/"
+  status = 301
+
+# 404 fallback для всего несопоставленного
+[[redirects]]
+  from = "/*"
+  to = "/404/"
+  status = 404

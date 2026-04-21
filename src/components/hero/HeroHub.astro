@@ -1,0 +1,99 @@
+---
+/**
+ * HeroHub — hero для страниц-навигаторов.
+ * Одноколоночный, без визуалов. Для /services/, /real-estate/, /industries/.
+ *
+ * Пропсы:
+ *   label — короткая метка сверху (напр. "Хаб")
+ *   title — H1 с возможностью accent через <span class="accent"> в HTML
+ *   description — подзаголовок
+ *   meta — массив мета-пунктов { value, label } внизу hero
+ *   breadcrumbs — массив для breadcrumb-навигации
+ */
+
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import Label from '@components/ui/Label.astro';
+
+interface Props {
+  label?: string;
+  title: string;
+  description: string;
+  meta?: Array<{ value: string; label: string }>;
+  breadcrumbs: Array<{ name: string; url: string }>;
+}
+
+const { label, title, description, meta = [], breadcrumbs } = Astro.props;
+---
+
+<section class="hero-hub">
+  <div class="container">
+    <div class="hero-hub-inner">
+      <Breadcrumbs items={breadcrumbs} />
+      {label && <Label text={label} />}
+      <h1 set:html={title} />
+      <p class="hero-hub-desc">{description}</p>
+
+      {meta.length > 0 && (
+        <div class="hero-hub-meta">
+          {meta.map(item => (
+            <span><strong>{item.value}</strong> {item.label}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-hub {
+    padding: 48px 0 60px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-hub::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 500px; height: 400px;
+    background: radial-gradient(ellipse at right, rgba(201, 168, 76, 0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-hub-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+  }
+
+  .hero-hub h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+
+  .hero-hub-desc {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+
+  .hero-hub-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  .hero-hub-meta strong {
+    color: var(--gold);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+</style>

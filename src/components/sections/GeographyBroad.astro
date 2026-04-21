@@ -1,0 +1,169 @@
+---
+/**
+ * GeographyBroad - широкая география для главной.
+ * В отличие от Geography (который про недвижимость), показывает все регионы
+ * где мы работаем: ЮВА, Ближний Восток, СНГ, Европа, Америки. Без привязки
+ * к конкретным странам и нишам - общий охват.
+ */
+
+interface Props {
+  label?: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { label = 'География', title, subtitle } = Astro.props;
+
+const regions = [
+  {
+    code: 'SEA',
+    title: 'Юго-Восточная Азия',
+    countries: 'Таиланд, Индонезия, Вьетнам, Малайзия',
+    highlight: 'База на Пхукете с 2022 года',
+  },
+  {
+    code: 'ME',
+    title: 'Ближний Восток',
+    countries: 'ОАЭ, Саудовская Аравия, Катар',
+    highlight: 'Русские и арабские аудитории',
+  },
+  {
+    code: 'CIS',
+    title: 'Россия и СНГ',
+    countries: 'РФ, Казахстан, Беларусь, Узбекистан, Армения',
+    highlight: 'Флагман - Яндекс Директ и VK',
+  },
+  {
+    code: 'EU',
+    title: 'Европа',
+    countries: 'Кипр, Турция, Испания, Германия, Великобритания',
+    highlight: 'Google Ads, Meta, локальные каналы',
+  },
+  {
+    code: 'AM',
+    title: 'Северная Америка',
+    countries: 'США, Канада',
+    highlight: 'Англоязычный e-commerce и B2B',
+  },
+  {
+    code: 'LATAM',
+    title: 'Латинская Америка',
+    countries: 'Мексика, Аргентина, Бразилия',
+    highlight: 'Испаноязычные и португалоязычные рынки',
+  },
+];
+---
+
+<section class="geo-broad section">
+  <div class="container">
+    <div class="label">{label}</div>
+    <h2 class="section-title fade-up" set:html={title} />
+    {subtitle && <p class="section-subtitle">{subtitle}</p>}
+
+    <div class="regions-grid fade-up">
+      {regions.map(region => (
+        <div class="region-card">
+          <div class="region-code">{region.code}</div>
+          <h3 class="region-title">{region.title}</h3>
+          <p class="region-countries">{region.countries}</p>
+          <div class="region-highlight">{region.highlight}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="geo-note fade-up">
+      <p>
+        Работаем на русском, английском, арабском и китайском. Собственная база на Пхукете,
+        удаленная команда в РФ и СНГ. Под каждый рынок - нативные креативы и языковые
+        специалисты, а не машинный перевод.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .regions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+    margin-bottom: 32px;
+  }
+
+  .region-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .region-card:hover {
+    border-color: rgba(201, 168, 76, 0.2);
+  }
+
+  .region-code {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--surface);
+    border-radius: 3px;
+  }
+
+  .region-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 10px;
+    padding-right: 60px;
+    line-height: 1.2;
+  }
+
+  .region-countries {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  .region-highlight {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .geo-note {
+    padding: 24px 28px;
+    background: transparent;
+    border-left: 2px solid var(--gold);
+    max-width: 820px;
+  }
+  .geo-note p {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .regions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .regions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

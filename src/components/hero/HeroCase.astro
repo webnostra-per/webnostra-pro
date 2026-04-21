@@ -1,0 +1,106 @@
+---
+/**
+ * HeroCase — hero для страниц кейсов.
+ * Тег ниши → H1 (клиент) → подзаголовок → 4 hero-метрики.
+ */
+
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+
+interface HeroMetric {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  tag: string;            // "НЕДВИЖИМОСТЬ · ТАИЛАНД" (mono-метка)
+  client: string;         // H1 - название клиента/проекта
+  subtitle: string;       // тип бизнеса + локация
+  metrics: HeroMetric[];  // до 4 штук
+  breadcrumbs: Array<{ name: string; url: string }>;
+}
+
+const { tag, client, subtitle, metrics, breadcrumbs } = Astro.props;
+---
+
+<section class="hero-case">
+  <div class="container">
+    <Breadcrumbs items={breadcrumbs} />
+    <div class="hero-case-tag">{tag}</div>
+    <h1>{client}</h1>
+    <div class="hero-case-sub">{subtitle}</div>
+
+    {metrics.length > 0 && (
+      <div class="hero-case-metrics" style={`grid-template-columns: repeat(${metrics.length}, 1fr)`}>
+        {metrics.map(m => (
+          <div class="hero-case-metric">
+            <div class="hero-case-metric-val">{m.value}</div>
+            <div class="hero-case-metric-label">{m.label}</div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero-case { padding: 40px 0 48px; position: relative; }
+  .hero-case-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--gold);
+    background: var(--gold-dim);
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero-case h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+  }
+  .hero-case-sub {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+  }
+  .hero-case-metrics {
+    display: grid;
+    gap: 0;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-case-metric {
+    padding: 0 24px;
+    border-right: 1px solid var(--border);
+  }
+  .hero-case-metric:last-child { border-right: none; }
+  .hero-case-metric:first-child { padding-left: 0; }
+  .hero-case-metric-val {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .hero-case-metric-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 720px) {
+    .hero-case-metrics {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px;
+    }
+    .hero-case-metric { padding: 0 !important; border-right: none; }
+  }
+</style>

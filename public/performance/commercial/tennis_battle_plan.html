@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой план Яндекс Директ — Премиальная теннисная одежда | WEBNOSTRA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 20px; }
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .info-card .label { font-size: 0.9em; opacity: 0.8; margin-bottom: 5px; }
+        .info-card .value { font-size: 1.3em; font-weight: 600; }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        .btn-primary { background: white; color: #667eea; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-secondary:hover { background: white; color: #667eea; }
+        .content { padding: 40px; }
+        .section {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+        }
+        .section:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102,126,234,0.1); }
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-header h2 { font-size: 1.5em; font-weight: 600; }
+        .section-header .icon { font-size: 1.5em; transition: transform 0.3s; }
+        .section-header.active .icon { transform: rotate(180deg); }
+        .section-content { padding: 30px; display: none; }
+        .section-content.active { display: block; animation: slideDown 0.3s; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .card {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .card h3 { color: #667eea; margin-bottom: 15px; font-size: 1.2em; }
+        .card ul { list-style: none; padding: 0; }
+        .card li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+        }
+        .card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        tbody tr:hover { background: #f7fafc; }
+        .highlight {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 20%);
+            border-left: 5px solid #fc8181;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .highlight h4 { color: #c53030; margin-bottom: 10px; }
+        .success-box {
+            background: #f0fdf4;
+            border-left: 5px solid #48bb78;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .success-box strong { color: #22543d; }
+        .campaign-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #667eea;
+            margin: 15px 0;
+        }
+        .campaign-box h4 { color: #667eea; margin-bottom: 15px; font-size: 1.3em; }
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .contact-section h2 { font-size: 2em; margin-bottom: 30px; }
+        .contact-btn {
+            background: white;
+            color: #667eea;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            display: inline-block;
+            margin: 10px;
+        }
+        .contact-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header { padding: 25px 20px; }
+            .header h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            .project-info { grid-template-columns: 1fr; }
+            table { font-size: 0.85em; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .section-content { display: block !important; }
+            .btn-group, .contact-section { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎾 Боевой план Яндекс Директ</h1>
+            <div class="subtitle">Премиальная теннисная одежда для женщин — Россия</div>
+            
+            <div class="project-info">
+                <div class="info-card">
+                    <div class="label">Продукт</div>
+                    <div class="value">Теннисная форма</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">Средний чек</div>
+                    <div class="value">10 000 ₽</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">География</div>
+                    <div class="value">Москва + РФ</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">Цель CPA</div>
+                    <div class="value">до 2000 ₽</div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="https://webnostra-team.netlify.app/cases" class="btn btn-primary" target="_blank">📊 Кейсы</a>
+                <button onclick="window.print()" class="btn btn-secondary">📄 PDF</button>
+            </div>
+        </div>
+
+        <div class="content">
+            
+            <!-- Цели и исходные данные -->
+            <div class="section">
+                <div class="section-header active" onclick="toggleSection(this)">
+                    <h2>🎯 Цели и исходные данные</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content active">
+                    <div class="success-box">
+                        <strong>Главная цель:</strong> Определить и удерживать стоимость лида, квалифицированного лида и клиента
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Показатель</th>
+                                <th>Значение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>План продаж</strong></td>
+                                <td>360 комплектов</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Средний чек</strong></td>
+                                <td>10 000 ₽</td>
+                            </tr>
+                            <tr style="background: #f0fdf4;">
+                                <td><strong>Целевая выручка</strong></td>
+                                <td><strong>3 000 000 ₽</strong></td>
+                            </tr>
+                            <tr style="background: #fef3c7;">
+                                <td><strong>Целевой CPA</strong></td>
+                                <td><strong>до 2000 ₽</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Главная метрика</strong></td>
+                                <td>CPL и CR (заявка → оплата)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 style="color: #667eea; margin: 25px 0 15px 0;">Продукт</h3>
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3>Что продаем</h3>
+                            <ul>
+                                <li>4 модели теннисной одежды</li>
+                                <li>По 2 изделия в комплекте</li>
+                                <li>Премиальные материалы</li>
+                                <li>100% российское производство</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Техническое</h3>
+                            <ul>
+                                <li>Сайт: Яндекс.Кит (в разработке)</li>
+                                <li>Оплата: Яндекс.Форма</li>
+                                <li>Instagram/Telegram: на запуске</li>
+                                <li>Контент: готовые фото + брендбук</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <h4>🎁 Инфлюенсерская поддержка</h4>
+                        <p>60 комплектов передано блогеру для продвижения и создания социального доказательства</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- География -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>📍 География и приоритеты</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="success-box">
+                        <strong>Стратегия:</strong> Фокус на Москву как основной рынок, затем расширение на крупные города РФ
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Приоритет</th>
+                                <th>География</th>
+                                <th>% бюджета</th>
+                                <th>Обоснование</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f0fdf4;">
+                                <td><strong>1</strong></td>
+                                <td><strong>Москва</strong></td>
+                                <td><strong>60%</strong></td>
+                                <td>Максимальная концентрация целевой аудитории, теннисные корты, премиум-сегмент</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2</strong></td>
+                                <td>Санкт-Петербург</td>
+                                <td>20%</td>
+                                <td>Второй по значимости рынок, развитая теннисная инфраструктура</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3</strong></td>
+                                <td>Города-миллионники</td>
+                                <td>20%</td>
+                                <td>Екатеринбург, Казань, Новосибирск, Краснодар, Сочи</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="card">
+                        <h3>Почему фокус на Москву</h3>
+                        <ul>
+                            <li>Наибольшее количество теннисных кортов и клубов</li>
+                            <li>Высокая концентрация целевой аудитории с доходом выше среднего</li>
+                            <li>Развитая культура премиум-покупок</li>
+                            <li>Лучшая логистика и возможность примерки</li>
+                            <li>Концентрация инфлюенсеров и лидеров мнений</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Целевая аудитория -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>👥 Целевая аудитория</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <h3 style="color: #667eea; margin-bottom: 20px;">4 ключевых сегмента</h3>
+                    
+                    <div class="grid-2">
+                        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 12px; border: 2px solid #f59e0b;">
+                            <h3 style="color: #92400e; margin-bottom: 15px;">Сегмент 1: Блогер-ориентированные</h3>
+                            <p><strong>Профиль:</strong> Девушки 25-35 лет</p>
+                            <ul style="list-style: disc; padding-left: 20px; margin-top: 15px;">
+                                <li>Следят за блогерами и трендами</li>
+                                <li>Активны в соцсетях</li>
+                                <li>Ценят эстетику и визуал</li>
+                                <li>Совершают покупки под влиянием инфлюенсеров</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 25px; border-radius: 12px; border: 2px solid #3b82f6;">
+                            <h3 style="color: #1e40af; margin-bottom: 15px;">Сегмент 2: Активные теннисистки</h3>
+                            <p><strong>Профиль:</strong> Женщины 35+ лет</p>
+                            <ul style="list-style: disc; padding-left: 20px; margin-top: 15px;">
+                                <li>Регулярно играют в теннис</li>
+                                <li>Ценят качество и бренд</li>
+                                <li>Готовы платить за функциональность</li>
+                                <li>Ищут профессиональную экипировку</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 25px; border-radius: 12px; border: 2px solid #8b5cf6;">
+                            <h3 style="color: #5b21b6; margin-bottom: 15px;">Сегмент 3: Lifestyle-покупательницы</h3>
+                            <p><strong>Профиль:</strong> Жены обеспеченных мужчин</p>
+                            <ul style="list-style: disc; padding-left: 20px; margin-top: 15px;">
+                                <li>Совершают эмоциональные покупки</li>
+                                <li>Важен статус и уникальность</li>
+                                <li>Не ограничены в бюджете</li>
+                                <li>Теннис как часть светской жизни</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 25px; border-radius: 12px; border: 2px solid #10b981;">
+                            <h3 style="color: #065f46; margin-bottom: 15px;">Сегмент 4: Карьеристки</h3>
+                            <p><strong>Профиль:</strong> Топ-менеджеры 25-35 лет</p>
+                            <ul style="list-style: disc; padding-left: 20px; margin-top: 15px;">
+                                <li>Выбирают премиум по ценности</li>
+                                <li>Теннис как нетворкинг</li>
+                                <li>Ценят время и качество</li>
+                                <li>Готовые комплекты — экономия времени</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="success-box" style="margin-top: 30px;">
+                        <strong>Общие характеристики всех сегментов:</strong>
+                        <ul style="list-style: disc; padding-left: 20px; margin-top: 10px;">
+                            <li>Доход выше среднего</li>
+                            <li>Покупают НЕ на маркетплейсах</li>
+                            <li>Важна эстетика, уникальность, визуал</li>
+                            <li>Ценят комфорт и статус</li>
+                            <li>Готовы платить за качество</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- УТП -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>💎 Уникальное торговое предложение</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3>Функциональность</h3>
+                            <ul>
+                                <li>Премиальные материалы</li>
+                                <li>Влагоотвод (moisture-wicking)</li>
+                                <li>Встроенная поддержка (shapewear эффект)</li>
+                                <li>Удобные карманы</li>
+                                <li>Открытая спина для вентиляции</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>Эстетика</h3>
+                            <ul>
+                                <li>Подчеркивает фигуру</li>
+                                <li>Эстетика тенниса и женственности</li>
+                                <li>Уверенность на корте и вне его</li>
+                                <li>100% российское производство</li>
+                                <li>Внимание к деталям и упаковке</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <h4>🏆 Главное отличие от конкурентов</h4>
+                        <p style="margin-top: 10px;"><strong>Конкуренты</strong> (Fluid Fit, Irnby, 7/6, Lululemon, Alo Yoga) давят на lifestyle</p>
+                        <p style="margin-top: 10px;"><strong>Мы</strong> усиливаем <strong>премиум-качество + функциональность</strong> через визуал, материалы и "спорт как стиль жизни"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Структура кампаний Яндекс Директ -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>🎯 Структура кампаний Яндекс Директ</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="campaign-box">
+                        <h4>Кампания 1: Поиск (Горячие запросы)</h4>
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #48bb78;">
+                            <strong>🎯 Цель:</strong> Захватить готовую к покупке аудиторию с явным намерением
+                        </div>
+                        
+                        <h4 style="color: #667eea; margin: 20px 0 10px 0;">Ключевые запросы:</h4>
+                        <div class="grid-2">
+                            <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                                <strong>Коммерческие</strong>
+                                <ul style="list-style: disc; padding-left: 20px; margin-top: 10px; font-size: 0.95em;">
+                                    <li>теннисная форма купить</li>
+                                    <li>теннисный костюм женский</li>
+                                    <li>одежда для тенниса москва</li>
+                                    <li>теннисная одежда премиум</li>
+                                </ul>
+                            </div>
+                            <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                                <strong>Брендовые</strong>
+                                <ul style="list-style: disc; padding-left: 20px; margin-top: 10px; font-size: 0.95em;">
+                                    <li>lululemon россия</li>
+                                    <li>alo yoga аналог</li>
+                                    <li>fluid fit купить</li>
+                                    <li>российская теннисная одежда</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="background: #fff5f5; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #fc8181;">
+                            <strong>🚫 Минус-слова:</strong> дешево, детская, мужская, бу, авито, прокат, аренда, секонд хенд
+                        </div>
+
+                        <div style="background: #eff6ff; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #3b82f6;">
+                            <strong>📊 Стратегия:</strong> Ручное управление ставками (первые 2 недели) → автостратегия «Максимум конверсий»
+                        </div>
+                    </div>
+
+                    <div class="campaign-box">
+                        <h4>Кампания 2: РСЯ (Lifestyle и fashion интересы)</h4>
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #48bb78;">
+                            <strong>🎯 Цель:</strong> Охватить аудиторию с интересами к спорту, моде и премиум-брендам
+                        </div>
+                        
+                        <h4 style="color: #667eea; margin: 20px 0 10px 0;">Интересы и аудитории:</h4>
+                        <div class="grid-2">
+                            <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                                <strong>Спортивные</strong>
+                                <ul style="list-style: disc; padding-left: 20px; margin-top: 10px; font-size: 0.95em;">
+                                    <li>Теннис</li>
+                                    <li>Йога</li>
+                                    <li>Фитнес</li>
+                                    <li>Пилатес</li>
+                                    <li>Активный образ жизни</li>
+                                </ul>
+                            </div>
+                            <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                                <strong>Lifestyle и бренды</strong>
+                                <ul style="list-style: disc; padding-left: 20px; margin-top: 10px; font-size: 0.95em;">
+                                    <li>Премиум мода</li>
+                                    <li>Lululemon</li>
+                                    <li>Alo Yoga</li>
+                                    <li>Nike женская одежда</li>
+                                    <li>Athleisure стиль</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="background: #f5f3ff; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #8b5cf6;">
+                            <strong>🎨 Форматы:</strong> Баннеры (статичные и анимированные) + видеообъявления
+                        </div>
+                    </div>
+
+                    <div class="campaign-box">
+                        <h4>Кампания 3: Ретаргетинг</h4>
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #48bb78;">
+                            <strong>🎯 Цель:</strong> Догрев теплой аудитории, которая взаимодействовала с брендом
+                        </div>
+                        
+                        <h4 style="color: #667eea; margin: 20px 0 10px 0;">Сегменты:</h4>
+                        <div class="grid-2">
+                            <div style="background: #fff5f5; padding: 20px; border-radius: 8px; border-left: 4px solid #fc8181;">
+                                <strong style="color: #c53030;">🔥 Горячие</strong>
+                                <p style="margin: 10px 0; font-size: 0.95em;">Посетили сайт, не оформили → "Размеры заканчиваются"</p>
+                                <p style="margin: 10px 0; font-size: 0.95em;">Открыли форму → "Персональная скидка 10%"</p>
+                            </div>
+                            <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                                <strong style="color: #92400e;">🌡️ Теплые</strong>
+                                <p style="margin: 10px 0; font-size: 0.95em;">Посмотрели блогера → "Тот самый комплект с фото"</p>
+                                <p style="margin: 10px 0; font-size: 0.95em;">Подписчики Instagram/Telegram → "Новая коллекция"</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #eff6ff; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #3b82f6;">
+                            <strong>🎁 Триггеры:</strong> Ограниченное предложение / Бестселлеры недели / Последние размеры
+                        </div>
+
+                        <div style="background: #f5f3ff; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #8b5cf6;">
+                            <strong>👥 Look-alike:</strong> После накопления 50+ конверсий создаем похожие аудитории
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 4 оффера и 5 месседжей -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>💬 Креативная стратегия</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <h3 style="color: #667eea; margin-bottom: 20px;">Тестируем 4 оффера</h3>
+                    
+                    <div class="grid-2">
+                        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 5px solid #10b981;">
+                            <h3 style="color: #10b981; margin-bottom: 15px;">Оффер 1: Универсальность</h3>
+                            <p style="font-size: 1.1em; font-weight: 600;">"Твоя премиум-форма для корта и города"</p>
+                            <p style="margin-top: 10px; color: #4a5568;">Акцент на versatility — одежда для спорта и повседневной жизни</p>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 5px solid #3b82f6;">
+                            <h3 style="color: #3b82f6; margin-bottom: 15px;">Оффер 2: Эмоция</h3>
+                            <p style="font-size: 1.1em; font-weight: 600;">"Эстетика победы: одежда для тенниса и уверенности"</p>
+                            <p style="margin-top: 10px; color: #4a5568;">Акцент на эмоциональную составляющую и self-confidence</p>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 5px solid #8b5cf6;">
+                            <h3 style="color: #8b5cf6; margin-bottom: 15px;">Оффер 3: Фигура</h3>
+                            <p style="font-size: 1.1em; font-weight: 600;">"Теннисная форма, которая подчеркивает фигуру"</p>
+                            <p style="margin-top: 10px; color: #4a5568;">Акцент на визуальный эффект и shapewear технологию</p>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 5px solid #f59e0b;">
+                            <h3 style="color: #f59e0b; margin-bottom: 15px;">Оффер 4: Детали</h3>
+                            <p style="font-size: 1.1em; font-weight: 600;">"Комфорт, стиль, внимание — в каждом движении"</p>
+                            <p style="margin-top: 10px; color: #4a5568;">Акцент на качество исполнения и premium-сегмент</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #667eea; margin: 30px 0 20px 0;">5 сильных месседжей (смыслов)</h3>
+
+                    <div class="grid-2">
+                        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 20px; border-radius: 10px; border-left: 4px solid #10b981;">
+                            <h4 style="color: #065f46; margin-bottom: 10px;">1️⃣ Ценность</h4>
+                            <p style="font-weight: 600;">"Инвестиция в себя"</p>
+                            <p style="margin-top: 8px; font-size: 0.95em;">Не просто одежда, а вложение в свой образ, уверенность и комфорт</p>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                            <h4 style="color: #1e40af; margin-bottom: 10px;">2️⃣ Отстройка</h4>
+                            <p style="font-weight: 600;">"Не массмаркет"</p>
+                            <p style="margin-top: 8px; font-size: 0.95em;">Российский премиум-бренд vs безликие маркетплейсы и массовые бренды</p>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 20px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                            <h4 style="color: #5b21b6; margin-bottom: 10px;">3️⃣ Экономия времени</h4>
+                            <p style="font-weight: 600;">"Готовый комплект, без подборов"</p>
+                            <p style="margin-top: 8px; font-size: 0.95em;">Не нужно искать и подбирать — всё уже сочетается идеально</p>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                            <h4 style="color: #92400e; margin-bottom: 10px;">4️⃣ Измеримость</h4>
+                            <p style="font-weight: 600;">"Доставим до выхода на корт"</p>
+                            <p style="margin-top: 8px; font-size: 0.95em;">Конкретный результат — быстрая доставка, примерка, уверенность</p>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); padding: 20px; border-radius: 10px; border-left: 4px solid #ec4899;">
+                            <h4 style="color: #9f1239; margin-bottom: 10px;">5️⃣ Следующая ступень</h4>
+                            <p style="font-weight: 600;">"Оставь заявку — примерим вместе"</p>
+                            <p style="margin-top: 8px; font-size: 0.95em;">Простой следующий шаг — заявка на примерку онлайн</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Посадочная страница -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>🎨 Структура посадочной страницы</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 25px;">
+                        <h3 style="font-size: 1.6em; margin-bottom: 15px;">Hero-блок (первый экран)</h3>
+                        <p style="font-size: 1.4em; margin-bottom: 10px; font-weight: 600;">Заголовок:</p>
+                        <p style="font-size: 1.2em; margin-bottom: 20px;">"Премиальная теннисная форма для игры и жизни"</p>
+                        
+                        <p style="font-size: 1.2em; margin-bottom: 10px; font-weight: 600;">Подзаголовок:</p>
+                        <p style="font-size: 1.1em; opacity: 0.95; margin-bottom: 20px;">"Функциональность, визуал и комфорт — в одном движении"</p>
+                        
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <strong>CTA:</strong> "Подобрать комплект" / "Записаться на примерку онлайн"
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Блок 1: УТП</h3>
+                        <p style="margin-bottom: 10px;">Фото продукта + короткие тезисы:</p>
+                        <ul>
+                            <li>Премиальные материалы с влагоотводом</li>
+                            <li>Встроенная поддержка (shapewear эффект)</li>
+                            <li>Эстетика тенниса и женственности</li>
+                            <li>100% российское производство</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Блок 2: Социальные доказательства</h3>
+                        <ul>
+                            <li>Фото блогера в комплекте</li>
+                            <li>Отзывы первых покупательниц</li>
+                            <li>Видеообзор (если есть)</li>
+                            <li>Instagram-галерея с хештегом бренда</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Блок 3: Призыв к действию</h3>
+                        <ul>
+                            <li>Кнопка "Подобрать комплект"</li>
+                            <li>Кнопка "Записаться на примерку онлайн"</li>
+                            <li>Быстрая форма (имя, телефон, размер)</li>
+                            <li>Переход в Telegram / WhatsApp</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Блок 4: Контакт</h3>
+                        <ul>
+                            <li>Яндекс.Форма для быстрой заявки</li>
+                            <li>Telegram-бот для консультации</li>
+                            <li>WhatsApp для связи</li>
+                            <li>Instagram с примерами образов</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Прогноз -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>💰 Экономика и прогноз</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="success-box">
+                        <strong>Целевые показатели:</strong>
+                        <p style="margin-top: 10px;">360 комплектов × 10 000 ₽ = 3 000 000 ₽ выручка<br>
+                        CPA до 2000 ₽ = бюджет на привлечение до 720 000 ₽</p>
+                    </div>
+
+                    <h3 style="color: #667eea; margin: 25px 0 15px 0;">Прогноз по этапам воронки</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Этап</th>
+                                <th>Показатель</th>
+                                <th>Значение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Клики на сайт</strong></td>
+                                <td>CPC (средний)</td>
+                                <td>50-100 ₽</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Лиды (заявки)</strong></td>
+                                <td>CPL</td>
+                                <td>400-800 ₽</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Квалифицированные лиды</strong></td>
+                                <td>Конверсия лид→квал</td>
+                                <td>60-70%</td>
+                            </tr>
+                            <tr style="background: #fef3c7;">
+                                <td><strong>Покупки</strong></td>
+                                <td><strong>CPA (целевой)</strong></td>
+                                <td><strong>до 2000 ₽</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Конверсия</strong></td>
+                                <td>Заявка→Оплата</td>
+                                <td>25-40%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 style="color: #667eea; margin: 25px 0 15px 0;">Сценарии при разных бюджетах</h3>
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3>Консервативный ($500/мес = 50 000₽)</h3>
+                            <ul>
+                                <li>Клики: 500-1000</li>
+                                <li>Заявки: 60-125</li>
+                                <li>Покупки: 15-50</li>
+                                <li>Выручка: 150 000 - 500 000 ₽</li>
+                                <li>ROMI: 200-900%</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Оптимистичный ($1000/мес = 100 000₽)</h3>
+                            <ul>
+                                <li>Клики: 1000-2000</li>
+                                <li>Заявки: 125-250</li>
+                                <li>Покупки: 30-100</li>
+                                <li>Выручка: 300 000 - 1 000 000 ₽</li>
+                                <li>ROMI: 200-900%</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <h4>📊 Важно учитывать</h4>
+                        <p style="margin-top: 10px;">• Первые 2-4 недели — период обучения и тестирования офферов<br>
+                        • CPL может быть выше целевого в начале<br>
+                        • Конверсия в покупку зависит от качества обработки заявок<br>
+                        • Инфлюенсерская поддержка увеличит органический трафик</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Тарифы -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>💼 Тарифы сотрудничества</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+                        
+                        <!-- Тариф СТАРТ -->
+                        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: 3px solid #e2e8f0;">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center;">
+                                <h3 style="font-size: 1.8em; margin-bottom: 10px;">СТАРТ</h3>
+                                <div style="font-size: 2.5em; font-weight: 700; margin: 15px 0;">$450</div>
+                                <div style="opacity: 0.9;">Рекламный бюджет: от $500</div>
+                            </div>
+                            <div style="padding: 30px;">
+                                <h4 style="color: #667eea; margin: 0 0 15px 0; text-align: center;">Быстрый запуск рекламы</h4>
+                                
+                                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #48bb78;">
+                                    <strong style="color: #22543d;">Цель:</strong> Тест ниши и быстрые заявки
+                                </div>
+
+                                <h4 style="color: #667eea; margin: 20px 0 10px 0;">Что включено:</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Анализ ниши и конкурентов
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Тексты, креативы, сценарии
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Запуск Яндекс.Директ
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Подключение аналитики и пикселей
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Настройка медиаплана
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Оптимизация под первые результаты
+                                    </li>
+                                </ul>
+                                
+                                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #48bb78;">
+                                    <strong>Результат:</strong> Первые целевые лиды, прогноз CPL
+                                </div>
+                                
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #f59e0b;">
+                                    <strong>Гарантия:</strong> Возврат денег, если нет заявок
+                                </div>
+                                
+                                <p style="margin-top: 15px;"><strong>Подходит для:</strong> Малый бизнес, тест ниши</p>
+                            </div>
+                        </div>
+
+                        <!-- Тариф БАЗА -->
+                        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: 3px solid #667eea; position: relative;">
+                            <div style="position: absolute; top: 15px; right: 15px; background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600; z-index: 1;">⭐ Рекомендуем</div>
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center;">
+                                <h3 style="font-size: 1.8em; margin-bottom: 10px;">БАЗА</h3>
+                                <div style="font-size: 2.5em; font-weight: 700; margin: 15px 0;">$900</div>
+                                <div style="opacity: 0.9;">Рекламный бюджет: от $700</div>
+                            </div>
+                            <div style="padding: 30px;">
+                                <h4 style="color: #667eea; margin: 0 0 15px 0; text-align: center;">Система заявок и контроль качества</h4>
+                                
+                                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #48bb78;">
+                                    <strong style="color: #22543d;">Цель:</strong> Стабильный поток клиентов и прозрачная аналитика
+                                </div>
+
+                                <h4 style="color: #667eea; margin: 20px 0 10px 0;">Что включено:</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Все из тарифа «Старт»
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Построение воронки: реклама → квиз → лендинг → CRM
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Создание посадочной страницы (до 10 блоков)
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Подключение AI-квалификатора (фильтрация лидов)
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Аудит CRM и автоматизация
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Аналитика CPL, CPA, CTR, ROMI
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Тестирование гипотез и сценариев
+                                    </li>
+                                </ul>
+                                
+                                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #48bb78;">
+                                    <strong>Результат:</strong> +25-40% к конверсии, ≥25 целевых заявок в месяц
+                                </div>
+                                
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #f59e0b;">
+                                    <strong>Гарантия:</strong> Минимум 25 целевых лидов — или доработка за наш счёт
+                                </div>
+                                
+                                <p style="margin-top: 15px;"><strong>Подходит для:</strong> Компании, которым нужна предсказуемая воронка</p>
+                            </div>
+                        </div>
+
+                        <!-- Тариф ЭКСПЕРТ -->
+                        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: 3px solid #e2e8f0;">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center;">
+                                <h3 style="font-size: 1.8em; margin-bottom: 10px;">ЭКСПЕРТ</h3>
+                                <div style="font-size: 2.5em; font-weight: 700; margin: 15px 0;">$1 890</div>
+                                <div style="opacity: 0.9;">Рекламный бюджет: от $3 000</div>
+                            </div>
+                            <div style="padding: 30px;">
+                                <h4 style="color: #667eea; margin: 0 0 15px 0; text-align: center;">Маркетинг и продажи под ключ</h4>
+                                
+                                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #48bb78;">
+                                    <strong style="color: #22543d;">Цель:</strong> Рост продаж и выстроенная воронка
+                                </div>
+
+                                <h4 style="color: #667eea; margin: 20px 0 10px 0;">Что включено:</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Все из тарифа «База»
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Подключение AI-РОП (контроль лидов и отдела продаж)
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        6-часовая стратегия роста с маркетинг-директором
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Несколько лендингов под сегменты
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Глубокий разбор и улучшение воронки
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Тренинг отдела продаж или аудит ОП
+                                    </li>
+                                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                                        <span style="position: absolute; left: 0; color: #48bb78; font-weight: bold; font-size: 1.2em;">✓</span>
+                                        Полное тех. сопровождение (CRM, интеграции, аналитика)
+                                    </li>
+                                </ul>
+                                
+                                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #48bb78;">
+                                    <strong>Результат:</strong> Рост продаж за 2 месяца, контроль воронки
+                                </div>
+                                
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #f59e0b;">
+                                    <strong>Гарантия:</strong> Рост продаж за 2 месяца — или возврат средств
+                                </div>
+                                
+                                <p style="margin-top: 15px;"><strong>Подходит для:</strong> Бизнес, который хочет рост и контроль</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Таблица экономии -->
+                    <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 30px; border-radius: 15px; margin-top: 40px; border-left: 5px solid #48bb78;">
+                        <h3 style="color: #065f46; margin-bottom: 20px; text-align: center;">💰 Экономия с тарифами WEBNOSTRA</h3>
+                        <table style="background: white;">
+                            <thead>
+                                <tr>
+                                    <th>Тариф</th>
+                                    <th>Включено услуг</th>
+                                    <th>Цена тарифа</th>
+                                    <th>Экономия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>СТАРТ</strong></td>
+                                    <td>4</td>
+                                    <td>$450</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr style="background: #f0fdf4;">
+                                    <td><strong>БАЗА</strong></td>
+                                    <td>7</td>
+                                    <td>$900</td>
+                                    <td>до $1 900</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ЭКСПЕРТ</strong></td>
+                                    <td>12</td>
+                                    <td>$1 890</td>
+                                    <td>до $2 500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="text-align: center; margin-top: 20px; color: #065f46; font-weight: 600;">Если собирать все вручную — выходит $2 800+, без стратегии и гарантий</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- AI-автоматизация -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>🤖 AI-автоматизация бизнес-процессов</h2>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; text-align: center;">
+                        <h3 style="font-size: 1.8em; margin-bottom: 15px;">Улучшение процесса квалификации, продаж и других бизнес-процессов</h3>
+                        <p style="font-size: 1.1em; opacity: 0.95;">Автоматизируйте рутину и масштабируйте отдел продаж без найма новых сотрудников.<br>Внедряем искусственный интеллект, который обучается на ваших данных и работает 24/7</p>
+                    </div>
+
+                    <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+                        
+                        <!-- AI-квалификатор -->
+                        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: 3px solid #10b981;">
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 25px;">
+                                <h3 style="font-size: 1.5em; margin-bottom: 10px;">🎯 AI-квалификатор</h3>
+                                <div style="font-size: 2em; font-weight: 700; margin: 10px 0;">От $300</div>
+                                <div style="opacity: 0.9; font-size: 0.95em;">за интеграцию</div>
+                            </div>
+                            <div style="padding: 25px;">
+                                <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #10b981;">
+                                    <strong style="color: #065f46;">Назначение:</strong> Круглосуточная обработка входящих запросов
+                                </div>
+                                
+                                <h4 style="color: #10b981; margin: 20px 0 15px 0;">Что делает:</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
+                                        Мгновенно отвечает на входящие сообщения в любое время суток
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
+                                        Квалифицирует лиды по вашим критериям
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
+                                        Автоматически создает задачи для менеджеров
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
+                                        Заполняет карточки клиентов в CRM
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative;">
+                                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
+                                        Определяет качество трафика и приоритетность обращений
+                                    </li>
+                                </ul>
+                                
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #f59e0b;">
+                                    <strong style="color: #92400e;">Результат:</strong> Ни один лид не теряется, менеджеры работают только с теплыми клиентами
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI-продавец -->
+                        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: 3px solid #3b82f6;">
+                            <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 25px;">
+                                <h3 style="font-size: 1.5em; margin-bottom: 10px;">📞 AI-продавец</h3>
+                                <div style="font-size: 2em; font-weight: 700; margin: 10px 0;">От $500</div>
+                                <div style="opacity: 0.9; font-size: 0.95em;">за интеграцию</div>
+                            </div>
+                            <div style="padding: 25px;">
+                                <div style="background: #eff6ff; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #3b82f6;">
+                                    <strong style="color: #1e40af;">Назначение:</strong> Голосовой помощник для входящих и исходящих звонков
+                                </div>
+                                
+                                <h4 style="color: #3b82f6; margin: 20px 0 15px 0;">Что делает:</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #3b82f6; font-weight: bold;">✓</span>
+                                        Принимает входящие звонки и консультирует клиентов
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #3b82f6; font-weight: bold;">✓</span>
+                                        Совершает исходящие звонки для напоминаний о встречах, оплатах, акциях
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #3b82f6; font-weight: bold;">✓</span>
+                                        Квалифицирует клиентов по телефону
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #3b82f6; font-weight: bold;">✓</span>
+                                        Записывает на встречи и консультации
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative;">
+                                        <span style="position: absolute; left: 0; color: #3b82f6; font-weight: bold;">✓</span>
+                                        Обрабатывает типовые возражения по скрипту
+                                    </li>
+                                </ul>
+                                
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #f59e0b;">
+                                    <strong style="color: #92400e;">Результат:</strong> Ваши менеджеры освобождены от рутинных звонков и фокусируются на сложных сделках
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Умный контроль качества -->
+                        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: 3px solid #8b5cf6;">
+                            <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 25px;">
+                                <h3 style="font-size: 1.5em; margin-bottom: 10px;">🎧 Умный контроль качества</h3>
+                                <div style="font-size: 2em; font-weight: 700; margin: 10px 0;">От $700</div>
+                                <div style="opacity: 0.9; font-size: 0.95em;">за интеграцию</div>
+                            </div>
+                            <div style="padding: 25px;">
+                                <div style="background: #f5f3ff; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #8b5cf6;">
+                                    <strong style="color: #5b21b6;">Назначение:</strong> Автоматический аудит всех разговоров с клиентами
+                                </div>
+                                
+                                <h4 style="color: #8b5cf6; margin: 20px 0 15px 0;">Что делает:</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #8b5cf6; font-weight: bold;">✓</span>
+                                        Прослушивает 100% телефонных звонков
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #8b5cf6; font-weight: bold;">✓</span>
+                                        Анализирует видеовстречи в Zoom/Google Meet
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #8b5cf6; font-weight: bold;">✓</span>
+                                        Выявляет отклонения от скриптов продаж
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #8b5cf6; font-weight: bold;">✓</span>
+                                        Фиксирует критические ошибки менеджеров
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #8b5cf6; font-weight: bold;">✓</span>
+                                        Отправляет уведомления руководителю в реальном времени
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative;">
+                                        <span style="position: absolute; left: 0; color: #8b5cf6; font-weight: bold;">✓</span>
+                                        Формирует отчеты по качеству работы каждого сотрудника
+                                    </li>
+                                </ul>
+                                
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #f59e0b;">
+                                    <strong style="color: #92400e;">Результат:</strong> Вы видите все проблемы в отделе продаж без прослушивания сотен часов записей
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Индивидуальная автоматизация -->
+                        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: 3px solid #667eea;">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px;">
+                                <h3 style="font-size: 1.5em; margin-bottom: 10px;">⚡ Индивидуальная AI-автоматизация</h3>
+                                <div style="font-size: 2em; font-weight: 700; margin: 10px 0;">Расчет</div>
+                                <div style="opacity: 0.9; font-size: 0.95em;">индивидуально</div>
+                            </div>
+                            <div style="padding: 25px;">
+                                <div style="background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%); padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #667eea;">
+                                    <strong style="color: #4c51bf;">Назначение:</strong> Любые AI и алгоритмические решения под ваш бизнес
+                                </div>
+                                
+                                <h4 style="color: #667eea; margin: 20px 0 15px 0;">Примеры задач:</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">→</span>
+                                        Автоматическое формирование коммерческих предложений
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">→</span>
+                                        Анализ обратной связи и отзывов клиентов
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">→</span>
+                                        Предиктивная аналитика продаж и прогнозирование
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">→</span>
+                                        Умные чат-боты для техподдержки
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative; border-bottom: 1px solid #e2e8f0;">
+                                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">→</span>
+                                        Автоматизация документооборота
+                                    </li>
+                                    <li style="padding: 12px 0; padding-left: 30px; position: relative;">
+                                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">→</span>
+                                        Персонализация маркетинговых коммуникаций
+                                    </li>
+                                </ul>
+                                
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #f59e0b;">
+                                    <strong style="color: #92400e;">Результат:</strong> Решаем уникальные задачи вашего бизнеса с помощью AI и алгоритмов
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="https://ai.webnostra.kz/consulting" target="_blank" style="display: inline-block; padding: 20px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 50px; font-size: 1.2em; font-weight: 600; box-shadow: 0 10px 30px rgba(102,126,234,0.3); transition: all 0.3s;">
+                            🚀 Подробнее о нейросетях
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- О команде -->
+        <div style="background: #f7fafc; padding: 50px 40px;">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 style="color: #2d3748; text-align: center; font-size: 2em; margin-bottom: 15px;">👥 О команде WEBNOSTRA PERFORMANCE</h2>
+                <p style="text-align: center; color: #718096; font-size: 1.1em; margin-bottom: 40px;">Узкоспециализированная трафик-команда</p>
+                
+                <div style="background: white; padding: 35px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); margin-bottom: 30px;">
+                    <p style="font-size: 1.1em; line-height: 1.8; color: #4a5568;">
+                        За счет отсутствия громоздкой структуры обычных маркетинговых агентств и правильного выбора проектов, с которыми мы работаем, наша команда делает <strong style="color: #667eea;">реально прибыльный digital-маркетинг</strong> для своих клиентов за справедливую цену.
+                    </p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px; text-align: center; color: white;">
+                    <h3 style="font-size: 1.5em; margin-bottom: 20px;">📈 Наша экспертиза</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 25px;">
+                        <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2em; font-weight: 700; margin-bottom: 5px;">$2.8M+</div>
+                            <div style="opacity: 0.9;">Управляли бюджетами</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2em; font-weight: 700; margin-bottom: 5px;">200+</div>
+                            <div style="opacity: 0.9;">Реализованных кейсов</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2em; font-weight: 700; margin-bottom: 5px;">1.5 года</div>
+                            <div style="opacity: 0.9;">Средний срок сотрудничества</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Контакты -->
+        <div class="contact-section">
+            <h2>📞 Готовы запустить Яндекс Директ?</h2>
+            <p style="font-size: 1.2em; margin-bottom: 30px;">Свяжитесь с нами для обсуждения проекта</p>
+            <div>
+                <a href="https://t.me/magosh_al" class="contact-btn">✈️ Telegram</a>
+                <a href="https://wa.me/77066671426" class="contact-btn">📱 WhatsApp</a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.9;">WEBNOSTRA PERFORMANCE — партнер в прибыльном трафике</p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            if (isActive) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

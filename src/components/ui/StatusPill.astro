@@ -1,0 +1,67 @@
+---
+/**
+ * StatusPill — живая пульсирующая метка «сейчас в работе: N клиентов».
+ * Данные берутся из current-status.json через getEntry.
+ * Пропсы-оверрайды можно передать для разовых случаев.
+ */
+import { getEntry } from 'astro:content';
+
+interface Props {
+  clients?: number;
+  budget?: string;
+  period?: string;
+}
+
+const status = await getEntry('currentStatus', 'current');
+
+const {
+  clients = status?.data.clients ?? 22,
+  budget = status?.data.budget ?? '$224K',
+  period = status?.data.period ?? 'в этом месяце',
+} = Astro.props;
+---
+
+<div class="status-pill">
+  <span class="status-dot" aria-hidden="true"></span>
+  <span class="status-label">Сейчас в работе:</span>
+  <span class="status-value">{clients} клиентов</span>
+  <span class="status-sep">·</span>
+  <span class="status-value">{budget} бюджета</span>
+  <span class="status-label">{period}</span>
+</div>
+
+<style>
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    flex-wrap: wrap;
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  .status-label { text-transform: uppercase; color: var(--text-dim); }
+  .status-value { color: var(--gold); font-weight: 500; }
+  .status-sep { color: var(--text-muted); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @media (max-width: 640px) {
+    .status-pill { font-size: 0.65rem; padding: 8px 12px; gap: 6px; }
+  }
+</style>

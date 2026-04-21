@@ -1,0 +1,56 @@
+---
+/**
+ * /portfolio/ — хаб всех Astro-кейсов с подробными разборами.
+ * Старый хаб /cases/ с 58 кейсами остаётся нетронутым.
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroHub from '@components/hero/HeroHub.astro';
+import CasesGrid from '@components/sections/CasesGrid.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import { breadcrumbSchema } from '@lib/seo';
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Кейсы', url: '/portfolio/' },
+];
+
+const title = 'Кейсы WEBNOSTRA - подробные разборы проектов';
+const description = 'Детальные разборы наших кейсов по нишам: недвижимость ЮВА и Дубая, e-commerce, инфобизнес, туризм, медицина. Проблема, решение, цифры.';
+
+const structuredData = [
+  breadcrumbSchema(breadcrumbs.map(b => ({ name: b.name, url: b.url }))),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/portfolio/"
+  structuredData={structuredData}
+>
+  <HeroHub
+    label="Портфолио"
+    title='Подробные разборы <span class="accent">наших кейсов</span>'
+    description="Каждый кейс - реальный проект с подтвержденными цифрами: проблема клиента, наше решение, метрики до и после. Фильтруйте по нише, каналу или географии."
+    meta={[
+      { value: '200+', label: 'проектов в портфеле' },
+      { value: '$2.8M+', label: 'освоено бюджетов' },
+      { value: 'x5', label: 'средний ROI' },
+    ]}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <CasesGrid
+    title=""
+  />
+
+  <CtaSection
+    title='Похожая задача <span class="accent">у вас</span>?'
+    description="Разберем вашу ситуацию, покажем похожие кейсы из вашей ниши, дадим прогноз CPL и план запуска. Бесплатно, без обязательств."
+    leadSource="portfolio"
+    contentCategory="general"
+    formTitle="Обсудить мой проект"
+    formSubtitle="Ответим в течение 24 часов"
+  />
+</BaseLayout>

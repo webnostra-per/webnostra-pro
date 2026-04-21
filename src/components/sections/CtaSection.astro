@@ -1,0 +1,149 @@
+---
+/**
+ * CtaSection — финальный CTA-блок с раскрытой формой.
+ * Двухколоночный: слева текст + буллеты, справа — форма.
+ * На мобильной форма уходит под текст.
+ */
+
+import LeadForm from '@components/ui/LeadForm.astro';
+import Label from '@components/ui/Label.astro';
+
+interface Props {
+  label?: string;
+  title: string;                // support <span class="accent">
+  description: string;
+  bullets?: string[];
+  leadSource: string;           // для submitForm
+  contentCategory?: string;
+  formTitle?: string;
+  formSubtitle?: string;
+  id?: string;
+}
+
+const {
+  label = 'Следующий шаг',
+  title,
+  description,
+  bullets = [
+    'Аудит рекламных кабинетов за 24 часа',
+    'Расчет unit-экономики под ваш оффер',
+    'Кейсы из вашей ниши',
+  ],
+  leadSource,
+  contentCategory = 'general',
+  formTitle = 'Получить расчет',
+  formSubtitle = 'Ответим в течение 24 часов',
+  id = 'form-final',
+} = Astro.props;
+---
+
+<section class="cta-section-wrapper section" id={id}>
+  <div class="container">
+    <div class="cta-section fade-up">
+      <div class="cta-left">
+        <Label text={label} />
+        <h2 set:html={title} />
+        <p>{description}</p>
+        {bullets.length > 0 && (
+          <ul class="cta-bullets">
+            {bullets.map(b => <li>{b}</li>)}
+          </ul>
+        )}
+      </div>
+      <div class="cta-right">
+        <LeadForm
+          id={`leadForm-${id}`}
+          leadSource={leadSource}
+          contentCategory={contentCategory}
+          title={formTitle}
+          subtitle={formSubtitle}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(201, 168, 76, 0.02));
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 56px 56px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-left {
+    position: relative;
+    z-index: 1;
+  }
+  .cta-section :global(h2) {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .cta-section :global(h2 .accent) {
+    color: var(--gold);
+  }
+  .cta-section :global(p) {
+    font-size: 1rem;
+    color: var(--text-dim);
+    max-width: 440px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .cta-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+  }
+  .cta-bullets li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.55;
+  }
+  .cta-bullets li::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .cta-right {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 900px) {
+    .cta-section {
+      grid-template-columns: 1fr;
+      padding: 40px 28px;
+      gap: 32px;
+    }
+    .cta-section::before {
+      width: 200px; height: 200px;
+      top: -60px; right: -60px;
+    }
+  }
+</style>

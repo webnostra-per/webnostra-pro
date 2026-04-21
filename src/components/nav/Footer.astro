@@ -1,0 +1,172 @@
+---
+/**
+ * Footer — четырёхколонный с реальными контактами.
+ * Берёт ссылки из env-переменных.
+ */
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).map(s => s.data).sort((a, b) => a.order - b.order);
+const geos = (await getCollection('geos')).map(g => g.data).sort((a, b) => a.order - b.order);
+
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL;
+const telegram = import.meta.env.PUBLIC_CONTACT_TELEGRAM;
+const whatsapp = import.meta.env.PUBLIC_CONTACT_WHATSAPP;
+const instagram = import.meta.env.PUBLIC_CONTACT_INSTAGRAM;
+const tgChannel = import.meta.env.PUBLIC_CONTACT_TG_CHANNEL;
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <div class="logo-mark">W</div>
+          <div class="logo-text">WEBNOSTRA<span>PERFORMANCE</span></div>
+        </a>
+        <p>Performance-маркетинг с профильными командами под нишу: недвижимость, e-commerce, инфобизнес, туризм, медицина. База на Пхукете, с 2018.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Услуги</h4>
+          {services.map(svc => (
+            <a href={`/services/${svc.id}/`}>{svc.title}</a>
+          ))}
+        </div>
+
+        <div class="footer-col">
+          <h4>Недвижимость</h4>
+          {geos.map(geo => (
+            <a href={`/real-estate/${geo.id}/`}>{geo.title}</a>
+          ))}
+        </div>
+
+        <div class="footer-col">
+          <h4>Компания</h4>
+          <a href="/about/">О нас</a>
+          <a href="/portfolio/">Кейсы</a>
+          <a href="/industries/">Отрасли</a>
+          <a href="/contacts/">Контакты</a>
+          <a href="/privacy/">Политика конфиденциальности</a>
+          <a href="/offer/">Оферта</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <a href={`mailto:${email}`}>{email}</a>
+          <a href={telegram} target="_blank" rel="noopener">Telegram</a>
+          <a href={whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+          <a href={tgChannel} target="_blank" rel="noopener">Telegram-канал</a>
+          <a href={instagram} target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© {year} WEBNOSTRA PERFORMANCE. Пхукет, Таиланд.</div>
+      <div>Performance-агентство с 2018</div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--border);
+    margin-top: var(--section-gap);
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { max-width: 280px; flex-shrink: 0; }
+  .footer-brand p {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-top: 14px;
+    line-height: 1.65;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text); text-decoration: none;
+    font-weight: 700;
+  }
+  .logo-mark {
+    width: 34px; height: 34px;
+    background: var(--gold);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 1.05rem;
+    color: var(--bg);
+  }
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 0.88rem; font-weight: 600;
+    line-height: 1;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .logo-text span {
+    font-family: var(--font-mono);
+    font-size: 0.58rem; font-weight: 400;
+    color: var(--text-dim); letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    flex: 1;
+  }
+  .footer-col h4 {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .footer-inner { flex-direction: column; gap: 32px; }
+    .footer-brand { max-width: none; }
+    .footer-links {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer-links { grid-template-columns: 1fr; }
+  }
+</style>

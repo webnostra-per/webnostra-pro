@@ -1,0 +1,183 @@
+---
+/**
+ * Главная страница — /
+ * Собирает все ключевые компоненты в осмысленную воронку:
+ * Hero (с формой) → Problems → Comparison → Cases Featured →
+ * Advantages → Numbers → Process → Services → Geography → Team →
+ * FAQ → финальный CTA с формой
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroHome from '@components/hero/HeroHome.astro';
+import Problems from '@components/sections/Problems.astro';
+import Comparison from '@components/sections/Comparison.astro';
+import CasesFeatured from '@components/sections/CasesFeatured.astro';
+import Advantages from '@components/sections/Advantages.astro';
+import Numbers from '@components/sections/Numbers.astro';
+import Process from '@components/sections/Process.astro';
+import ServicesGrid from '@components/sections/ServicesGrid.astro';
+import Geography from '@components/sections/Geography.astro';
+import GeographyBroad from '@components/sections/GeographyBroad.astro';
+import Team from '@components/sections/Team.astro';
+import Faq from '@components/sections/Faq.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+
+const title = 'WEBNOSTRA PERFORMANCE - трафик-команды под каждую нишу';
+const description = 'Профильные performance-команды для недвижимости, e-commerce, инфобизнеса, туризма и медицины. 200+ проектов, $3M+ бюджетов в 2025 году, средний ROI x5. Работаем на квалифицированные лиды и оцифрованную продажу.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/"
+  stickyCtaTarget="#form-final"
+>
+  <HeroHome />
+
+  <Problems
+    title='Проблемы, с которыми к нам <span class="accent">приходят</span>'
+    subtitle="Типичные ошибки в performance-маркетинге, которые сжигают 30-50% бюджета еще до того, как лид доходит до менеджера. Не важно, недвижимость у вас, e-commerce или образование - паттерны одинаковые."
+    items={[
+      {
+        title: "Льется бюджет, а квал. лидов нет",
+        description: "Кампании оптимизируются на клики и заявки, но не на реальных покупателей. Менеджеры выгорают от мусорных контактов.",
+      },
+      {
+        title: "Конверсия в квал 3-5%",
+        description: "Facebook-лидформы и дешевые таргеты дают объем, но 20 мусорных заявок на 1 настоящую. Продавцы теряют мотивацию.",
+      },
+      {
+        title: "Нет видимости что работает",
+        description: "Отчеты есть, а unit-экономики нет. Непонятно, какие кампании приносят деньги, а какие просто жгут бюджет.",
+      },
+      {
+        title: "Агентство не понимает нишу",
+        description: "Универсальные маркетологи запускают недвижимость и SaaS одним подходом. Специфика - длинный цикл, сезонность, воронка - игнорируется.",
+      },
+      {
+        title: "Долгий цикл - нет прогрева",
+        description: "В дорогих продуктах цикл 3-6 месяцев. Без ретаргетинга, email, Telegram-канала 90% лидов остывают и забывают о вас.",
+      },
+      {
+        title: "Медленный запуск",
+        description: "Агентство настраивает рекламу 2-3 недели, пока вы пропускаете сезон или горячий пре-сейл. Конкуренты уже собрали сливки.",
+      },
+    ]}
+  />
+
+  <Comparison
+    title='WEBNOSTRA <span class="accent">vs рынок</span>'
+    subtitle="Одни и те же метрики, разные подходы. Мы оптимизируем на квалифицированный лид и сделку, не на клик."
+    rows={[
+      { label: "Конверсия в квал. лид", market: "3-5%", us: "25-45%" },
+      { label: "Запуск от брифа до лидов", market: "2-3 недели", us: "48 часов" },
+      { label: "Отчетность", market: "раз в месяц", us: "дашборд 24/7" },
+      { label: "Офлайн-конверсии", market: "редко", us: "всегда" },
+      { label: "Мультиязычность", market: "только русский", us: "RU / EN / AR / CN" },
+      { label: "Креативы in-house", market: "на аутсорс", us: "свой продакшн" },
+    ]}
+  />
+
+  <CasesFeatured
+    title='Реальные результаты <span class="accent">реальных клиентов</span>'
+    subtitle="Два кейса с подтвержденными цифрами. Прозрачная аналитика, передача офлайн-конверсий, ROI рассчитан до рубля."
+  />
+
+  <Advantages
+    title='6 причин работать <span class="accent">с WEBNOSTRA</span>'
+    items={[
+      {
+        title: "Прозрачная аналитика",
+        description: "Дашборд в реальном времени + еженедельные отчеты с полной воронкой от показа до сделки. Вы всегда знаете, что происходит.",
+      },
+      {
+        title: "Креативы in-house",
+        description: "Свой продакшн: дизайнеры, копирайтеры, видеографы. Создаем креативы под каждый сегмент, язык и оффер - без внешних подрядчиков.",
+      },
+      {
+        title: "Запуск за 48 часов",
+        description: "От подписания договора до первых показов - двое суток. Не пропускаете горячий пре-сейл, сезон или окно возможности.",
+      },
+      {
+        title: "Все платформы",
+        description: "Meta Ads, Google Ads, Яндекс Директ, VK Ads. Подбираем оптимальный микс под ваш рынок и аудиторию, не продаем «пакет услуг».",
+      },
+      {
+        title: "Экспертиза в недвижимости",
+        description: "Знаем специфику: длинный цикл сделки, работа с возражениями, квалификация лидов. Это не просто трафик - это понимание продукта.",
+      },
+      {
+        title: "Масштабирование без потерь",
+        description: "Когда находим работающую связку - масштабируем ее. Увеличиваем бюджеты, не роняя эффективность. Алгоритмы обучены на реальные продажи.",
+      },
+    ]}
+  />
+
+  <Numbers
+    title='Цифры, <span class="accent">а не обещания</span>'
+    subtitle="Портфель агентства. Все метрики подтверждаются кабинетами и CRM клиентов."
+    items={[
+      { value: "$3M+", label: "освоено бюджетов", description: "в 2025 году" },
+      { value: "200+", label: "успешных проектов", description: "недвижка, e-com, инфобиз, туризм" },
+      { value: "x5", label: "средний ROI", description: "по проектам в активе" },
+      { value: "8 лет", label: "опыта в performance", description: "команда с 2018 года" },
+    ]}
+  />
+
+  <Process
+    title='От заявки до первых лидов <span class="accent">за 4 дня</span>'
+    subtitle="Быстрый, отработанный запуск - не теряем ваше время на «долгие согласования» и «глубокие аналитики»."
+    steps={[
+      {
+        title: "Бриф и анализ",
+        description: "Созваниваемся, разбираем продукт, анализируем текущие кабинеты и CRM. Находим точки роста.",
+        duration: "День 1",
+      },
+      {
+        title: "Стратегия и креативы",
+        description: "Пишем стратегию, делаем первые креативы, собираем посадочные страницы или квиз под воронку.",
+        duration: "Дни 1-2",
+      },
+      {
+        title: "Запуск",
+        description: "Настраиваем рекламные кабинеты, аналитику, интеграции с CRM. Передаем офлайн-конверсии.",
+        duration: "День 3",
+      },
+      {
+        title: "Первые лиды",
+        description: "На 4-й день - первые заявки. Дальше - оптимизация на квал. лиды и продажи.",
+        duration: "День 4",
+      },
+    ]}
+  />
+
+  <ServicesGrid
+    title='Шесть каналов. <span class="accent">Каждый под микроскопом.</span>'
+    subtitle="Работаем со всеми основными рекламными платформами. Не продаем пакеты - подбираем каналы под задачу, бюджет и географию."
+  />
+
+  <GeographyBroad
+    title='Где мы <span class="accent">работаем</span>'
+    subtitle="Работаем глобально - от Пхукета и Дубая до Москвы и Нью-Йорка. Под каждый рынок - нативные креативы, языковые специалисты и понимание локальной специфики."
+  />
+
+  <Team
+    title='Команда <span class="accent">WEBNOSTRA</span>'
+    subtitle="15+ специалистов: таргетологи, дизайнеры, копирайтеры, аналитики, AI-разработчики. База - Пхукет, плюс удаленная команда."
+  />
+
+  <Faq
+    title='Частые <span class="accent">вопросы</span>'
+    subtitle="Если вопроса нет в списке - пишите в Telegram, ответим."
+    tag="home"
+  />
+
+  <CtaSection
+    title='Готовы <span class="accent">обсудить</span> проект?'
+    description="Покажем кейсы по вашей нише, разберем рекламные кабинеты, сделаем прогноз CPL. Бесплатно, без обязательств."
+    leadSource="cta-section"
+    contentCategory="general"
+    formTitle="Получить аудит"
+    formSubtitle="Ответим в течение 24 часов"
+  />
+</BaseLayout>

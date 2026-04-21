@@ -1,0 +1,67 @@
+---
+/**
+ * HeroLeaf — hero для конечных страниц (каналы, страны, отрасли).
+ * Компактнее хаба — эти страницы длинные, не хочется съедать первый экран.
+ * Одна кнопка CTA.
+ */
+
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import Label from '@components/ui/Label.astro';
+import Button from '@components/ui/Button.astro';
+
+interface Props {
+  label?: string;
+  title: string;         // может содержать <span class="accent">
+  description: string;
+  ctaText?: string;
+  ctaHref?: string;
+  breadcrumbs: Array<{ name: string; url: string }>;
+}
+
+const {
+  label,
+  title,
+  description,
+  ctaText = 'Получить расчет',
+  ctaHref = '#form',
+  breadcrumbs,
+} = Astro.props;
+---
+
+<section class="hero-leaf">
+  <div class="container">
+    <div class="hero-leaf-inner">
+      <Breadcrumbs items={breadcrumbs} />
+      {label && <Label text={label} />}
+      <h1 set:html={title} />
+      <p class="hero-leaf-desc">{description}</p>
+      <div class="hero-leaf-cta">
+        <Button href={ctaHref} variant="primary">{ctaText}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-leaf {
+    padding: 40px 0 48px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-leaf-inner { max-width: 820px; }
+  .hero-leaf h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .hero-leaf-desc {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 28px;
+  }
+</style>

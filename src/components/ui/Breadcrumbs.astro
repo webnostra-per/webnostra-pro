@@ -1,0 +1,60 @@
+---
+/**
+ * Breadcrumbs — хлебные крошки.
+ * JSON-LD BreadcrumbList генерируется автоматически, отдаётся через slot="schema".
+ *
+ * Использование:
+ *   <Breadcrumbs items={[
+ *     { name: 'Главная', url: '/' },
+ *     { name: 'Недвижимость', url: '/real-estate/' },
+ *     { name: 'Таиланд', url: '/real-estate/thailand/' },  // последний — текущая
+ *   ]} />
+ */
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const lastIdx = items.length - 1;
+---
+
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+  {items.map((item, idx) => (
+    idx === lastIdx ? (
+      <span class="current" aria-current="page">{item.name}</span>
+    ) : (
+      <>
+        <a href={item.url}>{item.name}</a>
+        <span class="sep" aria-hidden="true">/</span>
+      </>
+    )
+  ))}
+</nav>
+
+<style>
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+  .breadcrumbs a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .breadcrumbs a:hover { color: var(--gold); }
+  .breadcrumbs .sep { color: var(--text-muted); }
+  .breadcrumbs .current { color: var(--text); }
+</style>

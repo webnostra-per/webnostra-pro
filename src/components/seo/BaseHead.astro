@@ -1,0 +1,142 @@
+---
+/**
+ * BaseHead — универсальные <head> теги для всех страниц.
+ * Включает: meta, OG, Twitter, canonical, favicon, шрифты, аналитику.
+ *
+ * Пропсы:
+ *   title — заголовок страницы (в <title>)
+ *   description — meta description
+ *   canonicalPath — путь для canonical (default: Astro.url.pathname)
+ *   ogImage — путь к OG-картинке (default: /og-default.jpg)
+ *   noindex — для служебных страниц (default: false)
+ *   structuredData — JSON-LD объект или массив объектов
+ */
+import { absoluteUrl } from '@lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  structuredData?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  ogImage = '/og-default.jpg',
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+const canonical = absoluteUrl(canonicalPath);
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : absoluteUrl(ogImage).replace(/\/$/, '');
+
+const YM_ID = import.meta.env.PUBLIC_YM_ID;
+const META_PIXEL_ID = import.meta.env.PUBLIC_META_PIXEL_ID;
+const GSC_VERIFICATION = import.meta.env.PUBLIC_GSC_VERIFICATION;
+const YANDEX_VERIFICATION = import.meta.env.PUBLIC_YANDEX_VERIFICATION;
+
+// Структурированные данные — нормализуем в массив
+const jsonLdItems = structuredData
+  ? Array.isArray(structuredData) ? structuredData : [structuredData]
+  : [];
+---
+
+<!-- Charset & viewport -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta http-equiv="x-ua-compatible" content="IE=edge" />
+
+<!-- Meta -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Верификация для Google Search Console и Яндекс.Вебмастера.
+     Рендерятся только если заданы env-переменные. Альтернативно - файлы в public/. -->
+{GSC_VERIFICATION && <meta name="google-site-verification" content={GSC_VERIFICATION} />}
+{YANDEX_VERIFICATION && <meta name="yandex-verification" content={YANDEX_VERIFICATION} />}
+
+<!-- Favicon: SVG для современных браузеров, ICO fallback для Яндекса и старых -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="WEBNOSTRA PERFORMANCE" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- Preconnect к шрифтам и аналитике -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://mc.yandex.ru" />
+<link rel="preconnect" href="https://connect.facebook.net" />
+
+<!-- Structured data (JSON-LD) -->
+{jsonLdItems.map((item) => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />
+))}
+
+<!-- ═══════════════════════════════════════════════════════════
+     АНАЛИТИКА — Meta Pixel
+     ═══════════════════════════════════════════════════════════ -->
+{META_PIXEL_ID && (
+  <>
+    <script is:inline define:vars={{ META_PIXEL_ID }}>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', META_PIXEL_ID);
+      window.fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`} />
+    </noscript>
+  </>
+)}
+
+<!-- ═══════════════════════════════════════════════════════════
+     АНАЛИТИКА — Яндекс.Метрика
+     ═══════════════════════════════════════════════════════════ -->
+{YM_ID && (
+  <>
+    <script is:inline define:vars={{ YM_ID: Number(YM_ID) }}>
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+      window.ym(YM_ID, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: "dataLayer"
+      });
+    </script>
+    <noscript>
+      <div><img src={`https://mc.yandex.ru/watch/${YM_ID}`} style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+  </>
+)}

@@ -1,0 +1,309 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroLeaf from '@components/hero/HeroLeaf.astro';
+import Toc from '@components/ui/Toc.astro';
+import StickyMobileCta from '@components/ui/StickyMobileCta.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import Faq from '@components/sections/Faq.astro';
+import Label from '@components/ui/Label.astro';
+
+const title = 'Контакты - WEBNOSTRA PERFORMANCE, Пхукет, Таиланд';
+const description =
+  'Связаться с WEBNOSTRA PERFORMANCE: Telegram, WhatsApp, email, Instagram. База на Пхукете, Таиланд. Работаем по всему миру. Первая встреча бесплатная, 40 минут с профильным лид-специалистом.';
+const canonical = 'https://webnostra.pro/contacts/';
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Контакты', url: '/contacts/' },
+];
+
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL;
+const telegram = import.meta.env.PUBLIC_CONTACT_TELEGRAM;
+const whatsapp = import.meta.env.PUBLIC_CONTACT_WHATSAPP;
+const instagram = import.meta.env.PUBLIC_CONTACT_INSTAGRAM;
+const tgChannel = import.meta.env.PUBLIC_CONTACT_TG_CHANNEL;
+
+// LocalBusiness schema.org
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  'name': 'WEBNOSTRA PERFORMANCE',
+  'image': 'https://webnostra.pro/og-default.jpg',
+  'url': 'https://webnostra.pro',
+  'email': email,
+  'description': 'Performance-маркетинг с профильными командами под нишу: недвижимость, e-commerce, инфобизнес, туризм, медицина. База на Пхукете, с 2018.',
+  'address': {
+    '@type': 'PostalAddress',
+    'addressLocality': 'Пхукет',
+    'addressRegion': 'Пхукет',
+    'addressCountry': 'TH',
+  },
+  'geo': {
+    '@type': 'GeoCoordinates',
+    'latitude': 7.8804,
+    'longitude': 98.3923,
+  },
+  'openingHoursSpecification': {
+    '@type': 'OpeningHoursSpecification',
+    'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    'opens': '09:00',
+    'closes': '19:00',
+  },
+  'priceRange': '$$$',
+  'areaServed': [
+    { '@type': 'Country', 'name': 'Russia' },
+    { '@type': 'Country', 'name': 'Thailand' },
+    { '@type': 'Country', 'name': 'United Arab Emirates' },
+    { '@type': 'Country', 'name': 'Indonesia' },
+    { '@type': 'Country', 'name': 'Turkey' },
+    { '@type': 'Country', 'name': 'Cyprus' },
+    { '@type': 'Country', 'name': 'Georgia' },
+  ],
+  'sameAs': [instagram, tgChannel].filter(Boolean),
+};
+
+const toc = [
+  { id: 'ways', label: 'Способы связи' },
+  { id: 'meeting', label: 'Как проходит первая встреча' },
+  { id: 'where', label: 'Где мы' },
+  { id: 'faq', label: 'Вопросы и ответы' },
+  { id: 'form-final', label: 'Оставить заявку' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/contacts/"
+  structuredData={localBusinessSchema}
+>
+  <HeroLeaf
+    label="Контакты"
+    title='Свяжитесь с нами - <span class="accent">удобным способом</span>'
+    description="Основная команда и основатели на Пхукете, часть специалистов - в РФ и СНГ. Работаем с клиентами в России, Таиланде, ОАЭ, Индонезии, Турции, Грузии, на Кипре. Для первого контакта лучше всего Telegram - ответ обычно в течение 1-2 рабочих часов. Первая встреча бесплатная, 40 минут с профильным лид-специалистом вашего направления."
+    ctaText="Оставить заявку"
+    ctaHref="#form-final"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <Toc items={toc} />
+
+  <section id="ways" class="section">
+    <div class="container narrow">
+      <Label text="Каналы" />
+      <h2>Как с нами связаться</h2>
+
+      <div class="contacts-grid">
+        <a href={telegram} target="_blank" rel="noopener" class="contact-card contact-card-hl">
+          <div class="contact-icon">TG</div>
+          <div class="contact-info">
+            <h3>Telegram</h3>
+            <p>Быстрее всего. Основной канал коммуникации с клиентами и первого контакта.</p>
+            <span class="contact-value">Написать в Telegram →</span>
+          </div>
+        </a>
+
+        <a href={whatsapp} target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">WA</div>
+          <div class="contact-info">
+            <h3>WhatsApp</h3>
+            <p>Альтернативный мессенджер, часто удобнее для клиентов из ОАЭ, Европы, СНГ.</p>
+            <span class="contact-value">Написать в WhatsApp →</span>
+          </div>
+        </a>
+
+        <a href={`mailto:${email}`} class="contact-card">
+          <div class="contact-icon">@</div>
+          <div class="contact-info">
+            <h3>Email</h3>
+            <p>Для официальной переписки, договоров, больших документов.</p>
+            <span class="contact-value">{email}</span>
+          </div>
+        </a>
+
+        <a href={tgChannel} target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">CH</div>
+          <div class="contact-info">
+            <h3>Telegram-канал</h3>
+            <p>Пишем разборы ниш, делимся кейсами с цифрами, обсуждаем изменения в рекламных кабинетах.</p>
+            <span class="contact-value">Подписаться →</span>
+          </div>
+        </a>
+
+        <a href={instagram} target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">IG</div>
+          <div class="contact-info">
+            <h3>Instagram</h3>
+            <p>Закулисье команды на Пхукете, креативы из кабинетов, ролики с объектов.</p>
+            <span class="contact-value">Смотреть →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="meeting" class="section bg-dark">
+    <div class="container narrow">
+      <Label text="Встреча" />
+      <h2>Что происходит на первой встрече</h2>
+      <p>
+        Это не продающий созвон и не презентация агентства. Это разбор вашей
+        текущей ситуации: смотрим рекламные кабинеты, аналитику, сайт или
+        лендинг, CRM. Обсуждаем ваши цели на ближайшие 3-6 месяцев. Даем
+        конкретные рекомендации - даже если не начинаем работать вместе.
+      </p>
+
+      <ul class="process-steps">
+        <li>
+          <strong>За 1-2 дня до встречи.</strong> Вы оставляете заявку через
+          форму или пишете в Telegram. Мы запрашиваем доступы к текущим
+          кабинетам и аналитике (если есть), изучаем ситуацию заранее. Это
+          экономит время на самой встрече.
+        </li>
+        <li>
+          <strong>Встреча 40 минут в Zoom или Google Meet.</strong> Первые 10
+          минут - вводная: кто вы, что продаете, что хотите получить. Следующие
+          20 минут - разбор текущей ситуации с экрана. Последние 10 минут -
+          обсуждение гипотез и возможного медиаплана.
+        </li>
+        <li>
+          <strong>После встречи - короткое резюме в Telegram.</strong> Основные
+          гипотезы, какие каналы стоит подключить, какие - нет. Если вам
+          интересно продолжать - присылаем медиаплан и коммерческое на 2-3
+          страницы. Если нет - все равно остаетесь с полезными рекомендациями.
+        </li>
+        <li>
+          <strong>Встречу проводит лид-специалист направления.</strong> Не
+          менеджер по продажам. Если у вас недвижимость - встречу ведет Дмитрий
+          (4 года в real-estate). Если e-commerce или инфобиз - Магош. Это
+          значит, что на встрече обсуждаются реальные механики, а не общие
+          слова про «стратегию».
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="where" class="section">
+    <div class="container narrow">
+      <Label text="Где мы" />
+      <h2>География команды</h2>
+      <p>
+        Основатели и часть операционной команды работают с Пхукета, Таиланд.
+        Магош переехал туда постоянно в 2022 году. Часть специалистов
+        (медиабайеры по Яндексу и VK, продакшн, РОП) работают удаленно из
+        разных городов России и СНГ. У нас нет постоянного офиса, доступного
+        для встреч с клиентами - все встречи проходят онлайн.
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>База: Пхукет, Таиланд</h3>
+          <p>
+            Часовой пояс UTC+7. Это удобно для синхронизации с РФ (совпадает с
+            Красноярским временем, на 4 часа впереди Москвы) и с ОАЭ (на 3
+            часа впереди Дубая). Рабочий день обычно начинается в 9:00 и
+            заканчивается в 18-19:00 по Пхукету, что соответствует 5:00-15:00
+            по Москве - успеваем работать с клиентами и в первой половине их
+            дня.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Удаленные специалисты</h3>
+          <p>
+            Медиабайеры по Яндексу и VK, часть продакшн-команды и РОП
+            распределены между Москвой, Петербургом, Екатеринбургом, Алматы и
+            другими городами. Работаем в Slack и Asana, внутренние созвоны
+            еженедельно. Для клиента это прозрачно - вся коммуникация идет
+            через одного проджект-менеджера.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section bg-dark">
+    <div class="container narrow">
+      <Faq tag="contacts" title="Частые вопросы перед первым контактом" label="FAQ" />
+    </div>
+  </section>
+
+  <StickyMobileCta targetHash="#form-final" label="Оставить заявку" />
+
+  <CtaSection
+    title="Оставьте заявку"
+    description="Мы ответим в Telegram или на email в течение 1-2 рабочих часов. Первая встреча бесплатная, 40 минут с лид-специалистом вашего направления. Обещаем - без продажного давления и непонятных терминов."
+    leadSource="contacts"
+    contentCategory="contacts"
+    formTitle="Связаться с нами"
+    bullets={[
+      'Ответ в рабочие часы за 1-2 часа',
+      'Первая встреча бесплатная',
+      'Без давления и спама',
+    ]}
+  />
+</BaseLayout>
+
+<style>
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  @media (max-width: 700px) {
+    .contacts-grid { grid-template-columns: 1fr; }
+  }
+
+  .contact-card {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s;
+  }
+  .contact-card:hover {
+    border-color: rgba(201, 168, 76, 0.35);
+    transform: translateY(-2px);
+  }
+  .contact-card-hl {
+    border-color: rgba(201, 168, 76, 0.25);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201, 168, 76, 0.05) 100%);
+  }
+  .contact-icon {
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    background: var(--gold-dim);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .contact-info h3 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  .contact-info p {
+    margin: 0 0 8px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .contact-value {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--gold);
+  }
+</style>

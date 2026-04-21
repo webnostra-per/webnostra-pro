@@ -1,0 +1,84 @@
+---
+/**
+ * Button — универсальная кнопка/ссылка.
+ * Варианты:
+ *   primary — золотая, для главного CTA
+ *   secondary — outline, для вторичного действия
+ *   ghost — text-only со стрелкой, для inline-ссылок
+ */
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+  class?: string;
+  arrow?: boolean;
+}
+
+const {
+  href,
+  variant = 'primary',
+  external = false,
+  class: className = '',
+  arrow = true,
+} = Astro.props;
+
+const target = external ? '_blank' : undefined;
+const rel = external ? 'noopener' : undefined;
+---
+
+<a href={href} class:list={['btn', `btn-${variant}`, className]} target={target} rel={rel}>
+  <slot />
+  {arrow && <span class="btn-arrow">→</span>}
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  /* Primary — золотая заливка */
+  .btn-primary {
+    background: var(--gold);
+    color: var(--bg);
+    padding: 14px 24px;
+    border-radius: var(--radius-sm);
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  /* Secondary — outline */
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 13px 23px;
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-sm);
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* Ghost — inline-ссылка со стрелкой */
+  .btn-ghost {
+    padding: 0;
+    color: var(--gold);
+    font-size: 0.95rem;
+  }
+  .btn-ghost:hover { color: var(--gold-light); }
+  .btn-ghost .btn-arrow { transition: transform 0.2s; }
+  .btn-ghost:hover .btn-arrow { transform: translateX(3px); }
+
+  .btn-arrow { font-size: 1.1em; }
+</style>

@@ -1,0 +1,370 @@
+---
+/**
+ * Динамическая страница кейса — /portfolio/[slug]/
+ * Рендерит каждый MDX-кейс из content/cases/ на свою страницу.
+ *
+ * Также автоматически:
+ *   - Генерирует хлебные крошки
+ *   - Показывает соседние кейсы из той же ниши
+ *   - Добавляет CTA внизу с привязкой к нише (leadSource)
+ */
+
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroCase from '@components/hero/HeroCase.astro';
+import CasesGrid from '@components/sections/CasesGrid.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import { breadcrumbSchema } from '@lib/seo';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('cases', (entry) => entry.data.published !== false);
+  return cases.map(c => ({
+    params: { slug: c.data.slug || c.id },
+    props: { entry: c },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'cases'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const data = entry.data;
+
+// SEO
+const title = data.seo?.metaTitle || `${data.title} - кейс WEBNOSTRA`;
+const description = data.seo?.metaDescription || data.shortDescription;
+
+// Маппинг индустрий на читаемые имена
+const industryLabels: Record<string, string> = {
+  'real-estate': 'Недвижимость',
+  'e-commerce': 'E-commerce',
+  'edtech': 'Инфобизнес',
+  'tourism': 'Туризм',
+  'medical': 'Медицина',
+  'auto': 'Авто',
+  'fitness': 'Фитнес',
+  'franchise': 'Франшизы',
+  'legal': 'Юридические услуги',
+  'b2b': 'B2B',
+  'kids': 'Детские услуги',
+  'other': 'Другие ниши',
+};
+
+const industryLabel = industryLabels[data.industry] || data.industry;
+const tagLine = `${industryLabel.toUpperCase()} · ${data.geo.split(',')[0].toUpperCase()}`;
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Кейсы', url: '/portfolio/' },
+  { name: data.client, url: `/portfolio/${data.slug || entry.id}/` },
+];
+
+// Hero-метрики — берём все с highlight=true или первые 4
+const heroMetrics = data.metrics.slice(0, 4).map(m => ({
+  value: m.value,
+  label: m.label,
+}));
+
+// JSON-LD
+const structuredData = [
+  breadcrumbSchema(breadcrumbs.map(b => ({ name: b.name, url: b.url }))),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={`/portfolio/${data.slug || entry.id}/`}
+  structuredData={structuredData}
+>
+  <HeroCase
+    tag={tagLine}
+    client={data.title}
+    subtitle={data.shortDescription}
+    metrics={heroMetrics}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <article class="case-article section">
+    <div class="container">
+      <div class="case-layout">
+        <!-- Основной контент: проблема → решение → результат → MDX -->
+        <main class="case-main">
+          <section class="case-block">
+            <h2>Проблема</h2>
+            <p class="case-lead">{data.problem}</p>
+          </section>
+
+          <section class="case-block">
+            <h2>Решение</h2>
+            <p class="case-lead">{data.solution}</p>
+          </section>
+
+          {data.insight && (
+            <section class="case-block case-insight">
+              <div class="case-insight-label">Инсайт</div>
+              <p>{data.insight}</p>
+            </section>
+          )}
+
+          <!-- Полные метрики -->
+          <section class="case-block">
+            <h2>Результат</h2>
+            <div class="case-metrics-full">
+              {data.metrics.map(m => (
+                <div class={`case-metric-full ${m.highlight ? 'highlight' : ''}`}>
+                  <div class="case-metric-full-val">{m.value}</div>
+                  <div class="case-metric-full-label">{m.label}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- MDX контент (если есть) -->
+          <div class="case-content">
+            <Content />
+          </div>
+        </main>
+
+        <!-- Сайдбар с мета-информацией -->
+        <aside class="case-sidebar">
+          <div class="case-meta-card">
+            <div class="case-meta-row">
+              <div class="case-meta-label">Клиент</div>
+              <div class="case-meta-value">{data.client}</div>
+            </div>
+            <div class="case-meta-row">
+              <div class="case-meta-label">Отрасль</div>
+              <div class="case-meta-value">{industryLabel}</div>
+            </div>
+            <div class="case-meta-row">
+              <div class="case-meta-label">География</div>
+              <div class="case-meta-value">{data.geo}</div>
+            </div>
+            <div class="case-meta-row">
+              <div class="case-meta-label">Период</div>
+              <div class="case-meta-value">{data.period}</div>
+            </div>
+            <div class="case-meta-row">
+              <div class="case-meta-label">Каналы</div>
+              <div class="case-meta-value case-meta-channels">
+                {data.channels.map(ch => (
+                  <span class="case-channel-pill">{ch.replace('-', ' ')}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <!-- Другие кейсы из этой же ниши -->
+  <CasesGrid
+    label="Другие кейсы"
+    title={`Другие кейсы в нише «${industryLabel}»`}
+    industry={data.industry}
+    limit={6}
+  />
+
+  <CtaSection
+    title='Похожая задача <span class="accent">у вас</span>?'
+    description={`Обсудим ваш проект в ${industryLabel.toLowerCase()}. Разберем текущие кампании, покажем прогноз CPL и дадим план запуска.`}
+    leadSource="case"
+    contentCategory={data.industry}
+    formTitle="Обсудить проект"
+    formSubtitle="Ответим в течение 24 часов"
+    id={`form-${entry.id}`}
+  />
+</BaseLayout>
+
+<style>
+  .case-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .case-main { max-width: 720px; }
+
+  .case-block {
+    margin-bottom: 48px;
+  }
+  .case-block:last-child { margin-bottom: 0; }
+
+  .case-block h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .case-lead {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-dim);
+  }
+
+  .case-insight {
+    background: var(--bg-card);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: var(--radius);
+    padding: 28px;
+    position: relative;
+  }
+  .case-insight::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    border-radius: var(--radius) 0 0 var(--radius);
+  }
+  .case-insight-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .case-insight p {
+    font-size: 0.98rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  __PROTECTED_1__
+  .case-metrics-full {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+  }
+  .case-metric-full {
+    text-align: center;
+  }
+  .case-metric-full.highlight {
+    color: var(--gold);
+  }
+  .case-metric-full-val {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .case-metric-full.highlight .case-metric-full-val { color: var(--gold); }
+  .case-metric-full-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  __PROTECTED_2__
+  .case-content {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-dim);
+  }
+  .case-content :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .case-content :global(h3) {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .case-content :global(p) { margin-bottom: 20px; }
+  .case-content :global(ul), .case-content :global(ol) {
+    margin: 20px 0;
+    padding-left: 24px;
+  }
+  .case-content :global(li) { margin-bottom: 8px; }
+  .case-content :global(strong) { color: var(--text); font-weight: 600; }
+  .case-content :global(a) {
+    color: var(--gold);
+    text-decoration: underline;
+    text-decoration-color: rgba(201, 168, 76, 0.3);
+  }
+  .case-content :global(a):hover {
+    text-decoration-color: var(--gold);
+  }
+
+  __PROTECTED_3__
+  .case-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+  .case-meta-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .case-meta-row {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .case-meta-row:first-child { padding-top: 0; }
+  .case-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .case-meta-value {
+    font-size: 0.92rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .case-meta-channels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .case-channel-pill {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .case-layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .case-sidebar { position: static; }
+    .case-metrics-full { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

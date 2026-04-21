@@ -1,0 +1,315 @@
+---
+/**
+ * CasesFeatured — вкладки по нишам с featured-кейсами.
+ * Автоматически группирует все featured-кейсы по industry и показывает
+ * по limitPerTab в каждой вкладке. Переключение — чистый JS.
+ */
+
+import { getCollection } from 'astro:content';
+import Button from '@components/ui/Button.astro';
+
+interface Props {
+  label?: string;
+  title: string;
+  subtitle?: string;
+  limitPerTab?: number;
+}
+
+const {
+  label = 'Кейсы',
+  title,
+  subtitle,
+  limitPerTab = 2,
+} = Astro.props;
+
+const INDUSTRY_TABS = [
+  { id: 'real-estate', label: 'Недвижимость' },
+  { id: 'e-commerce', label: 'E-commerce' },
+  { id: 'edtech', label: 'Инфобизнес' },
+  { id: 'tourism', label: 'Туризм' },
+  { id: 'medical', label: 'Медицина' },
+  { id: 'kids', label: 'Другие ниши' },
+];
+
+const allFeatured = (await getCollection('cases', (entry) => entry.data.published !== false))
+  .filter(c => c.data.featured)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const tabs = INDUSTRY_TABS.map(tab => ({
+  ...tab,
+  cases: allFeatured
+    .filter(c => {
+      if (tab.id === 'kids') {
+        return ['kids', 'auto', 'fitness', 'franchise', 'legal', 'b2b', 'other'].includes(c.data.industry);
+      }
+      return c.data.industry === tab.id;
+    })
+    .slice(0, limitPerTab),
+})).filter(tab => tab.cases.length > 0);
+---
+
+<section class="cases-featured section" id="cases">
+  <div class="container">
+    <div class="label">{label}</div>
+    <h2 class="section-title fade-up" set:html={title} />
+    {subtitle && <p class="section-subtitle">{subtitle}</p>}
+
+    <div class="cf-tabs fade-up" role="tablist">
+      {tabs.map((tab, i) => (
+        <button
+          class:list={['cf-tab', { active: i === 0 }]}
+          data-tab={tab.id}
+          role="tab"
+        >
+          {tab.label}
+          <span class="cf-tab-count">{tab.cases.length}</span>
+        </button>
+      ))}
+    </div>
+
+    {tabs.map((tab, i) => (
+      <div class:list={['cf-panel', { active: i === 0 }]} data-panel={tab.id} role="tabpanel">
+        <div class="cf-grid">
+          {tab.cases.map(c => (
+            <a href={`/portfolio/${c.data.slug || c.id}/`} class="case-featured-card">
+              <div class="case-featured-head">
+                <div class="case-featured-tags">
+                  <span class="case-tag">{c.data.channels[0]?.replace('-', ' ').toUpperCase()}</span>
+                  <span class="case-tag case-tag-dim">{c.data.geo.split(',')[0]}</span>
+                </div>
+                <div class="case-featured-period">{c.data.period}</div>
+              </div>
+
+              <h3 class="case-featured-title">{c.data.title}</h3>
+              <p class="case-featured-desc">{c.data.shortDescription}</p>
+
+              <div class="case-featured-metrics">
+                {c.data.metrics.slice(0, 4).map(m => (
+                  <div class="case-metric">
+                    <div class={`case-metric-val ${m.highlight ? 'gold' : ''}`}>{m.value}</div>
+                    <div class="case-metric-label">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div class="case-featured-footer">
+                <span>Читать кейс</span>
+                <span class="arrow">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="cases-featured-cta">
+      <Button href="/portfolio/" variant="secondary" arrow>Смотреть все кейсы</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cf-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 48px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+  .cf-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+    white-space: nowrap;
+  }
+  .cf-tab:hover { color: var(--text); }
+  .cf-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    font-weight: 600;
+  }
+  .cf-tab-count {
+    display: inline-block;
+    background: var(--surface);
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    border-radius: 100px;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+  .cf-tab.active .cf-tab-count {
+    background: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  .cf-panel { display: none; }
+  .cf-panel.active { display: block; }
+
+  .cf-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .case-featured-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-featured-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .case-featured-card:hover {
+    border-color: rgba(201, 168, 76, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  }
+  .case-featured-card:hover::before { opacity: 1; }
+
+  .case-featured-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .case-featured-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .case-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    padding: 4px 10px;
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .case-tag-dim { background: var(--surface); color: var(--text-dim); }
+  .case-featured-period {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .case-featured-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .case-featured-desc {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .case-featured-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    margin-bottom: 24px;
+  }
+  .case-metric { padding: 8px 0; }
+  .case-metric-val {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .case-metric-val.gold { color: var(--gold); }
+  .case-metric-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .case-featured-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .case-featured-footer .arrow { transition: transform 0.2s; font-family: var(--font-body); font-size: 1.1rem; }
+  .case-featured-card:hover .case-featured-footer .arrow { transform: translateX(4px); }
+
+  .cases-featured-cta {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 900px) {
+    .cf-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .cf-tabs {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .cf-tabs::-webkit-scrollbar { display: none; }
+  }
+</style>
+
+<script>
+  (function initCaseTabs() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.cf-tab');
+    const panels = document.querySelectorAll<HTMLElement>('.cf-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        const targetPanel = document.querySelector<HTMLElement>(`[data-panel="${target}"]`);
+        if (targetPanel) targetPanel.classList.add('active');
+      });
+    });
+  })();
+</script>

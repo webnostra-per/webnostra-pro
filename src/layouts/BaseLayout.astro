@@ -1,0 +1,121 @@
+---
+/**
+ * BaseLayout — базовая обёртка всех страниц.
+ * Включает: <head>, навигацию, футер, инициализацию форм.
+ *
+ * Пропсы проксируются в BaseHead:
+ *   title — обязательно
+ *   description — обязательно
+ *   canonicalPath, ogImage, noindex, structuredData — опционально
+ *   showStickyCta — показывать липкую мобильную CTA-кнопку (default: true)
+ */
+
+import '@styles/global.css';
+import BaseHead from '@components/seo/BaseHead.astro';
+import Navigation from '@components/nav/Navigation.astro';
+import Footer from '@components/nav/Footer.astro';
+import StickyMobileCta from '@components/ui/StickyMobileCta.astro';
+import LeadPopup from '@components/ui/LeadPopup.astro';
+import { organizationSchema } from '@lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  structuredData?: object | object[];
+  showStickyCta?: boolean;
+  stickyCtaTarget?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  ogImage,
+  noindex = false,
+  structuredData,
+  showStickyCta = true,
+  stickyCtaTarget = '#form-final',
+} = Astro.props;
+
+// Всегда добавляем Organization schema. Если переданы ещё — объединяем.
+const allSchemas = [
+  organizationSchema(),
+  ...(structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : []),
+];
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      ogImage={ogImage}
+      noindex={noindex}
+      structuredData={allSchemas}
+    />
+  </head>
+  <body>
+    <Navigation />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+
+    {showStickyCta && <StickyMobileCta targetHash={stickyCtaTarget} />}
+
+    <!-- Глобальный попап с формой (открывается если на странице нет #form-final) -->
+    <LeadPopup />
+
+    <!-- Инициализация лидогенерации и fade-up анимаций -->
+    <script>
+      import { initLeadSystem } from '@lib/leads';
+      initLeadSystem();
+
+      // Fade-up reveal на скролле
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+      // Smooth scroll для всех якорных ссылок.
+      // Спец-логика для #form-final: если блок не найден на странице - открываем попап с формой.
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (!href || href === '#' || href.length < 2) return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+          if (href === '#form-final' || href === '#form') {
+            e.preventDefault();
+            const openFn = (window as any).openLeadPopup;
+            if (typeof openFn === 'function') openFn();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Сдвигаем основной контент под фиксированную навигацию */
+  main {
+    padding-top: 68px;
+    min-height: 100vh;
+  }
+</style>

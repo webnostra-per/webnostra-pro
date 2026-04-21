@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Paid-лендинги — только для платного трафика с UTM
+Disallow: /performance/ads/
+
+# Коммерческие предложения клиентам — приватные ссылки
+Disallow: /performance/commercial/
+Disallow: /performance/sales/
+Disallow: /performance/clients/
+
+# AI-коммерческие — тоже приватные
+Disallow: /ai/commercial/
+
+# Служебное
+Disallow: /404/
+
+Sitemap: https://webnostra.pro/sitemap-index.xml

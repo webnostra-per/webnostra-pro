@@ -1,0 +1,137 @@
+---
+/**
+ * Toc — оглавление для длинных SEO-страниц.
+ * Sticky на десктопе, collapsible на мобильной.
+ * Работает с IntersectionObserver для подсветки активного раздела.
+ *
+ * Пропсы:
+ *   items — массив { id, label }
+ */
+
+interface TocItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  items: TocItem[];
+  title?: string;
+}
+
+const { items, title = 'Содержание' } = Astro.props;
+---
+
+<aside class="toc" data-toc>
+  <details open>
+    <summary>
+      <span class="toc-label">{title}</span>
+      <span class="toc-arrow" aria-hidden="true">▾</span>
+    </summary>
+    <ol>
+      {items.map(item => (
+        <li><a href={`#${item.id}`} data-toc-link={item.id}>{item.label}</a></li>
+      ))}
+    </ol>
+  </details>
+</aside>
+
+<style>
+  .toc {
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    max-width: 960px;
+    margin: 24px auto 48px;
+  }
+  .toc details { width: 100%; }
+  .toc summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 14px;
+  }
+  .toc summary::-webkit-details-marker { display: none; }
+  .toc[open] .toc-arrow,
+  .toc details[open] .toc-arrow { transform: rotate(180deg); }
+  .toc-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .toc-arrow {
+    color: var(--text-dim);
+    transition: transform 0.2s;
+  }
+
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+    padding: 0;
+    margin: 0;
+  }
+  .toc li {
+    counter-increment: toc-counter;
+    border-left: 2px solid var(--border);
+    padding-left: 14px;
+    margin-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .toc li a {
+    display: block;
+    padding: 6px 0;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    transition: color 0.2s;
+  }
+  .toc li a::before {
+    content: counter(toc-counter, decimal-leading-zero) ' ';
+    color: var(--text-muted);
+    margin-right: 6px;
+    font-size: 0.75rem;
+  }
+  .toc li a:hover { color: var(--text); }
+  .toc li.active {
+    border-left-color: var(--gold);
+  }
+  .toc li.active a { color: var(--gold); }
+</style>
+
+<script>
+  // Подсветка активного раздела через IntersectionObserver
+  (function initToc() {
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
+    if (!tocLinks.length) return;
+
+    const linkMap = new Map<string, HTMLElement>();
+    tocLinks.forEach(link => {
+      const id = link.dataset.tocLink;
+      if (id) linkMap.set(id, link.closest('li') as HTMLElement);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const listItem = linkMap.get(id);
+        if (!listItem) return;
+        if (entry.isIntersecting) {
+          linkMap.forEach(li => li.classList.remove('active'));
+          listItem.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+    linkMap.forEach((_, id) => {
+      const target = document.getElementById(id);
+      if (target) observer.observe(target);
+    });
+  })();
+</script>

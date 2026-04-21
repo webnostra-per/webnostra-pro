@@ -1,0 +1,84 @@
+---
+/**
+ * StickyMobileCta — липкая кнопка CTA, появляется снизу на мобильной
+ * после прокрутки первого экрана. Ведёт к anchor (default: #form-final).
+ *
+ * Пропсы:
+ *   targetHash — anchor для перехода (default: #form-final)
+ *   label — текст (default: 'Обсудить проект')
+ *   meta — подпись справа (default: 'Ответ за 24ч')
+ */
+
+interface Props {
+  targetHash?: string;
+  label?: string;
+  meta?: string;
+}
+
+const {
+  targetHash = '#form-final',
+  label = 'Обсудить проект',
+  meta = 'Ответ за 24ч',
+} = Astro.props;
+---
+
+<a href={targetHash} class="sticky-cta" id="stickyCta" aria-label={label}>
+  <span class="sticky-cta-dot" aria-hidden="true"></span>
+  {label}
+  {meta && <span class="sticky-cta-meta">{meta}</span>}
+</a>
+
+<style>
+  .sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    z-index: 50;
+    background: var(--gold);
+    color: var(--bg);
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transform: translateY(calc(100% + 24px));
+    transition: transform 0.3s;
+  }
+  .sticky-cta.show { transform: translateY(0); }
+
+  .sticky-cta-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--bg);
+    animation: pulse 2s infinite;
+  }
+  .sticky-cta-meta {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 400;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .sticky-cta { display: flex; }
+  }
+</style>
+
+<script>
+  // Показываем CTA после прокрутки на 800px
+  (function initStickyCta() {
+    const stickyCta = document.getElementById('stickyCta');
+    if (!stickyCta) return;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 800) stickyCta.classList.add('show');
+      else stickyCta.classList.remove('show');
+    }, { passive: true });
+  })();
+</script>
