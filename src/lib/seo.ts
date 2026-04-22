@@ -118,3 +118,52 @@ export function faqSchema(items: Array<{ question: string; answer: string }>) {
     })),
   };
 }
+
+/**
+ * Article schema - для страниц кейсов. Даёт Rich Results в Google.
+ */
+export function articleSchema(opts: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: Date | string;
+  dateModified?: Date | string;
+  image?: string;
+  authorName?: string;
+}) {
+  const published = typeof opts.datePublished === 'string'
+    ? opts.datePublished
+    : opts.datePublished.toISOString();
+  const modified = opts.dateModified
+    ? (typeof opts.dateModified === 'string' ? opts.dateModified : opts.dateModified.toISOString())
+    : published;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': opts.headline,
+    'description': opts.description,
+    'url': absoluteUrl(opts.path),
+    'datePublished': published,
+    'dateModified': modified,
+    'image': opts.image ? (opts.image.startsWith('http') ? opts.image : absoluteUrl(opts.image).replace(/\/$/, '')) : `${SITE_URL}/og-default.jpg`,
+    'author': {
+      '@type': 'Organization',
+      'name': opts.authorName || 'WEBNOSTRA PERFORMANCE',
+      'url': SITE_URL,
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'WEBNOSTRA PERFORMANCE',
+      'url': SITE_URL,
+      'logo': {
+        '@type': 'ImageObject',
+        'url': `${SITE_URL}/og-default.jpg`,
+      },
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': absoluteUrl(opts.path),
+    },
+  };
+}

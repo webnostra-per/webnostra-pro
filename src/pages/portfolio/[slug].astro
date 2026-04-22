@@ -14,7 +14,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import HeroCase from '@components/hero/HeroCase.astro';
 import CasesGrid from '@components/sections/CasesGrid.astro';
 import CtaSection from '@components/sections/CtaSection.astro';
-import { breadcrumbSchema } from '@lib/seo';
+import { breadcrumbSchema, articleSchema } from '@lib/seo';
 
 export async function getStaticPaths() {
   const cases = await getCollection('cases', (entry) => entry.data.published !== false);
@@ -71,6 +71,12 @@ const heroMetrics = data.metrics.slice(0, 4).map(m => ({
 // JSON-LD
 const structuredData = [
   breadcrumbSchema(breadcrumbs.map(b => ({ name: b.name, url: b.url }))),
+  articleSchema({
+    headline: data.title,
+    description: data.shortDescription,
+    path: `/portfolio/${data.slug || entry.id}/`,
+    datePublished: data.publishedAt,
+  }),
 ];
 ---
 

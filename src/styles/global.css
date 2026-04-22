@@ -4,8 +4,7 @@
    внутри .astro-файлов (scoped).
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Шрифты грузятся через <link> в BaseHead.astro (не блокируют рендер) */
 
 /* ── CSS reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
