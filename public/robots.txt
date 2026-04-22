@@ -1,18 +1,67 @@
+# robots.txt for webnostra.pro
+# Обновлено: 22.04.2026
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /404
+Disallow: /admin/
 
-# Paid-лендинги — только для платного трафика с UTM
-Disallow: /performance/ads/
+# AI-crawlers: разрешены явно (GEO оптимизация)
+User-agent: GPTBot
+Allow: /
 
-# Коммерческие предложения клиентам — приватные ссылки
-Disallow: /performance/commercial/
-Disallow: /performance/sales/
-Disallow: /performance/clients/
+User-agent: ChatGPT-User
+Allow: /
 
-# AI-коммерческие — тоже приватные
-Disallow: /ai/commercial/
+User-agent: OAI-SearchBot
+Allow: /
 
-# Служебное
-Disallow: /404/
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: YandexGPT
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+# Яндекс специфичные
+User-agent: YandexBot
+Allow: /
+
+User-agent: YandexImages
+Allow: /
 
 Sitemap: https://webnostra.pro/sitemap-index.xml
+Sitemap: https://webnostra.pro/llms.txt
+Sitemap: https://webnostra.pro/llms-full.txt
+
+Host: webnostra.pro

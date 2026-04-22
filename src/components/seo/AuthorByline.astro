@@ -1,0 +1,125 @@
+---
+// AuthorByline - подпись автора, усиливает E-E-A-T для LLM и Google
+// Ставится в начале блог-статей, кейсов, экспертных материалов
+
+interface Props {
+  name: string;
+  role: string;
+  avatar?: string;
+  date?: string;
+  readTime?: string;
+  class?: string;
+}
+
+const {
+  name,
+  role,
+  avatar = "/team/magosh.jpg",
+  date,
+  readTime,
+  class: className = ""
+} = Astro.props;
+
+const initials = name
+  .split(" ")
+  .map((n) => n[0])
+  .join("")
+  .slice(0, 2);
+---
+
+<div class={`author-byline ${className}`} itemprop="author" itemscope itemtype="https://schema.org/Person">
+  <div class="ab-avatar">
+    {avatar ? (
+      <img src={avatar} alt={name} width="44" height="44" loading="lazy" />
+    ) : (
+      <span class="ab-initials">{initials}</span>
+    )}
+    <meta itemprop="image" content={avatar} />
+  </div>
+  <div class="ab-info">
+    <div class="ab-name-role">
+      <span class="ab-name" itemprop="name">{name}</span>
+      <span class="ab-role" itemprop="jobTitle">{role}</span>
+    </div>
+    {(date || readTime) && (
+      <div class="ab-meta">
+        {date && <span>{date}</span>}
+        {date && readTime && <span class="ab-dot">·</span>}
+        {readTime && <span>{readTime} чтения</span>}
+      </div>
+    )}
+  </div>
+  <link itemprop="worksFor" href="https://webnostra.pro" />
+</div>
+
+<style>
+  .author-byline {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 0;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .ab-avatar {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(212, 175, 55, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+  }
+
+  .ab-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ab-initials {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #d4af37;
+    letter-spacing: 0.05em;
+  }
+
+  .ab-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ab-name-role {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.1rem 0.6rem;
+  }
+
+  .ab-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .ab-role {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .ab-meta {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 0.15rem;
+  }
+
+  .ab-dot {
+    opacity: 0.5;
+  }
+</style>

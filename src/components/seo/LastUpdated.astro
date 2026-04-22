@@ -1,0 +1,99 @@
+---
+// LastUpdated - маркер даты обновления страницы
+// LLM отдают предпочтение свежему контенту при цитировании
+// Ставится в начале основного контента, сразу после Hero
+
+interface Props {
+  date: string; // формат: "22 апреля 2026" или Date
+  version?: string; // "v1.0"
+  author?: {
+    name: string;
+    url?: string;
+  };
+  class?: string;
+}
+
+const { date, version, author, class: className = "" } = Astro.props;
+
+// Если date - это Date, форматируем по-русски
+function formatDate(input: string | Date): string {
+  if (typeof input === "string") return input;
+  const months = [
+    "января", "февраля", "марта", "апреля", "мая", "июня",
+    "июля", "августа", "сентября", "октября", "ноября", "декабря"
+  ];
+  return `${input.getDate()} ${months[input.getMonth()]} ${input.getFullYear()}`;
+}
+
+const formattedDate = formatDate(date);
+---
+
+<div class={`last-updated ${className}`} itemscope itemtype="https://schema.org/Article">
+  <meta itemprop="dateModified" content={typeof date === "string" ? new Date().toISOString() : (date as Date).toISOString()} />
+  <span class="lu-updated">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+      <path d="M21 3v5h-5"></path>
+    </svg>
+    Обновлено: <strong>{formattedDate}</strong>
+  </span>
+  {version && <span class="lu-version">Версия {version}</span>}
+  {author && (
+    <span class="lu-author">
+      Автор:{" "}
+      {author.url ? (
+        <a href={author.url} itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{author.name}</span>
+        </a>
+      ) : (
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{author.name}</span>
+        </span>
+      )}
+    </span>
+  )}
+</div>
+
+<style>
+  .last-updated {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    align-items: center;
+    font-size: 0.825rem;
+    color: rgba(255, 255, 255, 0.55);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 1.5rem;
+  }
+
+  .lu-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .lu-updated strong {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+  }
+
+  .lu-version {
+    padding: 0.15rem 0.55rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lu-author a {
+    color: rgba(212, 175, 55, 0.85);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .lu-author a:hover {
+    color: #d4af37;
+  }
+</style>

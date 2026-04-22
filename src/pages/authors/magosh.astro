@@ -1,0 +1,240 @@
+---
+// src/pages/authors/magosh.astro
+// Страница автора - критична для E-E-A-T и для LLM
+// Здесь собрана вся информация об эксперте, на нее ссылаются все его материалы
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import Label from '@components/ui/Label.astro';
+import Button from '@components/ui/Button.astro';
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
+import { getCollection } from 'astro:content';
+import { TEAM_PERSONS } from '@lib/seo-geo';
+
+const allCases = await getCollection('cases', ({ data }) => data.published !== false);
+const casesCount = allCases.length;
+
+const pageTitle = 'Магош Альшанский - Managing Director WEBNOSTRA PERFORMANCE';
+const pageDescription =
+  'Магош Альшанский - Managing Director и co-founder WEBNOSTRA PERFORMANCE. 8+ лет в performance-маркетинге, эксперт по недвижимости ЮВА и Дубая. Автор методических материалов и публикаций агентства.';
+
+const personWithCases = {
+  ...TEAM_PERSONS.magosh,
+  knowsAbout: [
+    ...(TEAM_PERSONS.magosh as any).knowsAbout,
+    'Продвижение застройщиков',
+    'Реклама на русскоязычную аудиторию в ЮВА',
+    'Open-door метод в недвижимости',
+    'Сквозная аналитика для агентств'
+  ]
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/authors/magosh/"
+  structuredData={personWithCases}
+>
+  <main class="author-page">
+    <div class="container">
+      <Breadcrumbs items={[
+        { name: 'Главная', url: '/' },
+        { name: 'Авторы', url: '/authors/' },
+        { name: 'Магош Альшанский', url: '/authors/magosh/' },
+      ]} />
+
+      <header class="author-hero">
+        <div class="author-hero__content">
+          <Label text="Эксперт" />
+          <h1 class="author-hero__title">Магош Альшанский</h1>
+          <p class="author-hero__role">Managing Director и co-founder WEBNOSTRA PERFORMANCE</p>
+          <div class="author-hero__stats">
+            <div class="stat">
+              <span class="stat__value">8+</span>
+              <span class="stat__label">лет в performance</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">{casesCount}</span>
+              <span class="stat__label">кейсов на сайте</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">$3M+</span>
+              <span class="stat__label">бюджетов в 2025</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">200+</span>
+              <span class="stat__label">проектов</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <LastUpdated date="22 апреля 2026" version="1.0" />
+
+      <QuickAnswer
+        title="Кратко о Магоше"
+        summary="Магош Альшанский - сооснователь и Managing Director WEBNOSTRA PERFORMANCE, агентства с базой на Пхукете и более 200 проектов в портфеле. Живет в Таиланде с 2022 года. Лично ведет стратегические проекты и key accounts."
+        items={[
+          { label: "Должность", value: "Managing Director и co-founder WEBNOSTRA PERFORMANCE" },
+          { label: "Опыт", value: "8+ лет в performance-маркетинге, с 2018 года основатель агентства" },
+          { label: "Специализация", value: "Недвижимость ЮВА и Дубая, масштабирование агентских процессов" },
+          { label: "Локация", value: "Пхукет, Таиланд" },
+          { label: "Команда", value: "15+ специалистов в 5 профильных трафик-командах" },
+          { label: "Ключевые клиенты", value: "Premium Villas Phuket, IBG Property, Good Carma Investment, сеть клиник Алматы" },
+        ]}
+      />
+
+      <section class="author-section">
+        <h2>Биография</h2>
+        <p>Магош Альшанский основал команду WEBNOSTRA в 2018 году. На момент запуска в команде был один специалист. За 7 лет агентство выросло до 15+ постоянных сотрудников в 5 профильных трафик-командах и нескольких дополнительных направлениях, включая WEBNOSTRA AI.</p>
+        <p>В 2022 году Магош переехал на Пхукет, где сейчас находится операционный центр агентства. Это решение определило стратегическое позиционирование WEBNOSTRA PERFORMANCE как агентства с глубокой экспертизой в рынках недвижимости Юго-Восточной Азии и ОАЭ.</p>
+        <p>Годовой рекламный бюджет, которым управляет команда под его руководством, превышает $3 миллиона в 2025 году. В работе одновременно 22 активных клиента и 7 полноценных трафик-команд.</p>
+      </section>
+
+      <section class="author-section">
+        <h2>Области экспертизы</h2>
+        <ul class="expertise-list">
+          <li><strong>Реклама недвижимости в ЮВА и Дубае.</strong> 9 кейсов на сайте, средний чек сделок от $80K до $450K.</li>
+          <li><strong>Работа с длинным циклом сделки.</strong> Выстраивание воронок для проектов, где путь от первого касания до сделки занимает 3-6 месяцев.</li>
+          <li><strong>Масштабирование агентских процессов.</strong> Построение децентрализованной модели с 5 профильными командами.</li>
+          <li><strong>Привлечение русскоязычной аудитории за рубежом.</strong> Работа с инвесторами из РФ и СНГ в Таиланде, Дубае, на Бали.</li>
+          <li><strong>Интеграция сквозной аналитики.</strong> Передача офлайн-конверсий, Roistat, оптимизация на квал-лида и сделки.</li>
+          <li><strong>Работа с премиум-сегментом.</strong> Недвижимость от $450K, стоматология all-on-4 со средним чеком $7,200, премиум-курсы для топ-менеджеров.</li>
+        </ul>
+      </section>
+
+      <section class="author-section">
+        <h2>Ключевые проекты под руководством</h2>
+        <p>Некоторые из проектов, которые ведутся или велись лично Магошем или его командой:</p>
+        <ul>
+          <li><a href="/portfolio/premium-villas-phuket/">Premium Villas Phuket</a> - 7 сделок по $450K, pipeline $3.2M</li>
+          <li><a href="/portfolio/ibg-property/">IBG Property</a> - 1,721 квал-лид по $34, дополнительно 14,858 подписчиков в Telegram</li>
+          <li><a href="/portfolio/good-karma/">Good Carma Investment Co</a> - ROI 1,020%, первая бронь за 2 недели</li>
+          <li><a href="/portfolio/prague-clinic-implants/">Премиум клиника в Праге</a> - ROI 760% за 28 дней, 9 сделок all-on со средним чеком $7,200</li>
+          <li><a href="/portfolio/almaty-clinics-network/">Сеть клиник в Алматы</a> - ROI 590%, загрузка кресла с 55% до 84%</li>
+          <li><a href="/portfolio/luding/">LUDING</a> - 36,500 заказов, выручка 210М руб</li>
+        </ul>
+      </section>
+
+      <section class="author-section">
+        <h2>Контакты</h2>
+        <p>По вопросам сотрудничества, выступлений и публикаций:</p>
+        <div class="author-contacts">
+          <Button href="https://t.me/m/o8bYoFHBZmRi" external>Написать в Telegram</Button>
+          <Button href="mailto:ceo@webnostra.pro" variant="secondary">ceo@webnostra.pro</Button>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .author-page {
+    padding: 2rem 0 4rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .author-hero {
+    margin: 2rem 0 1.5rem;
+  }
+
+  .author-hero__title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    margin: 0.75rem 0 0.5rem;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .author-hero__role {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .author-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat__value {
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #d4af37;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat__label {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .author-section {
+    margin: 2.5rem 0;
+  }
+
+  .author-section h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  .author-section p,
+  .author-section li {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .author-section ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0;
+  }
+
+  .author-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .author-section a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .author-section a:hover {
+    color: #f0c866;
+  }
+
+  .expertise-list li strong {
+    color: #fff;
+  }
+
+  .author-contacts {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+</style>
