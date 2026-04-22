@@ -9,6 +9,8 @@ const services = (await getCollection('services')).map(s => s.data).sort((a, b) 
 const geos = (await getCollection('geos')).map(g => g.data).sort((a, b) => a.order - b.order);
 
 const email = import.meta.env.PUBLIC_CONTACT_EMAIL;
+const phone = import.meta.env.PUBLIC_CONTACT_PHONE;
+const phoneDisplay = import.meta.env.PUBLIC_CONTACT_PHONE_DISPLAY;
 const telegram = import.meta.env.PUBLIC_CONTACT_TELEGRAM;
 const whatsapp = import.meta.env.PUBLIC_CONTACT_WHATSAPP;
 const instagram = import.meta.env.PUBLIC_CONTACT_INSTAGRAM;
@@ -47,6 +49,7 @@ const year = new Date().getFullYear();
           <h4>Компания</h4>
           <a href="/about/">О нас</a>
           <a href="/portfolio/">Кейсы</a>
+          <a href="/blog/">Блог</a>
           <a href="/industries/">Отрасли</a>
           <a href="/contacts/">Контакты</a>
           <a href="/privacy/">Политика конфиденциальности</a>
@@ -55,6 +58,7 @@ const year = new Date().getFullYear();
 
         <div class="footer-col">
           <h4>Контакты</h4>
+          <a href={`tel:${phone}`}>{phoneDisplay}</a>
           <a href={`mailto:${email}`}>{email}</a>
           <a href={telegram} target="_blank" rel="noopener">Telegram</a>
           <a href={whatsapp} target="_blank" rel="noopener">WhatsApp</a>

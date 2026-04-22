@@ -14,6 +14,8 @@ const breadcrumbs = [
 ];
 
 const email = import.meta.env.PUBLIC_CONTACT_EMAIL;
+const phone = import.meta.env.PUBLIC_CONTACT_PHONE;
+const phoneDisplay = import.meta.env.PUBLIC_CONTACT_PHONE_DISPLAY;
 ---
 
 <BaseLayout
@@ -284,9 +286,12 @@ const email = import.meta.env.PUBLIC_CONTACT_EMAIL;
       <h2>12. Контакты</h2>
       <p>
         По всем вопросам, связанным с обработкой персональных данных и
-        настоящей Политикой, Пользователь может обратиться по адресу:
-        <a href={`mailto:${email}`}>{email}</a>
+        настоящей Политикой, Пользователь может обратиться:
       </p>
+      <ul>
+        <li>По электронной почте: <a href={`mailto:${email}`}>{email}</a></li>
+        <li>По телефону: <a href={`tel:${phone}`}>{phoneDisplay}</a></li>
+      </ul>
       <p class="muted" style="margin-top: 40px;">
         Настоящая редакция Политики опубликована 21 апреля 2026 года.
       </p>
