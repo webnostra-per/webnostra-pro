@@ -241,7 +241,7 @@ const structuredData = [
     line-height: 1.7;
   }
 
-  __PROTECTED_1__
+  /* Полные метрики */
   .case-metrics-full {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -272,7 +272,7 @@ const structuredData = [
     color: var(--text-dim);
   }
 
-  __PROTECTED_2__
+  /* MDX-контент */
   .case-content {
     font-size: 1rem;
     line-height: 1.75;
@@ -311,7 +311,7 @@ const structuredData = [
     text-decoration-color: var(--gold);
   }
 
-  __PROTECTED_3__
+  /* Сайдбар */
   .case-sidebar {
     position: sticky;
     top: 100px;
@@ -366,5 +366,14 @@ const structuredData = [
     }
     .case-sidebar { position: static; }
     .case-metrics-full { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .case-metrics-full {
+      padding: 20px 16px;
+      gap: 12px;
+    }
+    .case-metric-full-val { font-size: 1.35rem; }
+    .case-metric-full-label { font-size: 0.7rem; }
   }
 </style>
