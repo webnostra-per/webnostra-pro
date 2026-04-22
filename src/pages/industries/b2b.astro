@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама для B2B и профессиональных услуг - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для B2B-компаний, юридических услуг, франшиз и B2B-поставщиков. Длинный цикл сделки, KEV-встречи, квалификация через квизы. Примеры: франшизы вендингов (20 продаж за месяц), маркировка B2B (623 заявки), ремонт фасадов (79 контрактов с УК).';
@@ -37,6 +39,22 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама для B2B и услуг"
+    summary="B2B-лидогенерация для сложных продуктов: юридические услуги, маркировка товаров, упаковка для маркетплейсов, B2B-поставщики. Работаем с длинным циклом сделки и дорогими тендерами."
+    items={[
+      { label: "Пример кейса", value: "АНПАК упаковка для селлеров - 1,700 заявок B2B по 1,018 руб, конверсия 18%" },
+      { label: "Диапазон CPL", value: "693 руб (франшиза VK), 1,018 руб (B2B упаковка), 1,111 руб (маркировка товаров), 1,300 руб (ремонт фасадов для ТСЖ)" },
+      { label: "Средние чеки", value: "45K-500K руб за договор" },
+      { label: "Ключевые каналы", value: "Яндекс Директ (Поиск - основной для B2B), VK Ads, LinkedIn для узких ниш" },
+      { label: "Цикл сделки", value: "2-8 недель в зависимости от чека" },
+      { label: "Минимальный бюджет", value: "250,000 руб в месяц" },
+      { label: "Специфика B2B-воронки", value: "Квиз-диагностика, аудит бесплатно, КЭВ-встречи с квалификацией" },
+    ]}
   />
 
   <Toc items={toc} />

@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама недвижимости в Турции - Анталия, Аланья, Стамбул - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков и агентств недвижимости в Турции. Работаем с Анталией, Аланьей, Стамбулом. Русскоязычные покупатели, гражданство за инвестиции $400K+, длинные рассрочки. Знаем специфику TAPU, различие freehold и leasehold, 49% квоту для иностранцев.';
@@ -37,6 +39,21 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости в Турции"
+    summary="Турция - ключевой рынок для русских и арабских инвесторов. Специфика: гражданство за 400K USD, длинные рассрочки от застройщика (до 60 месяцев), высокая доходность от аренды (7-12% годовых)."
+    items={[
+      { label: "Средний чек", value: "$150K-400K (апартаменты), $400K+ (гражданство через инвестиции)" },
+      { label: "Популярные регионы", value: "Стамбул, Анталия, Аланья, Бодрум, Мерсин" },
+      { label: "ЦА", value: "Русские, иранцы, арабы, украинцы - мультиязычная работа" },
+      { label: "Каналы", value: "Meta Ads (основной), Google Ads EN/RU/AR, Яндекс Директ для РФ" },
+      { label: "Минимальный бюджет", value: "$4,000 в месяц" },
+      { label: "Цикл сделки", value: "2-4 месяца с рассрочкой от застройщика" },
+    ]}
   />
 
   <Toc items={toc} />

@@ -8,6 +8,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 import { serviceSchema } from '@lib/seo';
 const title = 'Google Ads для бизнеса в Дубае, ЮВА и англоязычных рынках | WEBNOSTRA PERFORMANCE';
 const description =
@@ -28,7 +30,6 @@ const toc = [
   { id: 'keysy', label: 'Кейсы с цифрами' },
   { id: 'otlichiya', label: 'Чем мы отличаемся' },
   { id: 'process', label: 'Процесс работы' },
-  { id: 'pricing', label: 'Сколько это стоит' },
   { id: 'faq', label: 'Вопросы и ответы' },
   { id: 'form-final', label: 'Обсудить проект' },
 ];
@@ -49,6 +50,21 @@ const schema = serviceSchema({
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Google Ads агентство для международных рынков"
+    summary="Google Ads - флагманский канал для Дубая, Пхукета, Бали, глобальных e-commerce проектов. Работаем с Search, Performance Max, YouTube Ads. Оптимизация на конкретные типы конверсий, а не на базовые события."
+    items={[
+      { label: "Приоритетные гео", value: "Дубай, Пхукет, Бали, EN-рынки, премиум-сегменты" },
+      { label: "Пример результата", value: "Имплантация в Праге - ROI 760% за 28 дней в связке с Meta Ads" },
+      { label: "Минимальный бюджет", value: "$3,000 в месяц для тестов, $10,000+ для масштабирования" },
+      { label: "Срок запуска", value: "48 часов" },
+      { label: "Работа с PMax", value: "Обязательная настройка feed-based signals и исключений, иначе PMax сливает бюджет" },
+      { label: "Языки кампаний", value: "RU, EN, AR, CN - нативные копирайтеры in-house" },
+    ]}
   />
 
   <Toc items={toc} />
@@ -600,57 +616,6 @@ const schema = serviceSchema({
           </p>
         </li>
       </ol>
-    </div>
-  </section>
-
-  <section id="pricing" class="section">
-    <div class="container narrow">
-      <Label text="Бюджеты" />
-      <h2>Сколько стоит ведение Google Ads</h2>
-      <p>
-        Без фиксированных пакетов. Смета считается под проект и зависит от гео,
-        количества языков, нужен ли видеопродакшн и сколько типов кампаний запускаем.
-        Опорные ориентиры:
-      </p>
-
-      <div class="grid cols-3">
-        <div class="card">
-          <h3>Минимальный порог входа</h3>
-          <p>
-            Рекламный бюджет от $2,500 в месяц. Ниже этого Smart Bidding Google не
-            успевает обучить и не выходит на оптимальный CAC. Абонентская плата за
-            ведение - от $1,200 в месяц.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Средний проект (недвижимость Дубай/Бали, B2B, экспатские сервисы)</h3>
-          <p>
-            Рекламный бюджет $5-20K в месяц. Абонент $2,000-3,500. Входит: Search +
-            PMax + Display, GA4 и GTM server-side, enhanced conversions, офлайн-импорт
-            из CRM, 10-15 креативов в месяц, языковые версии посадочных, еженедельный
-            отчет и созвон.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Флагманский проект</h3>
-          <p>
-            Рекламный бюджет от $20K в месяц. Абонент от $4,000 с опцией бонуса от
-            перформанса. Полный стек: Search, PMax, Shopping, YouTube, Demand Gen,
-            Customer Match, видеопродакшн, A/B-тесты посадочных, BigQuery и кастомные
-            дашборды в Looker Studio.
-          </p>
-        </div>
-      </div>
-
-      <p class="muted">
-        Финальная смета фиксируется после брифа и аудита. Если Google под вашу задачу
-        не даст нужной экономики, прямо скажем и порекомендуем
-        <a href="/services/meta-ads/">Meta Ads</a>,
-        <a href="/services/yandex-direct/">Яндекс Директ</a> или связку нескольких
-        каналов.
-      </p>
     </div>
   </section>
 

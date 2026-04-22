@@ -1,0 +1,184 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroHub from '@components/hero/HeroHub.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import { breadcrumbSchema } from '@lib/seo';
+import { itemListSchema } from '@lib/seo-geo';
+
+const posts = (await getCollection('blog', (e) => e.data.draft !== true)).sort(
+  (a, b) => {
+    const da = a.data.publishedAt instanceof Date ? a.data.publishedAt : new Date(a.data.publishedAt);
+    const db = b.data.publishedAt instanceof Date ? b.data.publishedAt : new Date(b.data.publishedAt);
+    return db.getTime() - da.getTime();
+  }
+);
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Блог', url: '/blog/' },
+];
+
+const title = 'Блог WEBNOSTRA PERFORMANCE - экспертные статьи о рекламе';
+const description = 'Практические разборы performance-маркетинга: сравнения каналов, топы агентств, чек-листы выбора. Опыт команды с 2018 года.';
+
+const structuredData = [
+  breadcrumbSchema(breadcrumbs.map((b) => ({ name: b.name, url: b.url }))),
+  itemListSchema(
+    posts.map((p) => ({
+      name: p.data.title,
+      url: `https://webnostra.pro/blog/${p.id}/`,
+      description: p.data.description,
+    })),
+    'Блог WEBNOSTRA PERFORMANCE'
+  ),
+];
+
+const months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+function formatShort(d: Date | string) {
+  const date = d instanceof Date ? d : new Date(d);
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/blog/"
+  structuredData={structuredData}
+>
+  <HeroHub
+    label="Блог"
+    title='Экспертные разборы <span class="accent">performance-маркетинга</span>'
+    description="Сравнения каналов, топы агентств, чек-листы выбора. Без воды и SEO-текстов - только то, что работает в реальных проектах с бюджетами от $3K до $500K в месяц."
+    meta={[
+      { value: String(posts.length), label: 'статей в блоге' },
+      { value: '23', label: 'кейса с цифрами' },
+      { value: '200+', label: 'проектов за 8 лет' },
+    ]}
+    breadcrumbs={breadcrumbs}
+  />
+
+  {posts.length > 0 ? (
+    <section class="section">
+      <div class="container">
+        <div class="posts-grid">
+          {posts.map((post) => (
+            <a class="post-card" href={`/blog/${post.id}/`}>
+              <div class="post-card-meta">
+                <span class="post-card-date">{formatShort(post.data.publishedAt)}</span>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <span class="post-card-tag">{post.data.tags[0]}</span>
+                )}
+              </div>
+              <h2 class="post-card-title">{post.data.title}</h2>
+              <p class="post-card-description">{post.data.description}</p>
+              <div class="post-card-cta">
+                Читать статью
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M13 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="section">
+      <div class="container narrow">
+        <p class="empty-state">Скоро здесь появятся первые статьи.</p>
+      </div>
+    </section>
+  )}
+
+  <CtaSection
+    title='Обсудить <span class="accent">ваш проект</span>'
+    description="40-минутная бесплатная диагностика: разбираем задачу, считаем экономику, показываем похожие кейсы."
+    leadSource="blog_hub"
+    contentCategory="general"
+    formTitle="Оставить заявку"
+    formSubtitle="Ответим в течение 24 часов"
+  />
+</BaseLayout>
+
+<style>
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    color: #fff;
+  }
+
+  .post-card:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+    background: rgba(212, 175, 55, 0.04);
+  }
+
+  .post-card-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+
+  .post-card-date {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .post-card-tag {
+    padding: 0.2rem 0.6rem;
+    background: rgba(212, 175, 55, 0.12);
+    color: #d4af37;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .post-card-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .post-card-description {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    flex: 1;
+  }
+
+  .post-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #d4af37;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 2rem 0;
+  }
+</style>

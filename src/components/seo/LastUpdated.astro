@@ -4,8 +4,8 @@
 // Ставится в начале основного контента, сразу после Hero
 
 interface Props {
-  date: string; // формат: "22 апреля 2026" или Date
-  version?: string; // "v1.0"
+  date: string | Date;
+  version?: string;
   author?: {
     name: string;
     url?: string;
@@ -15,7 +15,6 @@ interface Props {
 
 const { date, version, author, class: className = "" } = Astro.props;
 
-// Если date - это Date, форматируем по-русски
 function formatDate(input: string | Date): string {
   if (typeof input === "string") return input;
   const months = [
@@ -26,65 +25,82 @@ function formatDate(input: string | Date): string {
 }
 
 const formattedDate = formatDate(date);
+const isoDate = typeof date === "string" ? new Date().toISOString() : (date as Date).toISOString();
 ---
 
-<div class={`last-updated ${className}`} itemscope itemtype="https://schema.org/Article">
-  <meta itemprop="dateModified" content={typeof date === "string" ? new Date().toISOString() : (date as Date).toISOString()} />
-  <span class="lu-updated">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
-      <path d="M21 3v5h-5"></path>
-    </svg>
-    Обновлено: <strong>{formattedDate}</strong>
-  </span>
-  {version && <span class="lu-version">Версия {version}</span>}
-  {author && (
-    <span class="lu-author">
-      Автор:{" "}
-      {author.url ? (
-        <a href={author.url} itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">{author.name}</span>
-        </a>
-      ) : (
-        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">{author.name}</span>
+<section class="lu-section">
+  <div class="container narrow">
+    <div class={`last-updated ${className}`} itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="dateModified" content={isoDate} />
+      <span class="lu-updated">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+          <path d="M21 3v5h-5"></path>
+        </svg>
+        Обновлено <strong>{formattedDate}</strong>
+      </span>
+      {version && <span class="lu-sep">·</span>}
+      {version && <span class="lu-version">{version}</span>}
+      {author && <span class="lu-sep">·</span>}
+      {author && (
+        <span class="lu-author">
+          Автор:{" "}
+          {author.url ? (
+            <a href={author.url} itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <span itemprop="name">{author.name}</span>
+            </a>
+          ) : (
+            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <span itemprop="name">{author.name}</span>
+            </span>
+          )}
         </span>
       )}
-    </span>
-  )}
-</div>
+    </div>
+  </div>
+</section>
 
 <style>
+  .lu-section {
+    padding: 20px 0 0;
+  }
+
   .last-updated {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem 1.25rem;
+    gap: 6px 10px;
     align-items: center;
-    font-size: 0.825rem;
-    color: rgba(255, 255, 255, 0.55);
-    padding: 0.75rem 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    padding: 10px 0 14px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    margin-bottom: 1.5rem;
   }
 
   .lu-updated {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .lu-updated svg {
+    opacity: 0.6;
   }
 
   .lu-updated strong {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
   }
 
+  .lu-sep {
+    opacity: 0.3;
+    user-select: none;
+  }
+
   .lu-version {
-    padding: 0.15rem 0.55rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     font-variant-numeric: tabular-nums;
+    font-size: 12px;
   }
 
   .lu-author a {
@@ -95,5 +111,11 @@ const formattedDate = formatDate(date);
 
   .lu-author a:hover {
     color: #d4af37;
+  }
+
+  @media (max-width: 720px) {
+    .last-updated {
+      font-size: 12px;
+    }
   }
 </style>

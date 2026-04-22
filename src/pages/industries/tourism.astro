@@ -8,6 +8,8 @@ import CasesGrid from '@components/sections/CasesGrid.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама для туризма - турагентства, санатории, экскурсии - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для турагентств, санаториев, экскурсионных компаний, отелей и сервисов бронирования. 15,000+ заявок в нише, средний ROI 450%, CPL от $4.19. Работаем с сезонностью, мультиязычной аудиторией, оптимизацией на квалифицированные заявки.';
@@ -39,6 +41,22 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама для туризма и санаториев"
+    summary="15,000+ заявок для турагентств, санаториев, экскурсионных компаний и сервисов бронирования. Работаем с сезонностью, знаем как работать с разными языковыми группами."
+    items={[
+      { label: "Средний CPL", value: "$4.19 (экскурсии Пхукет), $5 (KZ турагентство), 492 руб (санатории КМВ), 500 руб (южный тур)" },
+      { label: "Максимальный ROI", value: "520% (KMV Sanatoria)" },
+      { label: "Ключевые каналы", value: "Meta Ads (международный туризм), Яндекс Директ (санатории РФ), Google Ads (Европа)" },
+      { label: "Специфика", value: "Сильная сезонность - запускаем кампании за 2 месяца до пика спроса" },
+      { label: "Форматы", value: "Квизы с подбором тура/санатория, персональные предложения, ретаргетинг с FOMO" },
+      { label: "Минимальный бюджет", value: "$2,500 в месяц" },
+      { label: "Срок запуска", value: "48 часов - не пропускаем сезон" },
+    ]}
   />
 
   <Toc items={toc} />

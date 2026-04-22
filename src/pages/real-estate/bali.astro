@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама недвижимости на Бали - виллы, лонгстей, инвестиции - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков и агентств на Бали. Работаем с Чангу, Убудом, Семиньяком, Букитом. Digital-номады, русскоязычные инвесторы, долгосрочная аренда. Понимаем специфику leasehold, 25-летних договоров и налогообложения иностранцев.';
@@ -37,6 +39,21 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости на Бали"
+    summary="Специфика Бали: leasehold-недвижимость (25-30 лет аренды), digital-номады как целевая аудитория, долгосрочная аренда long-stay. Пишем креативы под ценности комьюнити, а не под инвестиционные метрики."
+    items={[
+      { label: "Структура собственности", value: "Leasehold 25-30 лет vs freehold (только для граждан Индонезии)" },
+      { label: "Типичный средний чек", value: "$150K-350K (виллы leasehold), $500K+ (freehold через PT PMA)" },
+      { label: "ЦА", value: "Digital-номады, люди на долгосрочной аренде, предприниматели с ЮВА-бизнесом" },
+      { label: "Каналы", value: "Meta Ads (Instagram приоритетно), Google Ads EN, крипто-комьюнити" },
+      { label: "Ключевые районы", value: "Чангу, Убуд, Бингин, Улувату - разная аудитория под каждый" },
+      { label: "Минимальный бюджет", value: "$4,000 в месяц" },
+    ]}
   />
 
   <Toc items={toc} />

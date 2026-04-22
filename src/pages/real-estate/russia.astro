@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама недвижимости в России - Москва, Сочи, СПб, Крым - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков и агентств недвижимости в России. Яндекс Директ, VK, оффлайн-конверсии. Кейсы: 20 продаж загородных домов в месяц, 329 заявок по каркасным домам СПб, 298 квал-заявок по Сочи, 686 лидов по Крыму через VK (единственный работающий канал).';
@@ -38,6 +40,21 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости в России"
+    summary="Флагманское направление в РФ - застройщики новостроек, загородные дома, агентства. Работаем через Яндекс Директ и VK Реклама. 5 кейсов в портфеле: Country Houses (20 продаж/мес), Самолет Плюс Сочи, каркасные дома СПб, Московское АН, Крым/Краснодар."
+    items={[
+      { label: "Диапазон CPL", value: "1,231 руб (Крым VK), 2,002 руб (Сочи квал), 2,200 руб (Москва АН), 2,800 руб (загородные дома)" },
+      { label: "Средний чек сделки", value: "4-8М руб (регионы), 7-15М руб (Москва, Сочи), от 30M руб (премиум МСК)" },
+      { label: "Ключевые каналы", value: "Яндекс Директ (Поиск+РСЯ), VK Реклама, офлайн-конверсии в Метрику" },
+      { label: "Для Крыма и новых регионов", value: "Единственный рабочий канал - VK Реклама (Meta и Google недоступны)" },
+      { label: "Минимальный бюджет", value: "300,000 руб в месяц" },
+      { label: "Типовая воронка", value: "Квиз отсекает 60% нецелевых до звонка менеджеру" },
+    ]}
   />
 
   <Toc items={toc} />

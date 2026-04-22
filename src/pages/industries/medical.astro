@@ -8,6 +8,8 @@ import CasesGrid from '@components/sections/CasesGrid.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама для медицинских клиник - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для медицинских клиник, стоматологий, санаториев, эстетических центров. Работаем в рамках 38-ФЗ, оптимизируем на реальных пациентов через МИС-интеграцию, а не на звонки. Пример: стоматология СПб - 180 заявок по 1,700 рублей при чеке имплантации 180 тысяч.';
@@ -38,6 +40,22 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама для медицины и клиник"
+    summary="7 кейсов в стоматологии по 5 странам: Россия, Беларусь, Казахстан, Чехия, ОАЭ. Специализация на премиум-процедурах (имплантация, all-on-4, ортодонтия) и сетях клиник. Окупаемость от 28 дней до 1 месяца."
+    items={[
+      { label: "Лучший результат", value: "Премиум клиника Прага - ROI 760% за 28 дней, 9 сделок all-on-4, средний чек $7,200" },
+      { label: "Диапазон CPL", value: "$4.4 (Минск стоматология), $5.5 (детская СПб), 1,700 руб (имплантация СПб), 26-27 долларов (премиум Европа)" },
+      { label: "Типичная окупаемость", value: "28-41 день для премиум-процедур, 1 месяц для массового сегмента" },
+      { label: "Ключевые каналы", value: "Meta Ads, Яндекс Директ (РФ), Google Ads (Европа, Дубай), Telegram Ads" },
+      { label: "Доходимость до клиники", value: "45-51% при правильной квалификации и напоминаниях" },
+      { label: "Минимальный бюджет", value: "$3,500 для одной клиники, $15K+ для сети" },
+      { label: "Форматы под медтуризм", value: "Квизы с подбором услуг, онлайн-консультации, калькуляторы стоимости" },
+    ]}
   />
 
   <Toc items={toc} />

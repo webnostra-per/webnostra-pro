@@ -8,6 +8,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 import { serviceSchema } from '@lib/seo';
 const title = 'Сквозная аналитика - настройка и ведение | WEBNOSTRA PERFORMANCE';
 const description =
@@ -28,7 +30,6 @@ const toc = [
   { id: 'keysy', label: 'Кейсы с цифрами' },
   { id: 'otlichiya', label: 'Чем мы отличаемся' },
   { id: 'process', label: 'Процесс работы' },
-  { id: 'pricing', label: 'Как это оплачивается' },
   { id: 'faq', label: 'Вопросы и ответы' },
   { id: 'form-final', label: 'Обсудить проект' },
 ];
@@ -49,6 +50,21 @@ const schema = serviceSchema({
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Сквозная аналитика и CRM-интеграции"
+    summary="Настраиваем передачу офлайн-конверсий из CRM в рекламные кабинеты для оптимизации на сделки, а не на заявки. Работаем с AmoCRM, Bitrix24, собственными CRM клиентов, интегрируем Roistat и собственные дашборды."
+    items={[
+      { label: "Инструменты", value: "Roistat, Яндекс Метрика, Google Analytics 4, Google Tag Manager, собственные BI-дашборды" },
+      { label: "CRM-интеграции", value: "AmoCRM, Bitrix24, HubSpot, Salesforce, собственные на основе API" },
+      { label: "Что передаем в кабинеты", value: "Офлайн-конверсии (сделки, встречи), LTV, категории лидов, revenue" },
+      { label: "Эффект от передачи", value: "Снижение CPL в 2-3 раза за 2 месяца оптимизации (кейс застройщик Пхукет)" },
+      { label: "Срок настройки", value: "1-2 недели для базовой связки, 1 месяц для сложной архитектуры" },
+      { label: "Отчетность для клиента", value: "Еженедельные дашборды с воронкой клик - заявка - встреча - сделка" },
+    ]}
   />
 
   <Toc items={toc} />
@@ -598,58 +614,6 @@ const schema = serviceSchema({
           </p>
         </li>
       </ol>
-    </div>
-  </section>
-
-  <section id="pricing" class="section">
-    <div class="container narrow">
-      <Label text="Оплата" />
-      <h2>Как это оплачивается</h2>
-      <p>
-        Сквозная аналитика - фундамент под остальные услуги. Работает только в
-        связке с ведением рекламных каналов. Отдельным продуктом аналитику мы не
-        продаем, потому что без реального потока данных из активных кампаний
-        настраивать ее бессмысленно.
-      </p>
-
-      <div class="grid cols-3">
-        <div class="card">
-          <h3>Базовая настройка</h3>
-          <p>
-            Входит в любой проект по ведению рекламы с первого месяца. Тегирование
-            (GTM web и server-side), Метрика с 8-15 целями, Meta Pixel + CAPI, VK
-            Pixel с событиями, передача конверсий из CRM в кабинеты. Без дополнительной
-            платы за сам консалтинг.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Расширенная настройка</h3>
-          <p>
-            Подключение Roistat, Calltouch или Comagic, динамический коллтрекинг,
-            двусторонняя интеграция с Bitrix24 или amoCRM, BI-дашборды в Looker
-            Studio, когортный анализ LTV. Входит в более крупные пакеты ведения
-            или оформляется как отдельная единовременная настройка при старте.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Enterprise-стек</h3>
-          <p>
-            Собственное BigQuery-хранилище, маркетинг-микс моделирование,
-            incrementality-тесты, data-driven атрибуция, AI-расшифровка звонков.
-            Для проектов с бюджетом от $30K или 3М руб в месяц и сложной воронкой
-            с несколькими каналами. Обсуждается отдельно под конкретный проект.
-          </p>
-        </div>
-      </div>
-
-      <p class="muted">
-        Стоимость стороннего ПО (Roistat, Calltouch, лицензии BigQuery) оплачивается
-        отдельно и напрямую у поставщика - это типовая практика. Мы не делаем
-        наценку на лицензии, чтобы у клиента была прозрачность расходов. Обсудить
-        конкретный набор инструментов для вашего проекта можно на первом брифе.
-      </p>
     </div>
   </section>
 

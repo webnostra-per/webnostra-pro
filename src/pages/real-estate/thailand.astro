@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама недвижимости в Таиланде: Пхукет, Паттайя, Самуи - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков и агентств в Таиланде. Базируемся на Пхукете с 2018. Кейсы: 1,721 квал-лид по $34 в IBG Property, 7 сделок по $450K в Premium Villas, 12 сделок в Phuket Developer по $8 за лид. Говорим на RU, EN, тайском.';
@@ -38,6 +40,22 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости в Таиланде"
+    summary="WEBNOSTRA PERFORMANCE базируется на Пхукете с 2022 года. 9 кейсов в тайской недвижимости, ведем проекты с объектами от $80K (кондо) до $450K (премиум-виллы). Команда на месте, нативный тайский копирайтинг."
+    items={[
+      { label: "Гео-специализация", value: "Пхукет (флагман), Паттайя, Самуи, Бангкок" },
+      { label: "Диапазон CPL", value: "$8 (кондо от застройщика), $20-34 (квал-лид на виллы), $78 (премиум $450K+)" },
+      { label: "Средние чеки сделок", value: "$80K-180K (кондо), $250K-450K (виллы), $450K+ (премиум)" },
+      { label: "Цикл сделки", value: "1-2 месяца для кондо, 3-6 месяцев для вилл" },
+      { label: "Ключевые каналы", value: "Meta Ads (основной), Google Ads (EN-аудитория), Telegram Ads (ру-инвесторы)" },
+      { label: "Языки креативов", value: "RU, EN, AR, CN - все нативные" },
+      { label: "Команда на месте", value: "Офис на Пхукете, менеджеры говорят по-русски" },
+    ]}
   />
 
   <Toc items={toc} />

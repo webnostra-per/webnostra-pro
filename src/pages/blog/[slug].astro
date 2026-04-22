@@ -1,0 +1,202 @@
+---
+/**
+ * /blog/[slug]/ - динамическая страница блог-статьи
+ */
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroLeaf from '@components/hero/HeroLeaf.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import AuthorByline from '@components/seo/AuthorByline.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
+import { breadcrumbSchema, articleSchema } from '@lib/seo';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (e) => e.data.draft !== true);
+  return posts.map((p) => ({
+    params: { slug: p.id },
+    props: { entry: p },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+const title = data.seo?.metaTitle || `${data.title} - WEBNOSTRA PERFORMANCE`;
+const description = data.seo?.metaDescription || data.description;
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Блог', url: '/blog/' },
+  { name: data.title, url: `/blog/${entry.id}/` },
+];
+
+// Форматируем даты
+const months = [
+  'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+];
+const pub = data.publishedAt instanceof Date ? data.publishedAt : new Date(data.publishedAt);
+const publishedFormatted = `${pub.getDate()} ${months[pub.getMonth()]} ${pub.getFullYear()}`;
+const updated = data.updatedAt ?? data.publishedAt;
+const updatedDate = updated instanceof Date ? updated : new Date(updated);
+const updatedFormatted = `${updatedDate.getDate()} ${months[updatedDate.getMonth()]} ${updatedDate.getFullYear()}`;
+
+// JSON-LD
+const schemas: object[] = [
+  breadcrumbSchema(breadcrumbs.map((b) => ({ name: b.name, url: b.url }))),
+  articleSchema({
+    headline: data.title,
+    description: data.description,
+    path: `/blog/${entry.id}/`,
+    datePublished: pub,
+  }),
+];
+
+// Если у статьи есть кастомная structured data (HowTo, ItemList) - экспортируется через named export
+// В MDX: export const customSchemas = [...]
+const custom = (entry as any).data?.customSchemas;
+if (Array.isArray(custom)) schemas.push(...custom);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={`/blog/${entry.id}/`}
+  structuredData={schemas}
+>
+  <HeroLeaf
+    label="Блог"
+    title={data.title}
+    description={data.description}
+    ctaText="Обсудить проект"
+    ctaHref="#form-final"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date={updatedFormatted} version="v1.0" author={{ name: data.author, url: "/authors/magosh/" }} />
+
+  <article class="blog-article section">
+    <div class="container narrow">
+      <AuthorByline
+        name={data.author}
+        role="Managing Director, WEBNOSTRA PERFORMANCE"
+        avatar="/team/magosh.jpg"
+        date={publishedFormatted}
+      />
+
+      <div class="blog-content">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <CtaSection
+    title='Нужна помощь <span class="accent">с рекламой</span>?'
+    description="Бесплатная 40-минутная диагностика проекта. Аудит кабинетов, расчет юнит-экономики, кейсы из вашей ниши."
+    leadSource="blog_article"
+    contentCategory="general"
+    bullets={[
+      'Аудит рекламных кабинетов за 24 часа',
+      'Расчет unit-экономики и прогноз CPL',
+      'Кейсы из вашей ниши с цифрами',
+    ]}
+    formTitle="Обсудить проект"
+    formSubtitle="Ответим в течение 24 часов"
+  />
+</BaseLayout>
+
+<style>
+  .blog-article {
+    padding: 2rem 0 4rem;
+  }
+
+  .blog-content :global(h2) {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    color: #fff;
+  }
+
+  .blog-content :global(h3) {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: #fff;
+  }
+
+  .blog-content :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 0 1.15rem;
+  }
+
+  .blog-content :global(ul),
+  .blog-content :global(ol) {
+    margin: 1rem 0 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .blog-content :global(li) {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 0 0.5rem;
+  }
+
+  .blog-content :global(a) {
+    color: #d4af37;
+    text-decoration: underline;
+    text-decoration-color: rgba(212, 175, 55, 0.4);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .blog-content :global(a:hover) {
+    text-decoration-color: #d4af37;
+  }
+
+  .blog-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .blog-content :global(th),
+  .blog-content :global(td) {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .blog-content :global(th) {
+    background: rgba(212, 175, 55, 0.06);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .blog-content :global(blockquote) {
+    border-left: 3px solid #d4af37;
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    margin: 1.5rem 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-style: italic;
+  }
+
+  .blog-content :global(strong) {
+    color: #fff;
+    font-weight: 600;
+  }
+</style>

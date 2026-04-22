@@ -5,6 +5,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 import StickyMobileCta from '@components/ui/StickyMobileCta.astro';
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 
 const title = 'Услуги WEBNOSTRA PERFORMANCE - реклама, креативы, аналитика и поддержка продаж';
 const description =
@@ -89,6 +91,21 @@ const channels = [
     description="Мы не продаем услуги по отдельности. Реклама без аналитики работает вслепую. Аналитика без отдела продаж - красивый отчет, который ни к чему не ведет. Креативы без трафик-команды - дорогие картинки. Поэтому у нас все это в одной связке, ведут профильные performance-команды под ниши."
     meta={heroMeta}
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Performance-маркетинг WEBNOSTRA - 7 направлений работы"
+    summary="WEBNOSTRA PERFORMANCE работает в 4 рекламных каналах (Meta Ads, Яндекс Директ, Google Ads, VK Ads) плюс 3 поддерживающих направления: креативы in-house, сквозная аналитика, поддержка отдела продаж. Все ведут профильные команды под ниши, а не универсальный отдел."
+    items={[
+      { label: "Рекламные каналы", value: "Meta Ads (ЮВА/Дубай), Яндекс Директ (РФ/СНГ), Google Ads (EN-рынки), VK Ads (Крым/регионы/инфобиз)" },
+      { label: "Поддержка", value: "Продакшн креативов, сквозная аналитика и CRM-интеграции, работа с отделом продаж" },
+      { label: "Команды", value: "5 профильных performance-команд: недвижимость, e-commerce, EdTech, туризм, медицина" },
+      { label: "Минимальный рекламный бюджет", value: "$3,000 в месяц для международных, 300K руб для РФ" },
+      { label: "Срок запуска", value: "48 часов от брифа до первых лидов" },
+      { label: "Средний срок работы с клиентом", value: "1.5 года, есть клиенты с нами с 2018" },
+    ]}
   />
 
   <section id="napravleniya" class="section">

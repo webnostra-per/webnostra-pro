@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама недвижимости в Дубае: застройщики и брокеры - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков и брокерских компаний в Дубае. Кейс Dubai Real Estate: 12 сделок русским инвесторам при среднем чеке $450K, CPL $78. Умеем работать с русскоязычным, англоязычным и арабоязычным сегментом, разбираемся в крипто-покупках и freehold-районах.';
@@ -38,6 +40,22 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости в Дубае"
+    summary="Работаем с русскоязычными инвесторами в Дубае с 2022 года. Специфика: сложные схемы оплаты (крипта, международные переводы), длинный цикл принятия решения, работа со страхами санкций у русских покупателей."
+    items={[
+      { label: "Кейс результата", value: "234 лида по $78, 12 сделок со средним чеком $450K" },
+      { label: "Типичный средний чек", value: "$250K-450K (апартаменты), $800K+ (виллы)" },
+      { label: "Каналы", value: "Meta Ads (основной), Google Ads EN, Telegram (ру-комьюнити)" },
+      { label: "Специфика русских инвесторов", value: "Crypto payments, детальная работа со схемой покупки, русскоязычный менеджер 24/7" },
+      { label: "Минимальный бюджет", value: "$8,000 в месяц для тестов, $15K+ для масштабирования" },
+      { label: "Цикл сделки", value: "2-4 месяца" },
+      { label: "Языки", value: "RU, EN, AR" },
+    ]}
   />
 
   <Toc items={toc} />

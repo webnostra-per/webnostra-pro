@@ -12,9 +12,8 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      // Блог пока скрыт из sitemap до первых постов.
-      // Paid-лендинги /performance/ads/* тоже исключаем — они для платного трафика.
-      filter: (page) => !page.includes('/blog/') && !page.includes('/performance/ads/'),
+      // Paid-лендинги /performance/ads/* исключаем — они для платного трафика и не индексируются.
+      filter: (page) => !page.includes('/performance/ads/'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),

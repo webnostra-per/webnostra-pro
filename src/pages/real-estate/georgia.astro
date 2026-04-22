@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама недвижимости в Грузии - Тбилиси, Батуми, Кутаиси - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков и агентств недвижимости в Грузии. Работаем в Тбилиси, Батуми, Кутаиси. Русскоязычные релоканты и инвесторы, апартаменты от $40K, безвизовый режим для РФ, ВНЖ через покупку от $100K. Батуми - курортная недвижимость под краткосрочную сдачу.';
@@ -37,6 +39,21 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости в Грузии"
+    summary="Грузия - рынок для русскоязычных релокантов и инвесторов. Низкие цены на квадрат, простые условия покупки, возможность ВНЖ. Ключевые локации: Тбилиси, Батуми, Кутаиси."
+    items={[
+      { label: "Средний чек", value: "$40K-120K (квартиры Тбилиси), $60K-250K (Батуми у моря)" },
+      { label: "ЦА", value: "Русскоязычные релоканты 2022+, удаленщики, мелкие инвесторы" },
+      { label: "Каналы", value: "Meta Ads (основной), Telegram Ads, Google Ads RU" },
+      { label: "Минимальный бюджет", value: "$3,000 в месяц" },
+      { label: "Цикл сделки", value: "1-2 месяца (один из самых коротких в ЮВА+СНГ)" },
+      { label: "Специфика", value: "Нет налога на покупку, ВНЖ через инвестиции от $100K" },
+    ]}
   />
 
   <Toc items={toc} />

@@ -4,11 +4,15 @@
  * Старый хаб /cases/ с 58 кейсами остаётся нетронутым.
  */
 
+import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HeroHub from '@components/hero/HeroHub.astro';
 import CasesGrid from '@components/sections/CasesGrid.astro';
 import CtaSection from '@components/sections/CtaSection.astro';
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 import { breadcrumbSchema } from '@lib/seo';
+import { itemListSchema } from '@lib/seo-geo';
 
 const breadcrumbs = [
   { name: 'Главная', url: '/' },
@@ -18,8 +22,24 @@ const breadcrumbs = [
 const title = 'Кейсы WEBNOSTRA - подробные разборы проектов';
 const description = 'Детальные разборы наших кейсов по нишам: недвижимость ЮВА и Дубая, e-commerce, инфобизнес, туризм, медицина. Проблема, решение, цифры.';
 
+// Собираем все кейсы для ItemList schema
+const allCases = await getCollection('cases', (e) => e.data.published !== false);
+const sortedCases = allCases.sort((a, b) => {
+  const da = a.data.publishedAt instanceof Date ? a.data.publishedAt : new Date(a.data.publishedAt);
+  const db = b.data.publishedAt instanceof Date ? b.data.publishedAt : new Date(b.data.publishedAt);
+  return db.getTime() - da.getTime();
+});
+
 const structuredData = [
   breadcrumbSchema(breadcrumbs.map(b => ({ name: b.name, url: b.url }))),
+  itemListSchema(
+    sortedCases.map((c) => ({
+      name: c.data.title,
+      url: `https://webnostra.pro/portfolio/${c.data.slug || c.id}/`,
+      description: c.data.shortDescription,
+    })),
+    'Кейсы WEBNOSTRA PERFORMANCE'
+  ),
 ];
 ---
 
@@ -39,6 +59,21 @@ const structuredData = [
       { value: 'x5', label: 'средний ROI' },
     ]}
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Кейсы WEBNOSTRA PERFORMANCE - реальные цифры из рекламных кабинетов"
+    summary="23 подробных кейса с метриками из Meta Business Manager, Яндекс Метрики и VK Ads. Каждый разбор - это бюджет, лиды, сделки, ROI проекта. Плюс 58 HTML-кейсов на /cases/ из архива 2018-2023 годов."
+    items={[
+      { label: "Всего проектов в портфеле", value: "200+ за 8 лет с 2018 года" },
+      { label: "Детальных разборов на сайте", value: "23 кейса с полной аналитикой + 58 кратких карточек в архиве" },
+      { label: "Освоено рекламных бюджетов", value: "$2.8M+ (обновляем раз в квартал)" },
+      { label: "Средний ROI проектов", value: "x5, максимальный зафиксированный - 1,020% (Good Carma Investment)" },
+      { label: "Ниши с кейсами", value: "Недвижимость (9), медицина (7), e-commerce, EdTech, туризм, B2B, детские услуги" },
+      { label: "Каналы", value: "Meta Ads (основной для ЮВА/Дубая), Яндекс Директ (РФ), VK Ads, Google Ads, Telegram Ads" },
+    ]}
   />
 
   <CasesGrid

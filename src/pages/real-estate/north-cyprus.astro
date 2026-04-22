@@ -7,6 +7,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама недвижимости на Северном Кипре - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков и агентств Северного Кипра. Работаем в Кирении, Фамагусте, Искеле. Бюджетный сегмент Средиземноморья (апартаменты от €80K), длинные рассрочки от застройщика, ВНЖ через покупку. Разбираемся в разнице TRNC title и Turkish title.';
@@ -37,6 +39,21 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости Северного Кипра"
+    summary="Северный Кипр - бюджетный сегмент европейской недвижимости с ВНЖ через покупку. Работаем с русскоязычной аудиторией от 45+, предпенсионеров, фрилансеров ищущих второй паспорт. Цена входа от 65,000 EUR."
+    items={[
+      { label: "Средний чек", value: "65K-180K EUR (апартаменты), 200K-400K EUR (виллы)" },
+      { label: "ЦА", value: "Русскоязычные 45+, удаленные сотрудники, пенсионеры, запрос на ВНЖ/ПМЖ" },
+      { label: "Ключевые каналы", value: "Meta Ads (основной), Яндекс Директ (для РФ-аудитории)" },
+      { label: "Минимальный бюджет", value: "$3,500 в месяц" },
+      { label: "Цикл сделки", value: "2-3 месяца" },
+      { label: "Особенности", value: "ВНЖ через покупку от 100K EUR, беспошлинная зона, пониженный НДС" },
+    ]}
   />
 
   <Toc items={toc} />

@@ -8,6 +8,8 @@ import CasesGrid from '@components/sections/CasesGrid.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама для онлайн-школ и инфобизнеса - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для онлайн-школ, экспертов, курсов и образовательных проектов. 15,000+ лидов в нише, CPL от $2.9, средняя конверсия 12%+. Строим воронки от первого касания до продажи: квизы, вебинары, Telegram-боты, КЭВ-встречи.';
@@ -39,6 +41,21 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама для онлайн-школ и EdTech"
+    summary="15,000+ лидов для EdTech-проектов. Работаем с массовым сегментом (школы для детей, бьюти-курсы) и премиумом (Beyond Taylor для собственников). Настраиваем воронки от пробного урока/вебинара до продажи."
+    items={[
+      { label: "Флагманские кейсы", value: "Beyond Taylor - 80 продаж на 12.5М руб выручки. Алгоритмика - 4,345 лидов по $3 (школа программирования для детей)" },
+      { label: "Диапазон CPL", value: "$3 (детская школа, Meta), 73 руб (дети, VK), 287 руб (пробный урок языка), 1,011 руб (премиум вебинары)" },
+      { label: "Средняя конверсия в оплату", value: "6-12% из лида в продажу" },
+      { label: "Ключевые каналы", value: "Meta Ads, VK Реклама, Яндекс Директ, Telegram Ads (премиум-сегменты)" },
+      { label: "Типовая воронка", value: "Lead-магнит -> Telegram-бот или пробное занятие -> продажа" },
+      { label: "Минимальный бюджет", value: "$2,500-3,500 в месяц для массы, 500K руб для премиума" },
+    ]}
   />
 
   <Toc items={toc} />

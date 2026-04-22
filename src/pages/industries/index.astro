@@ -5,6 +5,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 import StickyMobileCta from '@components/ui/StickyMobileCta.astro';
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 import { getCollection } from 'astro:content';
 
 const title = 'Отрасли - по каким нишам работает WEBNOSTRA PERFORMANCE';
@@ -35,6 +37,21 @@ const industries = (await getCollection('industries'))
     description="WEBNOSTRA PERFORMANCE не универсальное агентство. Мы специализируемся на шести направлениях, в каждом из которых за 8 лет накопили минимум 15-20 проектов, отработали типовые воронки и поняли, что реально двигает экономику в этой нише. Эта страница - быстрая навигация: выбираете свою отрасль и переходите на подробный разбор со всеми кейсами, каналами и подходом."
     meta={heroMeta}
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="6 отраслей экспертизы WEBNOSTRA PERFORMANCE"
+    summary="Не универсальное агентство, а 6 профильных команд под конкретные ниши. В каждой 15-20+ проектов, отработанные воронки и понимание, что реально двигает экономику в этой отрасли. Лучше 1 команда под недвижимость, чем 1 таргетолог на 10 индустрий."
+    items={[
+      { label: "Недвижимость", value: "Флагман, 9 кейсов. $3.2M pipeline (Premium Villas Phuket), 12 сделок в Дубае, 20 продаж загородных домов/мес" },
+      { label: "E-commerce", value: "48,000+ заказов в портфеле. LUDING - 36,500 заказов, 210М руб выручки за 2.5 года" },
+      { label: "EdTech и онлайн-школы", value: "15,000+ лидов. Beyond Taylor 80 продаж на 12.5М руб, Алгоритмика $3/лид" },
+      { label: "Туризм и санатории", value: "15,000+ заявок. От $4.19/лид (экскурсии Пхукет) до 492 руб (санатории КМВ)" },
+      { label: "Медицина", value: "7 кейсов в стоматологии по 5 странам. ROI 760% за 28 дней (Прага)" },
+      { label: "B2B и услуги", value: "Юристы, маркировка, упаковка для маркетплейсов, ТСЖ - длинный цикл, чеки 45K-500K руб" },
+    ]}
   />
 
   <section id="logic" class="section">

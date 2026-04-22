@@ -8,6 +8,8 @@ import CasesGrid from '@components/sections/CasesGrid.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама для недвижимости - застройщики, агентства, брокеры - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для застройщиков, агентств и брокеров недвижимости. $3M+ бюджетов, 200+ проектов, с 2018. Работаем в Таиланде, Дубае, Бали, Турции, Северном Кипре, Грузии и России. Оптимизация на квал-лиды и сделки, не на клики.';
@@ -39,6 +41,21 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама для недвижимости"
+    summary="Флагманское направление WEBNOSTRA PERFORMANCE. 9 кейсов в портфолио, $3.2M pipeline за один квартал в кейсе Premium Villas Phuket. Работаем с застройщиками, агентствами, брокерами, инвестиционными компаниями."
+    items={[
+      { label: "Покрываемые гео", value: "Таиланд (Пхукет/Паттайя/Самуи), Дубай, Бали, Северный Кипр, Турция, Россия, Грузия" },
+      { label: "Средние чеки", value: "$80K-$450K (ЮВА), $250K-$800K (Дубай), 5-15M руб (Россия)" },
+      { label: "Диапазон CPL", value: "$8-$78 за квал-лид (ЮВА/Дубай), 1,231-2,800 руб (РФ)" },
+      { label: "Цикл сделки", value: "1-2 месяца (кондо, загородные дома), 3-6 месяцев (виллы, премиум)" },
+      { label: "Каналы по приоритету", value: "Meta Ads (ЮВА/Дубай), Яндекс Директ (РФ), VK Ads (Крым/регионы), Google Ads (глобал)" },
+      { label: "Минимальный бюджет", value: "$5,000 для ЮВА, 300K руб для РФ" },
+    ]}
   />
 
   <Toc items={toc} />

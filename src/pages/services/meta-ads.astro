@@ -8,6 +8,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 import { serviceSchema } from '@lib/seo';
 const title = 'Meta Ads (Facebook и Instagram) под ключ - WEBNOSTRA PERFORMANCE';
 const description =
@@ -28,7 +30,6 @@ const toc = [
   { id: 'keysy', label: 'Кейсы с цифрами' },
   { id: 'otlichiya', label: 'Чем мы отличаемся' },
   { id: 'process', label: 'Процесс работы' },
-  { id: 'pricing', label: 'Сколько это стоит' },
   { id: 'faq', label: 'Вопросы и ответы' },
   { id: 'form-final', label: 'Обсудить проект' },
 ];
@@ -49,6 +50,21 @@ const schema = serviceSchema({
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Meta Ads агентство для performance-задач"
+    summary="WEBNOSTRA PERFORMANCE ведет Meta Ads (Facebook и Instagram) для недвижимости ЮВА и Дубая, e-commerce, EdTech, медицины и туризма с 2018 года. Оптимизируем не на клики, а на квалифицированные лиды и сделки через передачу офлайн-конверсий."
+    items={[
+      { label: "Диапазон CPL в реальных проектах", value: "$3 (EdTech для детей), $4.19 (туризм), $8-34 (недвижимость Пхукет), $78 (Дубай)" },
+      { label: "Минимальный рекламный бюджет", value: "$3,000 в месяц" },
+      { label: "Срок запуска от брифа до первых лидов", value: "48 часов" },
+      { label: "Первая сделка в недвижимости", value: "2 недели (кейс Good Carma Investment Co)" },
+      { label: "Средний ROI проектов", value: "x5, максимальный зафиксированный 1,020% (кейс Good Carma)" },
+      { label: "Количество креативов на проект", value: "50+ под разные сегменты, продакшн in-house" },
+    ]}
   />
 
   <Toc items={toc} />
@@ -565,56 +581,6 @@ const schema = serviceSchema({
           </p>
         </li>
       </ol>
-    </div>
-  </section>
-
-  <section id="pricing" class="section">
-    <div class="container narrow">
-      <Label text="Бюджеты" />
-      <h2>Сколько стоит и что входит в ведение Meta Ads</h2>
-      <p>
-        Мы не продаем пакеты «Старт / Бизнес / Премиум» с фиксированным набором услуг. Под
-        каждый проект считаем свою смету, потому что Meta для интернет-магазина косметики
-        за $5K бюджета и для застройщика с бюджетом $50K - это разные объемы работы. Но есть
-        опорные цифры, от которых начинаем разговор:
-      </p>
-
-      <div class="grid cols-3">
-        <div class="card">
-          <h3>Минимальный порог входа</h3>
-          <p>
-            Рекламный бюджет от $3,000 в месяц. Ниже - Meta не успевает обучить алгоритм до
-            оптимального CPQL, и ведение превращается в поддержку, а не в рост. Абонентская
-            плата за ведение - от $1,500 в месяц.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Средний проект по недвижимости</h3>
-          <p>
-            Рекламный бюджет $10-30K в месяц. Абонент $2,500-4,000. Сюда входит: 10-20
-            креативов в месяц, квиз-лендинг, CAPI, настройка связок с CRM, еженедельный
-            отчет и созвон, оптимизация под квал-лид.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Флагманский проект e-com или инфобиз</h3>
-          <p>
-            Рекламный бюджет от $30K в месяц. Абонент от $5,000 с бонусной частью от
-            перформанса. Включает видеопродакшн, multi-country setup, A/B-тесты посадочных,
-            расширенную аналитику, сегментированные look-alike от LTV-когорт.
-          </p>
-        </div>
-      </div>
-
-      <p class="muted">
-        Финальная смета считается после брифа и аудита текущей ситуации. Если мы понимаем,
-        что Meta не даст клиенту нужного результата, - говорим об этом сразу и рекомендуем
-        другой канал. В такой ситуации обычно советуем <a href="/services/yandex-direct/"
-          >Яндекс Директ</a
-        > или <a href="/services/google-ads/">Google Ads</a> в зависимости от гео и аудитории.
-      </p>
     </div>
   </section>
 

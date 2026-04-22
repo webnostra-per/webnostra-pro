@@ -6,6 +6,8 @@ import CtaSection from '@components/sections/CtaSection.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 import StickyMobileCta from '@components/ui/StickyMobileCta.astro';
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 
 const title = 'Реклама недвижимости в ЮВА, Дубае и РФ - WEBNOSTRA PERFORMANCE';
 const description =
@@ -31,6 +33,22 @@ const heroMeta = [
     description="Команда WEBNOSTRA базируется на Пхукете с 2018 года. За это время мы освоили больше $3M рекламных бюджетов для застройщиков и агентств в Юго-Восточной Азии, ОАЭ, Грузии и России. Страницы ниже разбирают, как именно работает реклама в каждой из этих стран: какие каналы тянут, какой средний чек, какие платформы игнорируют рынок, а где идут основные сделки."
     meta={heroMeta}
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама недвижимости - 7 рынков, на которых мы работаем"
+    summary="Флагманское направление WEBNOSTRA PERFORMANCE с 2018 года. База на Пхукете, команда 15+ специалистов. 9 кейсов в портфолио с реальными сделками: от $3.2M pipeline за квартал в ЮВА до 20 продаж загородных домов в месяц в РФ."
+    items={[
+      { label: "Покрываемые гео", value: "Таиланд (Пхукет/Паттайя/Самуи), Дубай ОАЭ, Бали Индонезия, Северный Кипр, Турция, Россия, Грузия" },
+      { label: "Средние чеки сделок", value: "$80K-450K (ЮВА), $250K-800K (Дубай), 5-15M руб (Россия), 40K-180K EUR (Кипр)" },
+      { label: "Диапазон CPL", value: "$8-78 за квал-лид (ЮВА и Дубай), 1,231-2,800 руб (РФ)" },
+      { label: "Цикл сделки", value: "1-2 месяца (кондо, загородные дома), 3-6 месяцев (виллы, премиум)" },
+      { label: "Каналы по приоритету", value: "Meta Ads (ЮВА/Дубай), Яндекс Директ (РФ), VK Ads (Крым/регионы), Google Ads (глобал)" },
+      { label: "Минимальный рекламный бюджет", value: "$5,000 в месяц для ЮВА, 300K руб для РФ" },
+      { label: "Языки креативов", value: "RU, EN, AR, CN - все нативные" },
+    ]}
   />
 
   <section id="specifika" class="section">

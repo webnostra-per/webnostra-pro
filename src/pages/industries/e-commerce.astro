@@ -8,6 +8,8 @@ import CasesGrid from '@components/sections/CasesGrid.astro';
 import Faq from '@components/sections/Faq.astro';
 import Label from '@components/ui/Label.astro';
 
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
 const title = 'Реклама для интернет-магазинов и e-commerce - WEBNOSTRA PERFORMANCE';
 const description =
   'Performance-маркетинг для интернет-магазинов, маркетплейсов, B2B-поставщиков и D2C-брендов. Работаем на ROAS и LTV: 48,000+ заказов, ROAS до 310%, CPL от 357 рублей. Яндекс Директ, VK, Meta Ads, сквозная аналитика.';
@@ -39,6 +41,22 @@ const toc = [
     ctaText="Обсудить проект"
     ctaHref="#form-final"
     breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="22 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Реклама для E-commerce"
+    summary="48,000+ заказов в портфеле через Яндекс Директ, VK Ads, Meta Ads. Флагманский кейс - LUDING (крупнейшая витрина алкоголя РФ): 36,500 заказов, 210М руб выручки за 2.5 года. Специализация - конверсия в продажу, а не в клик."
+    items={[
+      { label: "Флагманский кейс", value: "LUDING - 47.4М руб бюджета, 36,500 заказов по 1,299 руб, выручка 210М руб" },
+      { label: "Диапазон CPO/CPL", value: "357 руб (напольные покрытия), 504 руб (niche-стартап), 1,299 руб (LUDING)" },
+      { label: "ROAS", value: "Лучший 310% (ToyTrick), типичный 180-280% для зрелых проектов" },
+      { label: "Специфика", value: "Работа с брошенными корзинами, LTV-сегментация, динамический ретаргетинг" },
+      { label: "Платформы", value: "InSales, Shopify, Tilda, WooCommerce, 1С-Битрикс, кастомные" },
+      { label: "Минимальный бюджет", value: "300,000 руб в месяц" },
+      { label: "Срок выхода в плюс", value: "2-3 месяца для нового проекта, с первого месяца для зрелого" },
+    ]}
   />
 
   <Toc items={toc} />
