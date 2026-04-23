@@ -1,14 +1,14 @@
 ---
 /**
- * CasesGrid — сетка карточек кейсов.
+ * CasesGrid - сетка карточек кейсов.
  * Поддерживает фильтрацию по industry / channels / geoSlug через пропсы.
  *
  * Пропсы:
- *   industry — фильтр по отрасли
- *   channel — фильтр по каналу (один)
- *   geoSlug — фильтр по стране
- *   excludeFeatured — скрыть featured-кейсы (они уже показаны в CasesFeatured)
- *   limit — ограничить количество
+ *   industry - фильтр по отрасли
+ *   channel - фильтр по каналу (один)
+ *   geoSlug - фильтр по стране
+ *   excludeFeatured - скрыть featured-кейсы (они уже показаны в CasesFeatured)
+ *   limit - ограничить количество
  */
 
 import { getCollection, type CollectionEntry } from 'astro:content';
@@ -22,6 +22,7 @@ interface Props {
   geoSlug?: string;
   excludeFeatured?: boolean;
   limit?: number;
+  showFilters?: boolean;  // v2.23: интерактивный рубрикатор по industry
 }
 
 const {
@@ -33,6 +34,7 @@ const {
   geoSlug,
   excludeFeatured = false,
   limit,
+  showFilters = false,
 } = Astro.props;
 
 let cases: CollectionEntry<'cases'>[] = await getCollection('cases', (entry) => entry.data.published !== false);
@@ -44,6 +46,33 @@ if (excludeFeatured) cases = cases.filter(c => !c.data.featured);
 
 cases = cases.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 if (limit) cases = cases.slice(0, limit);
+
+// v2.23: агрегация industries для рубрикатора. Только если showFilters=true.
+const INDUSTRY_LABELS: Record<string, string> = {
+  'real-estate': 'Недвижимость',
+  'e-commerce': 'E-commerce',
+  'edtech': 'Инфобизнес',
+  'tourism': 'Туризм',
+  'medical': 'Медицина',
+  'b2b': 'B2B',
+  'kids': 'Детские услуги',
+  'auto': 'Авто',
+  'fitness': 'Фитнес',
+  'franchise': 'Франшизы',
+  'legal': 'Юридические',
+  'other': 'Другое',
+};
+
+const industryCounts = new Map<string, number>();
+if (showFilters) {
+  for (const c of cases) {
+    const i = c.data.industry;
+    industryCounts.set(i, (industryCounts.get(i) || 0) + 1);
+  }
+}
+const industriesList = Array.from(industryCounts.entries())
+  .sort((a, b) => b[1] - a[1])
+  .map(([id, count]) => ({ id, label: INDUSTRY_LABELS[id] || id, count }));
 ---
 
 <section class="cases-grid-section section">
@@ -52,9 +81,22 @@ if (limit) cases = cases.slice(0, limit);
     {title && <h2 class="section-title fade-up" set:html={title} />}
     {subtitle && <p class="section-subtitle">{subtitle}</p>}
 
+    {showFilters && industriesList.length > 1 && (
+      <div class="cases-filters fade-up" role="tablist" aria-label="Фильтр кейсов по нише">
+        <button class="cases-filter-tab active" data-filter="all" role="tab" aria-selected="true">
+          Все <span class="cases-filter-count">{cases.length}</span>
+        </button>
+        {industriesList.map(i => (
+          <button class="cases-filter-tab" data-filter={i.id} role="tab" aria-selected="false">
+            {i.label} <span class="cases-filter-count">{i.count}</span>
+          </button>
+        ))}
+      </div>
+    )}
+
     <div class="cases-grid">
       {cases.map(c => (
-        <a href={`/portfolio/${c.data.slug || c.id}/`} class="case-card fade-up">
+        <a href={`/portfolio/${c.data.slug || c.id}/`} class="case-card fade-up" data-industry={c.data.industry}>
           <div class="case-card-tags">
             {c.data.channels.slice(0, 2).map(ch => (
               <span class="case-tag-sm">{ch.replace('-', ' ')}</span>
@@ -90,10 +132,134 @@ if (limit) cases = cases.slice(0, limit);
         Кейсы по этому фильтру скоро появятся. <a href="/portfolio/">Смотреть все кейсы →</a>
       </div>
     )}
+
+    {showFilters && (
+      <div class="cases-empty-filter" data-empty-state hidden>
+        Нет кейсов в этой категории. <button type="button" data-reset-filter>Показать все</button>
+      </div>
+    )}
   </div>
 </section>
 
+{showFilters && (
+  <script>
+    (function() {
+      const tabs = document.querySelectorAll('.cases-filter-tab');
+      const cards = document.querySelectorAll('.cases-grid .case-card');
+      const emptyState = document.querySelector('[data-empty-state]') as HTMLElement | null;
+      const resetBtn = document.querySelector('[data-reset-filter]') as HTMLButtonElement | null;
+
+      function applyFilter(filter: string) {
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const industry = (card as HTMLElement).dataset.industry || '';
+          const show = filter === 'all' || industry === filter;
+          (card as HTMLElement).style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+
+        tabs.forEach(t => {
+          const active = (t as HTMLElement).dataset.filter === filter;
+          t.classList.toggle('active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        if (emptyState) emptyState.hidden = visibleCount > 0;
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const filter = (tab as HTMLElement).dataset.filter || 'all';
+          applyFilter(filter);
+        });
+      });
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => applyFilter('all'));
+      }
+    })();
+  </script>
+)}
+
 <style>
+  /* v2.23: Рубрикатор (таб-фильтр) */
+  .cases-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+    padding-bottom: 4px;
+  }
+
+  .cases-filter-tab {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 9px 16px;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cases-filter-tab:hover {
+    border-color: rgba(201, 168, 76, 0.3);
+    color: var(--text);
+  }
+
+  .cases-filter-tab.active {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .cases-filter-count {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 2px 7px;
+    background: var(--surface);
+    border-radius: 999px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .cases-filter-tab.active .cases-filter-count {
+    background: rgba(201, 168, 76, 0.25);
+    color: var(--gold);
+  }
+
+  .cases-empty-filter {
+    padding: 32px;
+    text-align: center;
+    color: var(--text-dim);
+    background: var(--bg-card);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    margin-top: 24px;
+    font-size: 0.95rem;
+  }
+
+  .cases-empty-filter button {
+    background: none;
+    border: none;
+    color: var(--gold);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: underline;
+    padding: 0;
+    margin-left: 4px;
+  }
+
+  .cases-filters + .cases-grid {
+    margin-top: 24px;
+  }
+
   .cases-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

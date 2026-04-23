@@ -1,13 +1,16 @@
 ---
 /**
- * Problems — блок болей аудитории.
- * 3-6 карточек без решения внутри (решение — вся остальная страница).
- * Красный акцент. Применяется на главной и страницах ниш для прогрева.
+ * Problems - блок болей аудитории.
+ * 3-6 карточек без решения внутри (решение - вся остальная страница).
+ * 
+ * v2 (Сессия 14): вместо одного ⚠ на все карточки - 6 персональных SVG-иконок,
+ * соответствующих характеру боли. Плюс обновленный визуал карточек.
  */
 
 interface Problem {
   title: string;
   description: string;
+  icon?: string;  // ключ иконки: 'budget', 'leads', 'analytics', 'niche', 'cycle', 'slow', 'default'
 }
 
 interface Props {
@@ -23,6 +26,18 @@ const {
   subtitle,
   items,
 } = Astro.props;
+
+// Автоопределение иконки по ключевым словам в title
+function detectIcon(title: string): string {
+  const t = title.toLowerCase();
+  if (t.includes('бюджет') || t.includes('льется') || t.includes('жжет')) return 'budget';
+  if (t.includes('конверсия') || t.includes('квал')) return 'leads';
+  if (t.includes('видимост') || t.includes('аналитик') || t.includes('unit')) return 'analytics';
+  if (t.includes('ниш') || t.includes('понимает') || t.includes('универсал')) return 'niche';
+  if (t.includes('цикл') || t.includes('прогрев') || t.includes('долгий')) return 'cycle';
+  if (t.includes('медленн') || t.includes('запуск') || t.includes('сезон')) return 'slow';
+  return 'default';
+}
 ---
 
 <section class="problems section">
@@ -32,13 +47,65 @@ const {
     {subtitle && <p class="section-subtitle">{subtitle}</p>}
 
     <div class="problems-grid">
-      {items.map(p => (
-        <div class="problem-card fade-up">
-          <div class="problem-icon" aria-hidden="true">⚠</div>
-          <h3 class="problem-title">{p.title}</h3>
-          <p class="problem-desc">{p.description}</p>
-        </div>
-      ))}
+      {items.map(p => {
+        const iconKey = p.icon || detectIcon(p.title);
+        return (
+          <div class="problem-card fade-up">
+            <div class="problem-icon" aria-hidden="true">
+              {iconKey === 'budget' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20"/>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                  <path d="M3 8l2-2 2 2"/>
+                  <path d="M21 16l-2 2-2-2"/>
+                </svg>
+              )}
+              {iconKey === 'leads' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3h18l-7 10v7l-4-2v-5L3 3z"/>
+                </svg>
+              )}
+              {iconKey === 'analytics' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  <line x1="11" y1="8" x2="11" y2="14"/>
+                  <line x1="8" y1="11" x2="14" y2="11"/>
+                </svg>
+              )}
+              {iconKey === 'niche' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12,2 15,8 22,9 17,14 18,21 12,18 6,21 7,14 2,9 9,8"/>
+                </svg>
+              )}
+              {iconKey === 'cycle' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <polyline points="12 7 12 12 15 14"/>
+                </svg>
+              )}
+              {iconKey === 'slow' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="14" r="7"/>
+                  <path d="M12 7V3"/>
+                  <path d="M9 3h6"/>
+                  <path d="M12 10v4l2 1"/>
+                  <path d="M15.5 8.5l1.5-1.5"/>
+                </svg>
+              )}
+              {iconKey === 'default' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="problem-title">{p.title}</h3>
+            <p class="problem-desc">{p.description}</p>
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>
@@ -56,19 +123,56 @@ const {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 28px;
-    transition: border-color 0.2s;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    position: relative;
+    overflow: hidden;
   }
-  .problem-card:hover { border-color: rgba(231, 76, 60, 0.25); }
+
+  /* Тонкая акцентная полоса снизу, появляется на hover */
+  .problem-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.55), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .problem-card:hover {
+    border-color: rgba(231, 76, 60, 0.3);
+    transform: translateY(-2px);
+    background: rgba(231, 76, 60, 0.02);
+  }
+
+  .problem-card:hover::after {
+    opacity: 1;
+  }
 
   .problem-icon {
-    width: 40px; height: 40px;
-    background: rgba(231, 76, 60, 0.1);
-    border: 1px solid rgba(231, 76, 60, 0.2);
+    width: 44px;
+    height: 44px;
+    background: rgba(231, 76, 60, 0.08);
+    border: 1px solid rgba(231, 76, 60, 0.22);
     border-radius: var(--radius-sm);
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--red);
-    font-size: 1.2rem;
     margin-bottom: 18px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .problem-card:hover .problem-icon {
+    background: rgba(231, 76, 60, 0.14);
+    border-color: rgba(231, 76, 60, 0.4);
+  }
+
+  .problem-icon svg {
+    width: 22px;
+    height: 22px;
   }
 
   .problem-title {

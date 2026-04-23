@@ -1,0 +1,311 @@
+---
+/**
+ * /requisites/ - страница с реквизитами юридических лиц.
+ * 
+ * Две юрисдикции:
+ * - Россия: ИП Марфин Владислав Алексеевич
+ * - Казахстан: ИП Добжанский Дмитрий Викторович
+ * 
+ * Используется для клиентских договоров, бухгалтерии, партнерских соглашений.
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroLeaf from '@components/hero/HeroLeaf.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import { breadcrumbSchema } from '@lib/seo';
+
+const title = 'Реквизиты WEBNOSTRA PERFORMANCE - Россия и Казахстан';
+const description = 'Юридические реквизиты WEBNOSTRA PERFORMANCE для договоров и оплаты: ИП Марфин Владислав Алексеевич (Россия) и ИП Добжанский Дмитрий Викторович (Казахстан).';
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Реквизиты', url: '/requisites/' },
+];
+
+const structuredData = [
+  breadcrumbSchema(breadcrumbs.map(b => ({ name: b.name, url: b.url }))),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/requisites/"
+  structuredData={structuredData}
+>
+  <HeroLeaf
+    label="Юридическая информация"
+    title='Наши <span class="accent">реквизиты</span>'
+    description="Для договоров, оплаты и бухгалтерии. Работаем с клиентами из России через ИП в РФ и с клиентами СНГ через ИП в Казахстане."
+    ctaText="Обсудить проект"
+    ctaHref="#form-final"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="req-intro">
+        <p>
+          WEBNOSTRA PERFORMANCE работает с клиентами через двух индивидуальных предпринимателей: в России (ИП Марфин Владислав Алексеевич) и Казахстане (ИП Добжанский Дмитрий Викторович). Выбор юридического лица для договора зависит от страны и валюты оплаты - обсуждаем индивидуально на этапе подписания.
+        </p>
+      </div>
+
+      <div class="req-grid">
+        <!-- Россия -->
+        <div class="req-card">
+          <div class="req-head">
+            <div class="req-flag" aria-hidden="true">
+              <svg viewBox="0 0 9 6" width="28" height="20">
+                <rect width="9" height="6" fill="#fff"/>
+                <rect y="2" width="9" height="2" fill="#0036a7"/>
+                <rect y="4" width="9" height="2" fill="#d52b1e"/>
+              </svg>
+            </div>
+            <div>
+              <div class="req-country">Россия</div>
+              <div class="req-legal">Для клиентов в РФ, оплата в рублях</div>
+            </div>
+          </div>
+
+          <div class="req-title">ИП Марфин Владислав Алексеевич</div>
+
+          <dl class="req-list">
+            <dt>ОГРНИП</dt>
+            <dd>323508100010519</dd>
+
+            <dt>ИНН</dt>
+            <dd>504815576502</dd>
+
+            <dt>Юридический адрес</dt>
+            <dd>142133, Россия, Московская обл., г. Подольск, мкр. Кузнечики, Флотский проезд, д. 7, кв. 24</dd>
+
+            <dt>Расчетный счет</dt>
+            <dd>40802810801500454584</dd>
+
+            <dt>Корреспондентский счет</dt>
+            <dd>30101810745374525104</dd>
+
+            <dt>Банк</dt>
+            <dd>в ООО "Банк Точка"</dd>
+
+            <dt>БИК</dt>
+            <dd>044525104</dd>
+          </dl>
+        </div>
+
+        <!-- Казахстан -->
+        <div class="req-card">
+          <div class="req-head">
+            <div class="req-flag" aria-hidden="true">
+              <svg viewBox="0 0 10 5" width="28" height="14">
+                <rect width="10" height="5" fill="#00afca"/>
+                <circle cx="5" cy="2.5" r="1" fill="#ffe400"/>
+              </svg>
+            </div>
+            <div>
+              <div class="req-country">Казахстан</div>
+              <div class="req-legal">Для клиентов в Казахстане и СНГ</div>
+            </div>
+          </div>
+
+          <div class="req-title">ИП Добжанский Дмитрий Викторович</div>
+
+          <dl class="req-list">
+            <dt>БИН (ИИН)</dt>
+            <dd>050726551955</dd>
+
+            <dt>Адрес</dt>
+            <dd>Казахстан, г. Костанай, ул. Л. Беды, д. 42, кв/офис 133</dd>
+
+            <dt>Банк</dt>
+            <dd>АО "Kaspi Bank"</dd>
+
+            <dt>БИК</dt>
+            <dd>CASPKZKA</dd>
+
+            <dt>КБе</dt>
+            <dd>19</dd>
+
+            <dt>Номер счета</dt>
+            <dd>KZ88722S000045490676</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="req-note">
+        <h3>По вопросам договоров и оплаты</h3>
+        <p>
+          Если вам нужна дополнительная информация (акты, счета, свидетельства о регистрации), напишите на <a href="mailto:ceo@webnostra.pro">ceo@webnostra.pro</a> или позвоните по <a href="tel:+66967921486">+66 96 792 14 86</a>. Ответим в течение рабочего дня с нужными документами.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title='Готовы <span class="accent">начать работу</span>?'
+    description="Бесплатная 40-минутная диагностика: разберем задачу, покажем похожие кейсы из вашей ниши, подготовим план запуска."
+    leadSource="requisites"
+    contentCategory="general"
+    formTitle="Обсудить проект"
+    formSubtitle="Ответим в течение 24 часов"
+  />
+</BaseLayout>
+
+<style>
+  .req-intro {
+    margin-bottom: 40px;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .req-intro p {
+    margin: 0;
+  }
+
+  .req-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .req-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .req-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .req-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .req-flag {
+    flex-shrink: 0;
+    width: 28px;
+    height: 20px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .req-country {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .req-legal {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+
+  .req-title {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: 0;
+  }
+
+  .req-list {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .req-list dt {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .req-list dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.55;
+    word-break: break-word;
+    user-select: all;
+    background: var(--surface);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-2);
+  }
+
+  .req-note {
+    padding: 24px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .req-note h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  .req-note p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .req-note a {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .req-note a:hover {
+    color: var(--gold-light);
+  }
+
+  @media (max-width: 800px) {
+    .req-grid {
+      grid-template-columns: 1fr;
+    }
+    .req-card {
+      padding: 22px;
+    }
+  }
+</style>
