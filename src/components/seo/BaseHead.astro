@@ -61,10 +61,17 @@ const jsonLdItems = structuredData
 {GSC_VERIFICATION && <meta name="google-site-verification" content={GSC_VERIFICATION} />}
 {YANDEX_VERIFICATION && <meta name="yandex-verification" content={YANDEX_VERIFICATION} />}
 
-<!-- Favicon: SVG для современных браузеров, ICO fallback для Яндекса и старых -->
+<!-- Favicon: SVG для современных браузеров, ICO fallback для старых и Яндекса -->
+<!-- PNG-размеры для Google Search (требует >=48x48), Яндекс.Поиск и Android -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#c9a84c" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
