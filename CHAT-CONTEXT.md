@@ -1,9 +1,9 @@
 # WEBNOSTRA PERFORMANCE - состояние проекта
 
 **Дата:** 24.04.2026
-**Актуальная версия:** v2.23 (Сессия 14 закрыта, в проде после push)
-**Статус:** билд чистый, 73 страницы, ~20 сек, на webnostra.pro
-**Следующая задача:** не определена - осталось на выбор: хвосты (фото Магоша, мониторинг Prompt Win Rate, Яндекс.Вебмастер https), инфобиз-кластер блога, новое направление
+**Актуальная версия:** v2.25 (Сессия 15.2 закрыта, в патче zip к деплою)
+**Статус:** билд чистый, 103 страницы, 23 сек, на webnostra.pro (после push)
+**Следующая задача:** не определена - на выбор: блог-кластер "Инфобиз", технические хвосты, "Туризм/медицина", локальное SEO
 
 Этот файл - живой state проекта. Общие инструкции по бренду/стилю - в PROJECT-INSTRUCTIONS.md. Справочник компонентов - в COMPONENTS-REFERENCE.md (обязательно читать перед работой).
 
@@ -249,13 +249,141 @@
 
 ---
 
+### Сессия 15.1 (готово, v2.24) - 14 новых MDX-кейсов из PDF (часть 1 из 2)
+
+Добавление недостающих кейсов из 5 PDF в /portfolio/ - всего в PDF было 31 неиспользованный кейс, разбили на 2 патча. Часть 1 закрывает e-commerce, tourism и featured-добивку для других ниш на главной.
+
+**Контекст задачи.** До Сессии 15 в /portfolio/ было 23 MDX-кейса, при том что в 5 PDF (Real Estate, E-com, Tourism, Edu, Other) лежало ~50 кейсов. Сильнее всего страдали e-commerce (только 2 кейса при флагмане LUDING) и tourism (2 кейса). На главной CasesFeatured с limitPerTab=3 показывал по 2 карточки в этих вкладках вместо 3.
+
+**Что сделано (14 новых MDX в src/content/cases/):**
+
+E-commerce (+7):
+- anpak.mdx ⭐ - АНПАК упаковка для селлеров, 1,700 B2B-лидов, 45К₽ ср. чек
+- samoilov-art.mdx - Star Wars шлемы США, $12К прибыли с $2К бюджета
+- phone-parts.mdx - запчасти телефонов Москва, 1,537 заявок через 2 канала
+- flooring-moscow.mdx - напольные покрытия против Леруа, 624 заявки по 357₽
+- bali-bikes.mdx - распродажа байков в low-season, 10/10 продано
+- dubai-furniture-rental.mdx - аренда мебели для экспатов Дубай, 35% конверсия
+- niche-ecom-startup.mdx - запуск стартапа с нуля, 892 заказа за 6 мес
+
+Tourism (+5):
+- yacht-phuket.mdx ⭐ - аренда премиум-яхт, ROI 320%, ср. чек $4,200
+- kz-travel.mdx - турагентство Казахстан, заявки по $5
+- pirogov-sanatorium.mdx - санаторий Одесса в кризис, 1,241 заявка
+- yug-tour.mdx - турагентство юга России, ROI 450%
+- kmv-booking-service.mdx - бронирование путевок КМВ, 5,926 броней, 33% конверсия
+
+Другие ниши (+2 featured):
+- auto-import-georgia.mdx ⭐ - параллельный импорт авто после санкций, 67 сделок, $18К чек
+- fitness-club-spb.mdx ⭐ - открытие фитнес-клуба, 678 членов за 3 месяца
+
+**Состояние featured после Сессии 15.1 (что показывает CasesFeatured на главной):**
+
+| Вкладка | Кейсы (топ-3 по publishedAt) |
+|---------|-------------------------------|
+| Недвижимость (5⭐) | premium-villas, good-karma, ibg-property |
+| E-commerce (3⭐) | luding, anpak ⭐, toytrick |
+| Инфобизнес (2⭐) | beyond-taylor, algoritmika - **остается дефицит** |
+| Туризм (3⭐) | kmv-sanatoria, phuket-excursions, yacht-phuket ⭐ |
+| Медицина (3⭐) | prague-clinic, almaty-clinics, stomatology-spb |
+| Другие ниши (3⭐) | auto-import ⭐, fitness-club ⭐, tropicano |
+
+**Что НЕ сделано в этой сессии (запланировано в Сессию 15.2):**
+- 5 кейсов инфобиз: серия вебинаров Beyond Taylor, онлайн-школа Telegram (28K подписчиков), Beauty School (1,521 заявка), Aifluent (AI-маркетинг), языковая школа, школа сомелье. Один из них пометить ⭐ для добивки edtech-вкладки на главной до 3.
+- 4 кейса недвижимость: Лариса (брокер VK), Маритоль (B2B фасады), БаниПроф (1.25М₽/мес), Московское АН (444 заявки)
+- 8 кейсов разных ниш: Kids Franchise (КЗ), стоматология СПб - имплантация, автошкола Краснодар, маркировка товаров B2B, банкротство физлиц, франшиза вендингов (ЯД), франшиза вендингов (VK)
+
+**Решения по архитектуре в этой сессии:**
+
+1. industries.json casesCount НЕ обновляли - проверка показала что это поле используется только в geos.json (компонент Geography), а в industries.json оно справочное и содержит маркетинговые цифры с учетом легаси-кейсов в /cases/. Менять при добавлении MDX не нужно.
+
+2. На главной не пришлось трогать `<CasesFeatured limitPerTab={3} />` - логика уже автоматическая: берет featured кейсы каждой ниши, сортирует по publishedAt desc, режет до 3. Значит достаточно правильных дат и featured-флагов в новых MDX.
+
+3. Использовали короткий формат MDX-кейсов (frontmatter полный + 1-2 коротких раздела markdown - "Контекст" и "Что сработало"). Этого хватает для индексации, ItemList schema, ссылочного веса. Расширенный формат (как у LUDING на ~150 строк) оставили для флагманских featured-кейсов которые уже были.
+
+**Уроки Сессии 15.1:**
+
+1. При добавлении большого количества MDX через create_file - всегда сразу запускать билд после копирования в src/content/cases/. Один битый frontmatter (отсутствует required-поле, неверный enum в industry/channels) ломает всю Astro-collection. В этой сессии все 14 файлов прошли с первого раза - помогло использование luding.mdx и phuket-excursions.mdx как эталонных шаблонов.
+
+2. Логика CasesFeatured автоматическая - сортировка по publishedAt. Это значит что чтобы новый кейс показался на главной выше старого, его дата должна быть свежее. У anpak (2025-02-20) дата свежее toytrick (2023-12-15) поэтому он встал на 2-ю позицию в e-com-вкладке (между luding 2025-11 и toytrick 2023-12).
+
+3. Новые e-com кейсы попадают и в "Другие кейсы в нише" внизу страниц других e-com кейсов автоматически через CasesGrid и фильтр по industry. Перекрестная перелинковка работает без правок.
+
+4. node_modules в архиве с macOS не работают на linux-сервере - при первом билде Rollup пытался загрузить @rollup/rollup-darwin-arm64 которого нет. Решение: rm -rf node_modules && npm install заново.
+
+---
+
+### Сессия 15.2 (готово, v2.25) - 16 новых MDX-кейсов из PDF (часть 2 из 2, финал)
+
+Закрытие задачи "добавить недостающие кейсы из PDF". В Сессии 15.1 добавили 14 кейсов (e-com + туризм + 2 для добивки), в Сессии 15.2 добавили оставшиеся 16. Изначально планировалось 17 - один (стоматология СПб имплантация) оказался дублем уже существующего stomatology-spb.mdx из Сессии 8, поэтому удалили.
+
+**Что сделано (16 новых MDX в src/content/cases/):**
+
+Edtech / Инфобиз (+7):
+- beyond-taylor-webinars.mdx - закрытые встречи для собственников, 1,485 регистраций
+- telegram-school.mdx - подготовка младших школьников, 28K подписчиков в Telegram
+- beauty-school.mdx ⭐ - **добивка edtech-вкладки на главной**, 1,521 заявка по 311₽ через реальные кейсы выпускников
+- aifluent.mdx - AI-маркетинг через бот с 50 промптами, 10% конверсия в курс
+- sommelier-school.mdx - расширение узкой ниши через смежные premium-категории
+- english-language-school.mdx - персонализация пробных уроков, конверсия 19.5%
+- driving-school-krasnodar.mdx - дифференциация в однородной нише через гарантии
+
+Real-estate (+4):
+- larisa-vk-broker.mdx - VK для русских инвесторов в ЮВА, дешевле Meta x2
+- maritol-facades.mdx - B2B-вход через бесплатный аудит, 79 контрактов с УК
+- baniprof.mdx - смена коммерческой модели (поэтапная оплата), 1.25М₽ прибыли/мес
+- moscow-real-estate.mdx - локальная специализация по районам в перегретой нише
+
+Разные ниши (+5, по факту с учетом удаления дубля):
+- kids-franchise-kz.mdx - адаптация позиционирования франшизы под местную ментальность Казахстана
+- markirovka-b2b.mdx - простой язык вместо юридического, гарантия от штрафов
+- bankruptcy-individuals.mdx - смена эмоционального якоря в стигматизированной теме
+- vending-franchise-yd.mdx - радикальная прозрачность как УТП на рынке мошеннических франшиз
+- vending-franchise-vk.mdx - разные продуктовые пакеты для разных каналов (тот же бренд)
+
+**Что НЕ добавили из плана и почему:**
+- Стоматология СПб - имплантация (был в плане Сессии 15.2): оказался дублем существующего stomatology-spb.mdx из Сессии 8 - тот же кейс по 180 заявок, 1,700₽ CPL и 180К₽ среднему чеку. Не добавляли чтобы не дублировать.
+
+**Состояние featured после Сессии 15.2 (что показывает CasesFeatured на главной):**
+
+| Вкладка | Featured-кейсы (топ-3 по publishedAt) |
+|---------|----------------------------------------|
+| Недвижимость (5⭐) | premium-villas, good-karma, ibg-property |
+| E-commerce (3⭐) | luding, anpak ⭐, toytrick |
+| Инфобизнес (3⭐) | beyond-taylor, algoritmika, **beauty-school ⭐** - **дефицит закрыт** |
+| Туризм (3⭐) | kmv-sanatoria, phuket-excursions, yacht-phuket ⭐ |
+| Медицина (3⭐) | prague-clinic, almaty-clinics, stomatology-spb |
+| Другие ниши (3⭐) | auto-import ⭐, fitness-club ⭐, tropicano |
+
+**Все вкладки на главной теперь показывают по 3 кейса.**
+
+**Решения по архитектуре в этой сессии:**
+
+1. Автошкола Краснодар классифицирована как edtech, не как "разные ниши". Логика - это образовательный курс с продажей программы обучения, что ближе к edtech/онлайн-школам чем к auto/franchise. Это сделало edtech-вкладку насыщеннее (9 кейсов всего) и оставило "разные ниши" чище в композиции.
+
+2. Решено НЕ редактировать industries.json и geos.json casesCount - это маркетинговые цифры. industries.json с прежними числами (10, 9, 9, 7, 2, 5) показывает суммарную экспертизу с учетом легаси-кейсов на /cases/, а не только Astro MDX. Менять при добавлении MDX смысла нет.
+
+3. По нише franchise теперь 3 кейса (kids-franchise-kz, vending-franchise-yd, vending-franchise-vk), но все с featured: false. Они попадают во вкладку "Другие ниши" и не пробивают топ-3 потому что там auto-import (12.2024), fitness-club (08.2024), tropicano (04.2024) занимают позиции по publishedAt. Это норма - вендинговые франшизы как кейсы хороши, но не флагманские для главной.
+
+**Уроки Сессии 15.2:**
+
+1. Перед массовым добавлением кейсов надо сверять с существующими через grep по shortDescription или client - стоматология СПб была в Сессии 8 уже добавлена под именем stomatology-spb, а в "разные ниши" PDF тот же кейс описан повторно. Дублей в коллекции быть не должно - и Astro их не отвалит на билде, но семантически это плохо.
+
+2. Имплантационная стоматология СПб попадала в "разные ниши" PDF потому что сами PDF группированы по тематике PDF-документа, не по чистой industry. Один и тот же кейс может фигурировать в "Кейсах разных ниш" PDF (как пример B2C с высоким чеком) и одновременно быть medical-кейсом. Нужен sanity-check всякий раз.
+
+3. Финальный счет MDX в /portfolio/ - 53 (23 до Сессии 15 + 14 в Сессии 15.1 + 16 в Сессии 15.2 = 53). Это уже больше чем 58 легаси-кейсов в /cases/, и Astro-портфолио стало основным портфельным разделом. /cases/ остается доступным как дополнительный архив.
+
+4. node_modules в архиве с macOS не работают на linux-сервере. Решение через каждый билд: rm -rf node_modules package-lock.json && npm install. Стабильно работает за 45-50 секунд.
+
+---
+
 ## Текущее состояние
 
-### Структура Astro-страниц (73 всего)
-- `/` - главная (3 featured-кейса на вкладку)
+### Структура Astro-страниц (103 всего, было 87)
+- `/` - главная (3 featured-кейса на каждую вкладку, все 6 вкладок заполнены)
 - `/404/` - ошибка
-- `/portfolio/` - хаб 23 Astro-кейсов + QuickAnswer + ItemList schema
-- `/portfolio/<slug>/` - 23 MDX-кейса с AuthorByline и Article schema
+- `/portfolio/` - хаб 53 Astro-кейсов + QuickAnswer + ItemList schema
+- `/portfolio/<slug>/` - 53 MDX-кейса с AuthorByline и Article schema
 - `/services/` - хаб + QA
 - `/services/<slug>/` - 7 страниц (meta-ads, yandex-direct, google-ads, vk-ads, creatives, analytics, sales-support) + QA. Секции pricing удалены
 - `/real-estate/` - хаб + QA
@@ -267,15 +395,20 @@
 - `/blog/` - хаб + ItemList schema
 - `/blog/<slug>/` - 17 статей + AuthorByline + Article schema
 
-### MDX-кейсы по industry (23 штуки)
-- **real-estate (9):** premium-villas-phuket⭐, good-karma⭐, ibg-property⭐, nextpoint-condominium, dubai-real-estate, phuket-developer⭐, country-houses⭐, samolet-plus-sochi, karkasnye-doma-spb
-- **e-commerce (2):** luding⭐, toytrick⭐
-- **edtech (2):** beyond-taylor⭐, algoritmika⭐
-- **tourism (2):** phuket-excursions⭐, kmv-sanatoria⭐
+### MDX-кейсы по industry (53 штуки, +30 за Сессии 15.1+15.2)
+- **real-estate (13, было 9):** premium-villas-phuket⭐, good-karma⭐, ibg-property⭐, nextpoint-condominium, dubai-real-estate, phuket-developer⭐, country-houses⭐, samolet-plus-sochi, karkasnye-doma-spb, larisa-vk-broker, maritol-facades, baniprof, moscow-real-estate
+- **e-commerce (9, было 2):** luding⭐, toytrick⭐, anpak⭐, samoilov-art, phone-parts, flooring-moscow, bali-bikes, dubai-furniture-rental, niche-ecom-startup
+- **edtech (9, было 2):** beyond-taylor⭐, algoritmika⭐, beauty-school⭐, beyond-taylor-webinars, telegram-school, aifluent, sommelier-school, english-language-school, driving-school-krasnodar
+- **tourism (7, было 2):** phuket-excursions⭐, kmv-sanatoria⭐, yacht-phuket⭐, kz-travel, pirogov-sanatorium, yug-tour, kmv-booking-service
 - **medical (7):** stomatology-spb⭐, prague-clinic-implants⭐, almaty-clinics-network⭐, astana-clinic-launch, dubai-orthodontics, minsk-dental-clinic, spb-kids-dental
+- **auto (1):** auto-import-georgia⭐
+- **fitness (1):** fitness-club-spb⭐
+- **franchise (3):** kids-franchise-kz, vending-franchise-yd, vending-franchise-vk
+- **legal (1):** bankruptcy-individuals
+- **b2b (1):** markirovka-b2b
 - **kids (1):** tropicano⭐
 
-⭐ = featured: true
+⭐ = featured: true (всего 20 ⭐ из 53). На главной CasesFeatured показывает по 3 свежайших ⭐ в каждой industry-вкладке. Все 6 вкладок (real-estate, e-commerce, edtech, tourism, medical, "другие ниши") заполнены до 3 кейсов.
 
 ### MDX-статьи блога (17 штук)
 
@@ -378,25 +511,29 @@ seo:
 
 ## Открытые вопросы
 
-**Закрыто в Сессиях 12-14:**
+**Закрыто в Сессиях 12-15.2:**
 - ~~Фавикон для поисковых систем~~ закрыто в Сессии 12 (v2.22)
 - ~~Страница реквизитов~~ закрыто в Сессии 14 (v2.23)
 - ~~Владислав +40 отделов продаж~~ закрыто в Сессии 14
 - ~~Рубрикатор кейсов и блога~~ закрыто в Сессии 14
+- ~~Дефицит кейсов в e-commerce и tourism~~ закрыто в Сессии 15.1 (+14 MDX)
+- ~~Добавление 30 кейсов из PDF в /portfolio/~~ закрыто в Сессии 15.2 (+16 MDX, итого +30)
+- ~~Дефицит featured в edtech-вкладке на главной~~ закрыто в Сессии 15.2 (Beauty School ⭐)
+- ~~Все 6 вкладок главной заполнены до 3 кейсов~~ закрыто в Сессии 15.2
 
 **Активные:**
 
 1. **Privacy и Offer** - перед длинной дистанцией показать юристу Магоша.
 
-2. **country-houses и phuket-developer** не всплыли на главной - старые publishedAt. Решение: либо featured: false убрать с других, либо обновить даты.
+2. **country-houses и phuket-developer** не всплыли на главной - старые publishedAt. После Сессии 15 на главной в недвижке: premium-villas (09.2025), good-karma (06.2025), ibg-property (03.2025). country-houses (06.2024) и phuket-developer (08.2024) не пройдут даже с обновлением дат если не поднять выше свежих. Решение: обновить даты или снять featured с одного из старших.
 
 3. **Beyond Taylor "80 продаж"** в /services/sales-support/ - Магош не подтвердил, цифр нет в PDF.
 
 4. **Article schema + ItemList + Favicon** - после деплоя проверить в Google Rich Results Test и на https://www.google.com/s2/favicons?domain=webnostra.pro&sz=128
 
-5. **Яндекс.Вебмастер** - в настройках сайта указать https://. После Сессии 14 переобойти sitemap для индексации /requisites/ и обновленных фавиконов.
+5. **Яндекс.Вебмастер** - в настройках сайта указать https://. После Сессий 15.1+15.2 переобойти sitemap для индексации 30 новых /portfolio/* и обновленных листингов.
 
-6. **GEO: фото /team/magosh.jpg** - нужно 500x500+ для AuthorByline в 26 местах. Без файла показываются инициалы МА. Для E-E-A-T и LLM лучше реальное фото.
+6. **GEO: фото /team/magosh.jpg** - нужно 500x500+ для AuthorByline в 53+ местах (на каждом из 53 кейсов + 17 блог-статей). Без файла показываются инициалы МА. Для E-E-A-T и LLM лучше реальное фото.
 
 7. **GEO: мониторинг Prompt Win Rate** - раз в 2 недели 10 запросов в ChatGPT/Perplexity/Яндекс Нейро. Стартовая планка 10-20%, цель 40-55% через 3 мес. Запросы для начала:
    - "лучшее агентство рекламы недвижимости Пхукет"
@@ -410,17 +547,18 @@ seo:
    - "агентство google ads для дубая"
    - "офлайн конверсии в meta ads настройка"
 
-8. **llms-full.txt** обновлен в Сессии 11 и Сессии 13 (суммарно 17 blog-URL). Плановое обновление - раз в квартал или когда появляется новый блог-кластер.
+8. **llms-full.txt** обновлен в Сессии 11 и Сессии 13 (17 blog-URL). После Сессии 15.2 имеет смысл обновить и портфолио - сейчас 53 кейса вместо упомянутых 23. Плановое обновление раз в квартал или при добавлении блог-кластера.
 
 9. **Person schema sameAs Магоша** - сейчас только Telegram и Instagram. Добавить LinkedIn, VC, Habr если есть. Править в src/lib/seo-geo.ts → TEAM_PERSONS.magosh.sameAs.
 
 10. **Цифры в листикле "Топ-10 агентств Пхукет"** - часть агентств описаны по публичным данным. Если Магош знает реальные ценники конкурентов точнее - править соответствующий блок в .mdx.
 
 11. **Варианты следующих направлений (на выбор):**
-    - Блог-кластер "Инфобиз" (7 статей по материалам Beyond Taylor, Алгоритмика, Beauty School)
-    - Закрытие оставшихся технических хвостов пакетом (GSC verification, Rich Results Test, Яндекс.Вебмастер https, фото Магоша, Person schema sameAs)
-    - Блог-кластер "Туризм/медицина" (есть кейсы в PDF)
+    - Блог-кластер "Инфобиз" (7 статей по материалам Beyond Taylor, Алгоритмика, Beauty School - теперь у всех есть Astro-кейсы для перелинковки)
+    - Закрытие оставшихся технических хвостов пакетом (GSC verification, Rich Results Test, Яндекс.Вебмастер https, фото Магоша, Person schema sameAs, обновление llms-full.txt)
+    - Блог-кластер "Туризм/медицина" (теперь есть 14 кейсов в этих нишах для опоры)
     - Локальное SEO (страницы услуг по городам - Москва, СПб)
+    - Обновление industries.json под реальные счетчики MDX (опционально)
 
 
 ---
