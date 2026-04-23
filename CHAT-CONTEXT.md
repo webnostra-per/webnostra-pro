@@ -1,9 +1,9 @@
 # WEBNOSTRA PERFORMANCE - состояние проекта
 
-**Дата:** 23.04.2026
-**Актуальная версия:** v2.20 (Сессия 11 закрыта, в проде)
-**Статус:** билд чистый, 65 страниц, ~12-22 сек, на webnostra.pro
-**Следующая задача:** Сессия 12 - обновление llms-full.txt и мониторинг Prompt Win Rate через 2 недели
+**Дата:** 24.04.2026
+**Актуальная версия:** v2.21 (Сессия 13 закрыта, в проде после push)
+**Статус:** билд чистый, 72 страницы, ~22 сек, на webnostra.pro
+**Следующая задача:** не определена - хвосты (Win Rate, Rich Results, фото, schema) или новое направление
 
 Этот файл - живой state проекта. Общие инструкции по бренду/стилю - в PROJECT-INSTRUCTIONS.md. Справочник компонентов - в COMPONENTS-REFERENCE.md (обязательно читать перед работой).
 
@@ -140,11 +140,43 @@
 
 4. Гибридный формат сравнения (3 плоскости: аудитория+каналы+юнит-экономика) дает ~2200 слов органично, без натяжки.
 
+### Сессия 13 (готово, v2.21) - блог-кластер "E-commerce"
+
+**7 экспертных статей в /blog/** (общий объем 11,305 слов). Формат: TL;DR-таблица после вводного абзаца + блоки "Что это дает вам" через markdown-blockquotes.
+
+Первая волна (приоритет, опора на сильнейшие кейсы):
+- luding-vitrina-alkogolya-210m (1,891 слов) - флагманский кейс: витринная модель для регулируемых ниш. Опора на LUDING ($47M бюджета, 210M выручки, 36,500 заказов)
+- roas-vs-cpo-dlya-ecommerce (2,064 слов) - фундаментальная статья про метрики e-com. ROAS, CPO, ДРР, Adjusted ROAS, нормативы по нишам. Опора на ToyTrick, LUDING, АНПАК, SamoilovART
+- konkurirovat-s-wildberries-ozon (1,838 слов) - стратегия для малого e-com против маркетплейсов. 6 стратегий дифференциации. Опора на ToyTrick, АНПАК, Phone Parts, магазин напольных покрытий
+
+Вторая волна (инструментальные и специализированные):
+- retargeting-broshennyh-korzin-2026 (1,421 слов) - практика ретаргетинга с воронками на 14-60 дней. Опора на SamoilovART (30-дневная воронка)
+- meta-ads-dlya-ecom-usa (1,342 слов) - специфика американского e-com (CPM $15-40, юридика LLC/Stripe). Опора на SamoilovART
+- zapusk-ecommerce-s-nulya-6-mesyacev (1,348 слов) - таймлайн запуска нового e-com проекта, реалистичные бюджеты
+- b2b-dlya-sellerov-marketplaces (1,401 слов) - B2B-рынок вокруг WB/Ozon. Опора на АНПАК (1,700 лидов, 45К ср. чек)
+
+**Обновлен public/llms-full.txt** - 17 blog-URL всего (3 пилотных + 7 Сессии 11 + 7 Сессии 13).
+
+**Что не делали в этой сессии (осознанно):**
+- Не писали кластер для инфобиза - отложено на Сессию 14 (или позже)
+- Не создавали новые Astro-компоненты - усиление через markdown-blockquotes работает и проще
+- Не обновляли Navigation и меню - блог уже там с Сессии 10
+
+**Уроки из Сессии 13:**
+
+1. Формат с TL;DR-таблицей в начале хорошо работает для GEO-цитирования - LLM быстро находят структурированную выжимку и цитируют ее. Markdown-blockquotes с жирным первым словом ("Что это дает вам.") рендерятся через готовые стили [slug].astro без доработок.
+
+2. Для кластера, где много чисел по разным кейсам, имеет смысл делать статью-фундамент с таксономией метрик (как roas-vs-cpo). Она становится точкой опоры, на которую ссылаются все остальные статьи кластера.
+
+3. Страновые статьи (Сессия 11) и специализированные (Сессия 13 - ретаргетинг, США, запуск) часто получаются короче флагманских (1,300-1,500 слов против 1,900-2,100). Это нормально - флагманы требуют развернутой экспертизы, а специализированные должны быть плотнее.
+
+4. При переносе патча в проект не забывать что CHAT-CONTEXT.md может быть устаревшим в локальной копии Магоша. Обновленный CHAT-CONTEXT всегда включать в патч явно, чтобы перезаписать.
+
 ---
 
 ## Текущее состояние
 
-### Структура Astro-страниц (65 всего)
+### Структура Astro-страниц (72 всего)
 - `/` - главная (3 featured-кейса на вкладку)
 - `/404/` - ошибка
 - `/portfolio/` - хаб 23 Astro-кейсов + QuickAnswer + ItemList schema
@@ -158,7 +190,7 @@
 - `/about/`, `/contacts/`, `/privacy/`, `/offer/`
 - `/authors/magosh/` - Person schema для E-E-A-T
 - `/blog/` - хаб + ItemList schema
-- `/blog/<slug>/` - 10 статей + AuthorByline + Article schema
+- `/blog/<slug>/` - 17 статей + AuthorByline + Article schema
 
 ### MDX-кейсы по industry (23 штуки)
 - **real-estate (9):** premium-villas-phuket⭐, good-karma⭐, ibg-property⭐, nextpoint-condominium, dubai-real-estate, phuket-developer⭐, country-houses⭐, samolet-plus-sochi, karkasnye-doma-spb
@@ -170,7 +202,7 @@
 
 ⭐ = featured: true
 
-### MDX-статьи блога (10 штук)
+### MDX-статьи блога (17 штук)
 
 Пилоты из Сессии 10:
 - top-10-agentstv-nedvizhimosti-phuket (Недвижимость, Пхукет, Агентства)
@@ -185,6 +217,15 @@
 - vnzh-severnyy-kipr-cherez-nedvizhimost (Недвижимость, Северный Кипр, ВНЖ)
 - grazhdanstvo-turcii-cherez-nedvizhimost (Недвижимость, Турция, Гражданство)
 - gruziya-dlya-relokantov-nedvizhimost (Недвижимость, Грузия, ВНЖ, Релокация)
+
+Блог-кластер "E-commerce" из Сессии 13:
+- luding-vitrina-alkogolya-210m (E-commerce, Кейсы, Регулируемые ниши)
+- roas-vs-cpo-dlya-ecommerce (E-commerce, Метрики, ROAS, CPO, Аналитика)
+- konkurirovat-s-wildberries-ozon (E-commerce, Маркетплейсы, Wildberries, Ozon)
+- retargeting-broshennyh-korzin-2026 (E-commerce, Ретаргетинг, Воронки)
+- meta-ads-dlya-ecom-usa (E-commerce, США, Meta Ads, Международная реклама)
+- zapusk-ecommerce-s-nulya-6-mesyacev (E-commerce, Стартап, Запуск бизнеса)
+- b2b-dlya-sellerov-marketplaces (E-commerce, B2B, Маркетплейсы, Лидогенерация)
 
 ### FAQ состояние
 110 записей с тегами: real-estate (23), analytics (12), meta-ads (10), yandex-direct (10), vk-ads (10), creatives (10), general (9), google-ads (9), medical (9), pricing (8), sales-support (8), home (7), timeline (7), infrastructure (6), e-commerce (4), edtech (4), tourism (4), b2b (4), industries (2), about (3), contacts (3).
