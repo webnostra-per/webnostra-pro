@@ -61,7 +61,13 @@ function isImagePath(v: string): boolean {
         <div class="lead-content">
           <header class="lead-header">
             <div>
-              <h3 class="lead-name">{lead.name}</h3>
+              <h3 class="lead-name">
+                {lead.authorUrl ? (
+                  <a href={lead.authorUrl} class="lead-name-link">{lead.name}</a>
+                ) : (
+                  lead.name
+                )}
+              </h3>
               <div class="lead-role">{lead.roleFull || lead.role}</div>
             </div>
             {lead.social && (
@@ -97,37 +103,57 @@ function isImagePath(v: string): boolean {
               {lead.tags.map(tag => <span class="member-tag">{tag}</span>)}
             </div>
           )}
+
+          {lead.authorUrl && (
+            <a href={lead.authorUrl} class="lead-profile-link">
+              Подробный профиль <span class="arrow">→</span>
+            </a>
+          )}
         </div>
       </article>
     )}
 
     {members.length > 0 && (
       <div class="members-grid fade-up">
-        {members.map(m => (
-          <article class="member-card">
-            <div class="member-head">
-              <div class="member-avatar">
-                {isImagePath(m.avatar) ? (
-                  <img src={m.avatar} alt={m.name} loading="lazy" />
-                ) : (
-                  <span class="avatar-letter">{m.avatar}</span>
-                )}
+        {members.map(m => {
+          const inner = (
+            <>
+              <div class="member-head">
+                <div class="member-avatar">
+                  {isImagePath(m.avatar) ? (
+                    <img src={m.avatar} alt={m.name} loading="lazy" />
+                  ) : (
+                    <span class="avatar-letter">{m.avatar}</span>
+                  )}
+                </div>
+                <div>
+                  <div class="member-name">{m.name}</div>
+                  <div class="member-role">{m.role}</div>
+                </div>
               </div>
-              <div>
-                <div class="member-name">{m.name}</div>
-                <div class="member-role">{m.role}</div>
-              </div>
-            </div>
 
-            {m.bio && <p class="member-bio">{m.bio}</p>}
+              {m.bio && <p class="member-bio">{m.bio}</p>}
 
-            {m.tags && m.tags.length > 0 && (
-              <div class="member-tags">
-                {m.tags.map(tag => <span class="member-tag">{tag}</span>)}
-              </div>
-            )}
-          </article>
-        ))}
+              {m.tags && m.tags.length > 0 && (
+                <div class="member-tags">
+                  {m.tags.map(tag => <span class="member-tag">{tag}</span>)}
+                </div>
+              )}
+
+              {m.authorUrl && (
+                <span class="member-profile-link">
+                  Подробный профиль <span class="arrow">→</span>
+                </span>
+              )}
+            </>
+          );
+
+          return m.authorUrl ? (
+            <a href={m.authorUrl} class="member-card member-card--linked">{inner}</a>
+          ) : (
+            <article class="member-card">{inner}</article>
+          );
+        })}
       </div>
     )}
   </div>
@@ -247,6 +273,44 @@ function isImagePath(v: string): boolean {
     margin-top: 20px;
   }
 
+  .lead-name-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .lead-name-link:hover {
+    color: var(--gold);
+  }
+
+  .lead-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 24px;
+    padding: 10px 18px;
+    background: var(--surface);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    align-self: flex-start;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .lead-profile-link:hover {
+    background: rgba(201, 168, 76, 0.08);
+    border-color: var(--gold);
+  }
+  .lead-profile-link .arrow {
+    transition: transform 0.2s;
+  }
+  .lead-profile-link:hover .arrow {
+    transform: translateX(3px);
+  }
+
   /* ─────────── Members grid (3 равные карточки) ─────────── */
   .members-grid {
     display: grid;
@@ -267,6 +331,43 @@ function isImagePath(v: string): boolean {
   }
   .member-card:hover {
     border-color: rgba(201, 168, 76, 0.2);
+  }
+
+  .member-card--linked {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+  }
+  .member-card--linked:hover {
+    border-color: rgba(201, 168, 76, 0.4);
+    background: rgba(201, 168, 76, 0.02);
+  }
+  .member-card--linked:hover .member-name {
+    color: var(--gold);
+  }
+  .member-card--linked .member-name {
+    transition: color 0.2s;
+  }
+
+  .member-profile-link {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .member-profile-link .arrow {
+    transition: transform 0.2s;
+  }
+  .member-card--linked:hover .member-profile-link .arrow {
+    transform: translateX(3px);
   }
 
   .member-head {

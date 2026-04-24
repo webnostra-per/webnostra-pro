@@ -155,6 +155,7 @@ const team = defineCollection({
     role: z.string(),
     roleFull: z.string().optional(),
     avatar: z.string(),                     // инициал или путь к фото
+    authorUrl: z.string().optional(),       // ссылка на /authors/<id>/ если есть профиль
     isFounder: z.boolean().default(false),
     order: z.number(),
     bio: z.string().optional(),
