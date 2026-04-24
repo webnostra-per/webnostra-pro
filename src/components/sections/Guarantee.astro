@@ -1,0 +1,301 @@
+---
+/**
+ * Guarantee - блок гарантии "Работаем до результата"
+ *
+ * Использование:
+ *   <Guarantee />                       - стандартный, для главной
+ *   <Guarantee compact />               - компактный, для страниц услуг
+ *   <Guarantee variant="service" />     - вариант с контекстом услуги
+ *
+ * Формулировка согласована с Магошем: модель NOT-пакеты-лидов,
+ * а ежемесячная работа команды с гарантией в договоре.
+ */
+
+export interface Props {
+  compact?: boolean;
+  variant?: 'default' | 'service' | 'hero-strip';
+  title?: string;
+  description?: string;
+  id?: string;
+}
+
+const {
+  compact = false,
+  variant = 'default',
+  title = 'Работаем до результата',
+  description = 'Фиксируем KPI в договоре перед стартом. Если не достигли - продолжаем работать без оплаты, пока не выйдем на обещанные показатели.',
+  id,
+} = Astro.props;
+
+const bullets = [
+  {
+    label: 'KPI в договоре',
+    detail: 'Квалифицированные лиды, CPL, ROMI - фиксируем конкретные показатели перед стартом',
+  },
+  {
+    label: 'Бесплатное продолжение',
+    detail: 'Если KPI не достигнуты - следующий месяц работы команды без оплаты',
+  },
+  {
+    label: 'Еженедельная отчетность',
+    detail: 'Прозрачные отчеты по всем каналам с разбором воронки и точек роста',
+  },
+  {
+    label: 'Пауза без штрафов',
+    detail: 'Остановка или корректировка кампании по требованию в любой момент',
+  },
+];
+
+// Вариант hero-strip - короткая строка для встраивания в hero
+if (variant === 'hero-strip') {
+  // ничего не рендерим здесь, используется отдельным markup-ом ниже
+}
+---
+
+{variant === 'hero-strip' ? (
+  <div class="guarantee-strip" id={id}>
+    <svg class="guarantee-strip-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+    <span class="guarantee-strip-text">
+      <strong>Работаем до результата</strong>
+      <span class="guarantee-strip-sep">·</span>
+      KPI в договоре
+      <span class="guarantee-strip-sep">·</span>
+      Продолжаем бесплатно, если не достигли
+    </span>
+  </div>
+) : (
+  <section class:list={['guarantee', { 'is-compact': compact }, `variant-${variant}`]} id={id}>
+    <div class="guarantee-inner">
+      <div class="guarantee-header">
+        <div class="guarantee-badge" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
+          </svg>
+        </div>
+        <div>
+          <p class="guarantee-eyebrow">Наши обязательства</p>
+          <h2 class="guarantee-title">{title}</h2>
+        </div>
+      </div>
+
+      <p class="guarantee-description">{description}</p>
+
+      <ul class="guarantee-bullets">
+        {bullets.map((bullet) => (
+          <li>
+            <svg class="guarantee-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <div>
+              <span class="guarantee-bullet-label">{bullet.label}</span>
+              {!compact && <span class="guarantee-bullet-detail">{bullet.detail}</span>}
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {variant !== 'service' && (
+        <p class="guarantee-footnote">
+          Это не маркетинговый слоган. Формулировка фиксируется в договоре перед началом работ.
+        </p>
+      )}
+    </div>
+  </section>
+)}
+
+<style>
+  /* Hero-strip - компактная строка в шапке */
+  .guarantee-strip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(212, 168, 83, 0.08);
+    border: 0.5px solid rgba(212, 168, 83, 0.35);
+    border-radius: 8px;
+    color: #e8c784;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .guarantee-strip-icon {
+    flex-shrink: 0;
+    color: var(--c-gold, #d4a853);
+  }
+
+  .guarantee-strip-text {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .guarantee-strip-text strong {
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .guarantee-strip-sep {
+    margin: 0 6px;
+    opacity: 0.4;
+  }
+
+  @media (max-width: 640px) {
+    .guarantee-strip {
+      font-size: 12px;
+      padding: 8px 12px;
+      align-items: flex-start;
+    }
+
+    .guarantee-strip-sep {
+      display: none;
+    }
+
+    .guarantee-strip-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .guarantee-strip-text strong {
+      display: block;
+    }
+  }
+
+  /* Полный блок */
+  .guarantee {
+    padding: clamp(48px, 7vw, 96px) clamp(20px, 5vw, 48px);
+    background: linear-gradient(
+      180deg,
+      rgba(212, 168, 83, 0.03) 0%,
+      rgba(212, 168, 83, 0.06) 100%
+    );
+    border-top: 0.5px solid rgba(212, 168, 83, 0.2);
+    border-bottom: 0.5px solid rgba(212, 168, 83, 0.2);
+  }
+
+  .guarantee.is-compact {
+    padding: clamp(32px, 5vw, 56px) clamp(20px, 5vw, 48px);
+  }
+
+  .guarantee-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .guarantee-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .guarantee-badge {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(212, 168, 83, 0.12);
+    border: 0.5px solid rgba(212, 168, 83, 0.35);
+    color: var(--c-gold, #d4a853);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .guarantee-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c-gold, #d4a853);
+    margin: 0 0 4px;
+  }
+
+  .guarantee-title {
+    font-size: clamp(24px, 3.2vw, 36px);
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .guarantee-description {
+    font-size: clamp(15px, 1.4vw, 17px);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 720px;
+    margin: 0 0 32px;
+  }
+
+  .guarantee.is-compact .guarantee-description {
+    margin-bottom: 20px;
+  }
+
+  .guarantee-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 32px;
+  }
+
+  .guarantee-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .guarantee-check {
+    flex-shrink: 0;
+    color: var(--c-gold, #d4a853);
+    margin-top: 2px;
+  }
+
+  .guarantee-bullet-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .guarantee-bullet-detail {
+    display: block;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .guarantee.is-compact .guarantee-bullet-label {
+    margin-bottom: 0;
+  }
+
+  .guarantee-footnote {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 32px 0 0;
+    padding-top: 20px;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+    max-width: 720px;
+  }
+
+  @media (max-width: 640px) {
+    .guarantee-header {
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .guarantee-badge {
+      width: 44px;
+      height: 44px;
+    }
+
+    .guarantee-bullets {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+</style>
