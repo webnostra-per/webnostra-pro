@@ -1,0 +1,232 @@
+---
+// src/pages/authors/vladislav.astro
+// Страница автора - Commercial Director
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import Label from '@components/ui/Label.astro';
+import Button from '@components/ui/Button.astro';
+import { TEAM_PERSONS } from '@lib/seo-geo';
+
+const pageTitle = 'Владислав Марфин - Commercial Director WEBNOSTRA PERFORMANCE';
+const pageDescription =
+  'Владислав Марфин - Commercial Director и co-founder WEBNOSTRA PERFORMANCE. 8+ лет опыта, 40+ построенных отделов продаж. Отвечает за коммерческую стратегию и переговоры с ключевыми клиентами.';
+
+const personData = {
+  ...TEAM_PERSONS.vladislav,
+  image: 'https://webnostra.pro/team/vladislav.jpg',
+  url: 'https://webnostra.pro/authors/vladislav/'
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/authors/vladislav/"
+  structuredData={personData}
+>
+  <main class="author-page">
+    <div class="container">
+      <Breadcrumbs items={[
+        { name: 'Главная', url: '/' },
+        { name: 'Авторы', url: '/authors/' },
+        { name: 'Владислав Марфин', url: '/authors/vladislav/' },
+      ]} />
+
+      <header class="author-hero">
+        <img
+          class="author-hero__avatar"
+          src="/team/vladislav.jpg"
+          alt="Владислав Марфин, Commercial Director WEBNOSTRA PERFORMANCE"
+          width="160"
+          height="160"
+          loading="eager"
+        />
+        <div class="author-hero__content">
+          <Label text="Эксперт" />
+          <h1 class="author-hero__title">Владислав Марфин</h1>
+          <p class="author-hero__role">Commercial Director и co-founder WEBNOSTRA PERFORMANCE</p>
+          <div class="author-hero__stats">
+            <div class="stat">
+              <span class="stat__value">40+</span>
+              <span class="stat__label">отделов продаж построено</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">8+</span>
+              <span class="stat__label">лет опыта</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">200+</span>
+              <span class="stat__label">клиентов</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">24/7</span>
+              <span class="stat__label">на связи</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="author-section">
+        <h2>О Владиславе</h2>
+        <p>Владислав Марфин - Commercial Director и сооснователь WEBNOSTRA PERFORMANCE. Отвечает за коммерческую стратегию агентства, онбординг новых клиентов и переговоры с ключевыми застройщиками и крупным бизнесом.</p>
+        <p>За 8+ лет в продажах построил с нуля более 40 отделов продаж - от малого бизнеса до крупных федеральных компаний. Знает на практике как связать маркетинг и продажи в единую воронку: от захода лида до закрытия сделки. Это делает его связующим звеном между бизнес-задачами клиента и performance-командой.</p>
+        <p>Работа с ключевыми клиентами агентства проходит лично через него. Лично присутствует на стратегических сессиях с клиентами, участвует в разработке воронок продаж и контролирует качество коммуникации между performance-командой и клиентом.</p>
+      </section>
+
+      <section class="author-section">
+        <h2>Области экспертизы</h2>
+        <ul class="expertise-list">
+          <li><strong>Построение отделов продаж с нуля.</strong> 40+ проектов - от малого бизнеса до федеральных компаний. Найм, обучение, скрипты, системы мотивации.</li>
+          <li><strong>Переговоры с ключевыми клиентами.</strong> Работа с собственниками бизнеса, коммерческими директорами, руководителями маркетинга.</li>
+          <li><strong>Онбординг новых клиентов.</strong> Погружение в бизнес-задачу клиента, подбор стратегии, интеграция с существующими процессами.</li>
+          <li><strong>Связка маркетинга и продаж.</strong> Выстраивание единой воронки от первого касания до сделки. Настройка передачи лидов, скриптов квалификации, обратной связи.</li>
+          <li><strong>Работа с застройщиками.</strong> Специфика переговоров с девелоперами недвижимости в ЮВА, Дубае и России.</li>
+        </ul>
+      </section>
+
+      <section class="author-section">
+        <h2>Контакты</h2>
+        <p>По вопросам сотрудничества, партнерства и работы с ключевыми клиентами:</p>
+        <div class="author-contacts">
+          <Button href="https://t.me/m/o8bYoFHBZmRi" external>Написать в Telegram</Button>
+          <Button href="mailto:ceo@webnostra.pro" variant="secondary">ceo@webnostra.pro</Button>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .author-page {
+    padding: 2rem 0 4rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .author-hero {
+    margin: 2rem 0 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .author-hero {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .author-hero__stats {
+      text-align: left;
+    }
+  }
+
+  .author-hero__avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    display: block;
+  }
+
+  .author-hero__title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    margin: 0.75rem 0 0.5rem;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .author-hero__role {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .author-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat__value {
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #d4af37;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat__label {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .author-section {
+    margin: 2.5rem 0;
+  }
+
+  .author-section h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  .author-section p,
+  .author-section li {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .author-section ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0;
+  }
+
+  .author-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .author-section a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .author-section a:hover {
+    color: #f0c866;
+  }
+
+  .expertise-list li strong {
+    color: #fff;
+  }
+
+  .author-contacts {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+</style>

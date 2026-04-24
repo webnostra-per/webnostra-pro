@@ -163,7 +163,8 @@ export const TEAM_PERSONS = {
     worksFor: "WEBNOSTRA PERFORMANCE",
     description:
       "Managing Director WEBNOSTRA PERFORMANCE с 2018 года. 8+ лет в performance-маркетинге. Специализация на недвижимости ЮВА и Дубая, масштабировании агентских процессов. Живет на Пхукете.",
-    url: "https://webnostra.pro/about/",
+    url: "https://webnostra.pro/authors/magosh/",
+    image: "https://webnostra.pro/team/magosh.jpg",
     knowsAbout: [
       "Performance-маркетинг",
       "Meta Ads",
@@ -187,12 +188,15 @@ export const TEAM_PERSONS = {
     worksFor: "WEBNOSTRA PERFORMANCE",
     description:
       "Commercial Director WEBNOSTRA PERFORMANCE. Работа с key accounts, продуктовая стратегия, клиентский опыт.",
-    url: "https://webnostra.pro/about/",
+    url: "https://webnostra.pro/authors/vladislav/",
+    image: "https://webnostra.pro/team/vladislav.jpg",
     knowsAbout: [
       "B2B-продажи",
       "Управление ключевыми клиентами",
       "Продуктовая стратегия",
-      "Клиентский опыт"
+      "Клиентский опыт",
+      "Построение отделов продаж",
+      "Переговоры с застройщиками"
     ]
   }),
 
@@ -202,7 +206,8 @@ export const TEAM_PERSONS = {
     worksFor: "WEBNOSTRA PERFORMANCE",
     description:
       "Lead Traffic Specialist WEBNOSTRA PERFORMANCE. 4 года в performance-маркетинге недвижимости. Средний срок работы с клиентом 1.5 года.",
-    url: "https://webnostra.pro/about/",
+    url: "https://webnostra.pro/authors/dmitry/",
+    image: "https://webnostra.pro/team/dmitry.jpg",
     knowsAbout: [
       "Реклама недвижимости",
       "Meta Ads для застройщиков",

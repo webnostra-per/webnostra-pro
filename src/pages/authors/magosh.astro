@@ -46,6 +46,14 @@ const personWithCases = {
       ]} />
 
       <header class="author-hero">
+        <img
+          class="author-hero__avatar"
+          src="/team/magosh.jpg"
+          alt="Магош Альшанский, Managing Director WEBNOSTRA PERFORMANCE"
+          width="160"
+          height="160"
+          loading="eager"
+        />
         <div class="author-hero__content">
           <Label text="Эксперт" />
           <h1 class="author-hero__title">Магош Альшанский</h1>
@@ -143,6 +151,31 @@ const personWithCases = {
 
   .author-hero {
     margin: 2rem 0 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .author-hero {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .author-hero__stats {
+      text-align: left;
+    }
+  }
+
+  .author-hero__avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    display: block;
   }
 
   .author-hero__title {

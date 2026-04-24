@@ -1,0 +1,221 @@
+---
+// src/pages/authors/index.astro
+// Хаб авторов/экспертов WEBNOSTRA PERFORMANCE
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import Label from '@components/ui/Label.astro';
+
+const pageTitle = 'Эксперты WEBNOSTRA PERFORMANCE - команда агентства';
+const pageDescription =
+  'Эксперты WEBNOSTRA PERFORMANCE - Магош Альшанский (Managing Director), Владислав Марфин (Commercial Director), Дмитрий Добжанский (Lead Traffic Specialist). Подробные профили с опытом и специализацией.';
+
+const authors = [
+  {
+    id: 'magosh',
+    name: 'Магош Альшанский',
+    role: 'Managing Director и co-founder',
+    description: 'Основал WEBNOSTRA в 2018 году. 8+ лет в performance-маркетинге. Управляет бюджетами $3M+ в 2025 году. Живет на Пхукете, специализация - недвижимость ЮВА и Дубая.',
+    image: '/team/magosh.jpg',
+    url: '/authors/magosh/',
+    tags: ['Недвижимость ЮВА', 'Стратегия', 'Масштабирование агентств']
+  },
+  {
+    id: 'vladislav',
+    name: 'Владислав Марфин',
+    role: 'Commercial Director и co-founder',
+    description: 'Отвечает за коммерческую стратегию и работу с ключевыми клиентами. Построил с нуля 40+ отделов продаж. 8+ лет опыта в B2B-продажах и переговорах с крупным бизнесом.',
+    image: '/team/vladislav.jpg',
+    url: '/authors/vladislav/',
+    tags: ['Отделы продаж', 'Переговоры', 'Key accounts']
+  },
+  {
+    id: 'dmitry',
+    name: 'Дмитрий Добжанский',
+    role: 'Lead Traffic Specialist',
+    description: 'Ведущий специалист по трафику для недвижимости. 4+ года работы с real estate. Ежедневно управляет рекламными кампаниями клиентов. Средний срок работы с клиентом 1.5 года.',
+    image: '/team/dmitry.jpg',
+    url: '/authors/dmitry/',
+    tags: ['Meta Ads', 'Недвижимость', 'Оптимизация']
+  }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/authors/"
+>
+  <main class="authors-hub">
+    <div class="container">
+      <Breadcrumbs items={[
+        { name: 'Главная', url: '/' },
+        { name: 'Авторы', url: '/authors/' },
+      ]} />
+
+      <header class="hub-hero">
+        <Label text="Команда" />
+        <h1 class="hub-title">Эксперты <span class="accent">WEBNOSTRA PERFORMANCE</span></h1>
+        <p class="hub-description">
+          Основатели и ключевые специалисты агентства. За каждой страницей - реальный опыт, конкретные проекты и прямые контакты для вопросов.
+        </p>
+      </header>
+
+      <section class="authors-grid">
+        {authors.map((author) => (
+          <a href={author.url} class="author-card">
+            <img
+              class="author-card__avatar"
+              src={author.image}
+              alt={author.name}
+              width="120"
+              height="120"
+              loading="lazy"
+            />
+            <div class="author-card__content">
+              <h2 class="author-card__name">{author.name}</h2>
+              <p class="author-card__role">{author.role}</p>
+              <p class="author-card__description">{author.description}</p>
+              <div class="author-card__tags">
+                {author.tags.map((tag) => (
+                  <span class="author-card__tag">{tag}</span>
+                ))}
+              </div>
+              <span class="author-card__link">Подробный профиль →</span>
+            </div>
+          </a>
+        ))}
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .authors-hub {
+    padding: 2rem 0 4rem;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .hub-hero {
+    margin: 2rem 0 2.5rem;
+  }
+
+  .hub-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    margin: 0.75rem 0 1rem;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .hub-title .accent {
+    color: #d4af37;
+  }
+
+  .hub-description {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.05rem;
+    max-width: 680px;
+    line-height: 1.6;
+  }
+
+  .authors-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .author-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .author-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(212, 175, 55, 0.25);
+  }
+
+  @media (max-width: 560px) {
+    .author-card {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .author-card__tags {
+      justify-content: center;
+    }
+  }
+
+  .author-card__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(212, 175, 55, 0.25);
+    display: block;
+  }
+
+  .author-card__name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.3rem;
+  }
+
+  .author-card__role {
+    color: #d4af37;
+    font-size: 0.9rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .author-card__description {
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.55;
+    font-size: 0.95rem;
+    margin: 0 0 1rem;
+  }
+
+  .author-card__tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .author-card__tag {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .author-card__link {
+    display: inline-block;
+    color: #d4af37;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .author-card:hover .author-card__link {
+    color: #f0c866;
+  }
+</style>

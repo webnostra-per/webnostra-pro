@@ -1,0 +1,247 @@
+---
+// src/pages/authors/dmitry.astro
+// Страница автора - Lead Traffic Specialist по недвижимости
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import Label from '@components/ui/Label.astro';
+import Button from '@components/ui/Button.astro';
+import { TEAM_PERSONS } from '@lib/seo-geo';
+
+const pageTitle = 'Дмитрий Добжанский - Lead Traffic Specialist WEBNOSTRA PERFORMANCE';
+const pageDescription =
+  'Дмитрий Добжанский - Lead Traffic Specialist WEBNOSTRA PERFORMANCE. 4+ года в performance-маркетинге недвижимости, средний срок работы с клиентом 1.5 года. Ежедневно управляет рекламными бюджетами клиентов.';
+
+const personData = {
+  ...TEAM_PERSONS.dmitry,
+  image: 'https://webnostra.pro/team/dmitry.jpg',
+  url: 'https://webnostra.pro/authors/dmitry/'
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/authors/dmitry/"
+  structuredData={personData}
+>
+  <main class="author-page">
+    <div class="container">
+      <Breadcrumbs items={[
+        { name: 'Главная', url: '/' },
+        { name: 'Авторы', url: '/authors/' },
+        { name: 'Дмитрий Добжанский', url: '/authors/dmitry/' },
+      ]} />
+
+      <header class="author-hero">
+        <img
+          class="author-hero__avatar"
+          src="/team/dmitry.jpg"
+          alt="Дмитрий Добжанский, Lead Traffic Specialist WEBNOSTRA PERFORMANCE"
+          width="160"
+          height="160"
+          loading="eager"
+        />
+        <div class="author-hero__content">
+          <Label text="Эксперт" />
+          <h1 class="author-hero__title">Дмитрий Добжанский</h1>
+          <p class="author-hero__role">Lead Traffic Specialist WEBNOSTRA PERFORMANCE</p>
+          <div class="author-hero__stats">
+            <div class="stat">
+              <span class="stat__value">4+</span>
+              <span class="stat__label">года в недвижимости</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">1.5</span>
+              <span class="stat__label">года средний срок с клиентом</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">9</span>
+              <span class="stat__label">real estate кейсов</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">4</span>
+              <span class="stat__label">рекламных канала</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="author-section">
+        <h2>О Дмитрии</h2>
+        <p>Дмитрий Добжанский - Lead Traffic Specialist по недвижимости в WEBNOSTRA PERFORMANCE. Ежедневно управляет рекламными бюджетами клиентов, тестирует объявления и аудитории, работает в реальном времени с метриками и оптимизациями кампаний.</p>
+        <p>Специализация - performance-маркетинг для real estate рынка. За 4+ года работы провел проекты в Таиланде, Дубае, на Бали, в России и СНГ. Работает с застройщиками, агентствами недвижимости, частными брокерами и инвестиционными компаниями.</p>
+        <p>Ключевая метрика эффективности - средний срок работы с клиентом 1.5 года. В performance-маркетинге это показатель доверия: клиенты остаются надолго только когда специалист стабильно дает предсказуемый результат и умеет работать с длинным циклом сделки в недвижимости.</p>
+      </section>
+
+      <section class="author-section">
+        <h2>Области экспертизы</h2>
+        <ul class="expertise-list">
+          <li><strong>Реклама недвижимости в ЮВА и Дубае.</strong> Пхукет, Паттайя, Бали, Дубай. Работа с международной аудиторией инвесторов, русскоязычным и англоязычным сегментами.</li>
+          <li><strong>Meta Ads для застройщиков.</strong> Настройка кампаний на квалифицированные лиды, передача офлайн-конверсий из CRM, работа с длинным циклом сделки 3-6 месяцев.</li>
+          <li><strong>Яндекс Директ для российской недвижимости.</strong> Загородные дома, новостройки, каркасное строительство. Оптимизация под квал-лид, работа с квиз-воронками.</li>
+          <li><strong>VK Реклама для закрытых рынков.</strong> Крым, регионы где Meta и Google не работают. Лид-формы прямо в VK для высокой конверсии.</li>
+          <li><strong>Квалификация лидов.</strong> Отсечение нецелевой аудитории на этапе объявления и формы. Снижение нагрузки на отдел продаж и рост конверсии в сделку.</li>
+          <li><strong>Передача офлайн-конверсий.</strong> Обучение алгоритмов Директа и Meta на реальные сделки, а не клики. В кейсе застройщика на Пхукете это снизило CPL в 3 раза за 2 месяца.</li>
+        </ul>
+      </section>
+
+      <section class="author-section">
+        <h2>Ключевые проекты</h2>
+        <p>Недвижимостные проекты, которые Дмитрий вел или ведет:</p>
+        <ul>
+          <li><a href="/portfolio/premium-villas-phuket/">Premium Villas Phuket</a> - 7 сделок по $450K, pipeline $3.2M</li>
+          <li><a href="/portfolio/ibg-property/">IBG Property</a> - 1,721 квал-лид по $34 на Пхукете</li>
+          <li><a href="/portfolio/good-karma/">Good Carma Investment Co</a> - ROI 1,020%, первая бронь за 2 недели</li>
+          <li><a href="/portfolio/nextpoint-condominium/">NextPoint Condominium</a> - 45% конверсия в квал</li>
+          <li><a href="/portfolio/phuket-developer/">Застройщик Пхукет</a> - 12 сделок от $80K</li>
+          <li><a href="/portfolio/dubai-real-estate/">Dubai Real Estate</a> - 12 сделок по $450K русским инвесторам</li>
+          <li><a href="/portfolio/country-houses/">Загородные дома в Подмосковье</a> - 20 продаж в месяц</li>
+        </ul>
+      </section>
+
+      <section class="author-section">
+        <h2>Контакты</h2>
+        <p>По техническим вопросам о настройке кампаний и консультациям по недвижимости:</p>
+        <div class="author-contacts">
+          <Button href="https://t.me/m/o8bYoFHBZmRi" external>Написать в Telegram</Button>
+          <Button href="mailto:ceo@webnostra.pro" variant="secondary">ceo@webnostra.pro</Button>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .author-page {
+    padding: 2rem 0 4rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .author-hero {
+    margin: 2rem 0 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .author-hero {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .author-hero__stats {
+      text-align: left;
+    }
+  }
+
+  .author-hero__avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    display: block;
+  }
+
+  .author-hero__title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    margin: 0.75rem 0 0.5rem;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .author-hero__role {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .author-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat__value {
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #d4af37;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat__label {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .author-section {
+    margin: 2.5rem 0;
+  }
+
+  .author-section h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  .author-section p,
+  .author-section li {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .author-section ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0;
+  }
+
+  .author-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .author-section a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .author-section a:hover {
+    color: #f0c866;
+  }
+
+  .expertise-list li strong {
+    color: #fff;
+  }
+
+  .author-contacts {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+</style>
