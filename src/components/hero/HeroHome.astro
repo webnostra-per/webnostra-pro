@@ -5,7 +5,7 @@
  * справа - форма заявки. По принципу re-thai: минимум трения.
  *
  * v2.29: Новое позиционирование "не агентство, а вовлеченная трафик-команда"
- * + гарантия-строка "Работаем до результата".
+ * + гарантия-блок "Работаем до результата" (вариант В: заголовок + sub).
  *
  * Используется только на index.astro.
  */
@@ -36,17 +36,14 @@ import Button from '@components/ui/Button.astro';
         </p>
 
         <div class="hero-guarantee" aria-label="Гарантия результата">
-          <svg class="hero-guarantee-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="hero-guarantee-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             <polyline points="9 12 11 14 15 10" />
           </svg>
-          <span class="hero-guarantee-text">
-            <strong>Работаем до результата</strong>
-            <span class="sep">·</span>
-            KPI в договоре
-            <span class="sep">·</span>
-            Продолжаем бесплатно, если не достигли
-          </span>
+          <div class="hero-guarantee-body">
+            <p class="hero-guarantee-title">Работаем до результата</p>
+            <p class="hero-guarantee-sub">Фиксируем KPI в договоре. Не достигли - работаем бесплатно до цели.</p>
+          </div>
         </div>
 
         <div class="hero-ctas">
@@ -165,29 +162,40 @@ import Button from '@components/ui/Button.astro';
   }
 
   .hero-guarantee {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    background: rgba(201, 168, 76, 0.08);
-    border: 1px solid rgba(201, 168, 76, 0.3);
-    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px 14px 16px;
+    background: rgba(201, 168, 76, 0.05);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 8px 8px 0;
     margin-bottom: 32px;
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: var(--text-dim);
+    max-width: 520px;
   }
+
   .hero-guarantee-icon {
     flex-shrink: 0;
     color: var(--gold);
+    margin-top: 2px;
   }
-  .hero-guarantee-text strong {
-    color: var(--text, #ffffff);
+
+  .hero-guarantee-body {
+    min-width: 0;
+  }
+
+  .hero-guarantee-title {
+    font-size: 0.95rem;
     font-weight: 600;
+    color: var(--text, #ffffff);
+    margin: 0 0 4px;
+    line-height: 1.3;
   }
-  .hero-guarantee-text .sep {
-    margin: 0 6px;
-    opacity: 0.4;
+
+  .hero-guarantee-sub {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.5;
   }
 
   .hero-ctas {
@@ -238,21 +246,19 @@ import Button from '@components/ui/Button.astro';
   @media (max-width: 1024px) {
     .hero-inner { grid-template-columns: 1fr; gap: 40px; }
     .hero-visual { max-width: 100%; justify-self: stretch; }
+    .hero-guarantee { max-width: none; }
   }
   @media (max-width: 640px) {
     .hero { padding: 40px 0 60px; min-height: auto; }
     .hero-guarantee {
-      font-size: 0.8rem;
-      align-items: flex-start;
-      padding: 10px 12px;
+      padding: 12px 14px;
     }
-    .hero-guarantee-text .sep { display: none; }
-    .hero-guarantee-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .hero-guarantee-title {
+      font-size: 0.9rem;
     }
-    .hero-guarantee-text strong { display: block; }
+    .hero-guarantee-sub {
+      font-size: 0.78rem;
+    }
     .hero-stats { grid-template-columns: 1fr; gap: 0; }
     .hero-stat { padding: 16px 0 !important; border-right: none !important; border-top: 1px solid var(--border); }
     .hero-stat:last-child { border-bottom: 1px solid var(--border); }
