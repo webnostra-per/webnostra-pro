@@ -152,7 +152,17 @@ const blogFilters = Array.from(tagCounts.entries())
     const emptyState = document.querySelector('[data-blog-empty]') as HTMLElement | null;
     const resetBtn = document.querySelector('[data-blog-reset]') as HTMLButtonElement | null;
 
-    function applyFilter(filter: string) {
+    // Список валидных фильтров (slug-и тегов из табов)
+    const validFilters = new Set<string>();
+    tabs.forEach(t => {
+      const f = (t as HTMLElement).dataset.filter;
+      if (f) validFilters.add(f);
+    });
+
+    function applyFilter(filter: string, updateUrl: boolean = true) {
+      // Если фильтр невалидный (битая ссылка) — показываем все
+      if (!validFilters.has(filter)) filter = 'all';
+
       let visibleCount = 0;
       cards.forEach(card => {
         const tag = (card as HTMLElement).dataset.tag || '';
@@ -168,8 +178,28 @@ const blogFilters = Array.from(tagCounts.entries())
       });
 
       if (emptyState) emptyState.hidden = visibleCount > 0;
+
+      // Обновление URL hash без скролла и без записи в историю
+      if (updateUrl) {
+        const newHash = filter === 'all' ? '' : `#${filter}`;
+        const newUrl = window.location.pathname + window.location.search + newHash;
+        history.replaceState(null, '', newUrl);
+      }
     }
 
+    // Инициализация: читаем hash при загрузке страницы
+    function getFilterFromHash(): string {
+      const hash = window.location.hash.slice(1);
+      return hash || 'all';
+    }
+
+    const initialFilter = getFilterFromHash();
+    if (initialFilter !== 'all') {
+      // Применяем без обновления URL — hash уже там
+      applyFilter(initialFilter, false);
+    }
+
+    // Клики по табам
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const filter = (tab as HTMLElement).dataset.filter || 'all';
@@ -180,6 +210,12 @@ const blogFilters = Array.from(tagCounts.entries())
     if (resetBtn) {
       resetBtn.addEventListener('click', () => applyFilter('all'));
     }
+
+    // Реакция на изменение hash (если пользователь меняет URL вручную
+    // или переходит по якорной ссылке внутри страницы)
+    window.addEventListener('hashchange', () => {
+      applyFilter(getFilterFromHash(), false);
+    });
   })();
 </script>
 
