@@ -6,6 +6,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HeroLeaf from '@components/hero/HeroLeaf.astro';
 import CtaSection from '@components/sections/CtaSection.astro';
+import RelatedPosts from '@components/sections/RelatedPosts.astro';
 import AuthorByline from '@components/seo/AuthorByline.astro';
 import LastUpdated from '@components/seo/LastUpdated.astro';
 import { breadcrumbSchema, articleSchema } from '@lib/seo';
@@ -94,6 +95,8 @@ if (Array.isArray(custom)) schemas.push(...custom);
       </div>
     </div>
   </article>
+
+  <RelatedPosts excludeSlug={entry.id} tags={data.tags} limit={3} />
 
   <CtaSection
     title='Нужна помощь <span class="accent">с рекламой</span>?'
