@@ -21,6 +21,7 @@ interface Props {
   channel?: string;
   geoSlug?: string;
   excludeFeatured?: boolean;
+  excludeSlug?: string;  // исключить конкретный кейс по slug или id - чтобы на странице кейса не показывать его же
   limit?: number;
   showFilters?: boolean;  // v2.23: интерактивный рубрикатор по industry
 }
@@ -33,6 +34,7 @@ const {
   channel,
   geoSlug,
   excludeFeatured = false,
+  excludeSlug,
   limit,
   showFilters = false,
 } = Astro.props;
@@ -43,6 +45,7 @@ if (industry) cases = cases.filter(c => c.data.industry === industry);
 if (channel) cases = cases.filter(c => c.data.channels.includes(channel as any));
 if (geoSlug) cases = cases.filter(c => c.data.geoSlug === geoSlug);
 if (excludeFeatured) cases = cases.filter(c => !c.data.featured);
+if (excludeSlug) cases = cases.filter(c => (c.data.slug || c.id) !== excludeSlug);
 
 cases = cases.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 if (limit) cases = cases.slice(0, limit);
@@ -149,17 +152,7 @@ const industriesList = Array.from(industryCounts.entries())
       const emptyState = document.querySelector('[data-empty-state]') as HTMLElement | null;
       const resetBtn = document.querySelector('[data-reset-filter]') as HTMLButtonElement | null;
 
-      // Список валидных фильтров (id ниш, которые реально есть в сетке)
-      const validFilters = new Set<string>();
-      tabs.forEach(t => {
-        const f = (t as HTMLElement).dataset.filter;
-        if (f) validFilters.add(f);
-      });
-
-      function applyFilter(filter: string, updateUrl: boolean = true) {
-        // Если фильтр невалидный (битая ссылка) — показываем все
-        if (!validFilters.has(filter)) filter = 'all';
-
+      function applyFilter(filter: string) {
         let visibleCount = 0;
         cards.forEach(card => {
           const industry = (card as HTMLElement).dataset.industry || '';
@@ -175,28 +168,8 @@ const industriesList = Array.from(industryCounts.entries())
         });
 
         if (emptyState) emptyState.hidden = visibleCount > 0;
-
-        // Обновление URL hash без скролла и без записи в историю
-        if (updateUrl) {
-          const newHash = filter === 'all' ? '' : `#${filter}`;
-          const newUrl = window.location.pathname + window.location.search + newHash;
-          history.replaceState(null, '', newUrl);
-        }
       }
 
-      // Инициализация: читаем hash при загрузке страницы
-      function getFilterFromHash(): string {
-        const hash = window.location.hash.slice(1);
-        return hash || 'all';
-      }
-
-      const initialFilter = getFilterFromHash();
-      if (initialFilter !== 'all') {
-        // Применяем без обновления URL — hash уже там
-        applyFilter(initialFilter, false);
-      }
-
-      // Клики по табам
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           const filter = (tab as HTMLElement).dataset.filter || 'all';
@@ -207,12 +180,6 @@ const industriesList = Array.from(industryCounts.entries())
       if (resetBtn) {
         resetBtn.addEventListener('click', () => applyFilter('all'));
       }
-
-      // Реакция на изменение hash (если пользователь меняет URL вручную
-      // или переходит по якорной ссылке внутри страницы)
-      window.addEventListener('hashchange', () => {
-        applyFilter(getFilterFromHash(), false);
-      });
     })();
   </script>
 )}

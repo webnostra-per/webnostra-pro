@@ -194,6 +194,7 @@ const readMin = Math.max(2, Math.round(approxWords / 250));
     label="Другие кейсы"
     title={`Другие кейсы в нише «${industryLabel}»`}
     industry={data.industry}
+    excludeSlug={data.slug || entry.id}
     limit={6}
   />
 
