@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#fafaf7">
+<title>WEBNOSTRA — Записи в стоматологию от $8. Лидогенерация для клиник</title>
+<meta name="description" content="Performance-агентство для стоматологий. Стоимость записи $8–12, доходимость 45%+, бесплатный аудит отдела продаж. Работаем со всеми языковыми группами.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1399100830794020');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(96858541, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        ecommerce:"dataLayer"
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/96858541" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<style>
+  :root {
+    --bg: #fafaf7;
+    --bg-2: #f3f1ec;
+    --bg-3: #ffffff;
+    --line: rgba(15,31,28,0.08);
+    --line-2: rgba(15,31,28,0.16);
+    --text: #0f1f1c;
+    --muted: #6b7570;
+    --dim: #a8b0ad;
+    --accent: #0d6e5c;
+    --accent-soft: #e7f2ee;
+    --danger: #c2410c;
+    --theme-color: #fafaf7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Защита: никакой контент не должен вылезать за viewport */
+  img, video, iframe { max-width: 100%; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== NAV ===== */
+  .nav {
+    position: sticky;
+    top: 0;
+    background: rgba(250,250,247,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+    z-index: 50;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+  .logo-mark {
+    width: 26px;
+    height: 26px;
+    background: var(--accent);
+    color: var(--bg);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 4px;
+  }
+  .nav-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .nav-cta {
+    background: var(--text);
+    color: var(--bg);
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover, .nav-cta:active { background: var(--accent); }
+  @media (max-width: 720px) {
+    .nav-status { display: none; }
+    .logo span { display: none; }
+    .nav-inner { padding: 10px 16px; }
+  }
+
+  /* ===== STICKY MOBILE CTA ===== */
+  .sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(250,250,247,0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--line-2);
+    z-index: 40;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 -8px 24px rgba(15,31,28,0.06);
+  }
+  .sticky-cta.show { transform: translateY(0); }
+  .sticky-cta a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    min-height: 48px;
+    position: relative;
+  }
+  .sticky-cta-dot {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: stickyPulse 1.5s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes stickyPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  .sticky-cta-meta {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-left: auto;
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 720px) { .sticky-cta { display: block; } }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 32px 0 48px;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(ellipse at right center, rgba(13,110,92,0.08), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: start;
+    position: relative;
+  }
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(13,110,92,0.1);
+    border: 1px solid rgba(13,110,92,0.25);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .hero-label::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  h1.hero-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: clamp(30px, 3.6vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  h1.hero-title .accent { color: var(--accent); font-weight: 700; }
+
+  .hero-title-sub {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 500;
+    font-size: clamp(18px, 1.8vw, 22px);
+    color: var(--muted);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero-title-sub .accent { color: var(--accent); font-weight: 600; }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.55;
+    max-width: 560px;
+    margin-bottom: 28px;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .hero-stat {
+    background: var(--bg);
+    padding: 14px;
+  }
+  .hero-stat-n {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-l {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  /* Form card */
+  .form-card {
+    background: var(--bg-3);
+    border: 1px solid var(--line-2);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(15,31,28,0.04), 0 8px 24px rgba(15,31,28,0.06);
+  }
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .form-head { margin-bottom: 20px; }
+  .form-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .form-sub {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .form-row { margin-bottom: 14px; }
+  .form-label {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .form-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line-2);
+    color: var(--text);
+    padding: 14px;
+    font-size: 16px; /* 16px чтобы iOS не зумил */
+    font-family: 'Manrope', sans-serif;
+    border-radius: 6px;
+    transition: all 0.15s;
+    min-height: 48px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .form-input::placeholder { color: var(--dim); }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(13,110,92,0.04);
+  }
+  .form-chips {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .chip {
+    padding: 12px 8px;
+    background: var(--bg);
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    color: var(--text);
+    user-select: none;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chip:active { transform: scale(0.98); }
+  .chip.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .form-submit {
+    width: 100%;
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Manrope', sans-serif;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 6px;
+    letter-spacing: -0.01em;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+  }
+  .form-submit:hover { background: #0a5547; }
+  .form-submit:active { transform: translateY(1px); }
+  .form-submit .arrow { transition: transform 0.2s; }
+  .form-submit:hover .arrow { transform: translateX(4px); }
+  .form-note {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--dim);
+    text-align: center;
+    line-height: 1.45;
+  }
+
+  /* Optional label marker */
+  .form-optional {
+    color: var(--dim);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 4px;
+  }
+
+  /* ===== LIVE COUNTER ===== */
+  .live-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(13,110,92,0.06);
+    border: 1px solid rgba(13,110,92,0.2);
+    border-radius: 100px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .live-counter strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(13,110,92,0.6);
+    animation: liveBlink 1.8s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes liveBlink {
+    0% { box-shadow: 0 0 0 0 rgba(13,110,92,0.6); opacity: 1; }
+    70% { box-shadow: 0 0 0 10px rgba(13,110,92,0); opacity: 0.6; }
+    100% { box-shadow: 0 0 0 0 rgba(13,110,92,0); opacity: 1; }
+  }
+
+  /* ===== CLIENTS ROW ===== */
+  .clients-row {
+    margin-top: 8px;
+  }
+  .clients-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .clients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .client-chip {
+    padding: 6px 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .client-chip.client-more {
+    color: var(--accent);
+    border-color: rgba(13,110,92,0.3);
+    background: rgba(13,110,92,0.08);
+    font-weight: 600;
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-text { display: contents; }
+    /* На мобиле: метка → заголовок → подзаголовок → форма → остальное */
+    .hero-label { order: 1; margin-bottom: 12px; }
+    h1.hero-title { order: 2; margin-bottom: 8px; }
+    .hero-title-sub { order: 3; margin-bottom: 16px; }
+    .hero-form { order: 4; }
+    .hero-sub { order: 5; margin-bottom: 0; }
+    .hero-stats { order: 6; margin-bottom: 0; }
+    .live-counter { order: 7; margin-top: 0; margin-bottom: 0; }
+    .clients-row { order: 8; margin-top: 4px; }
+
+    .hero { padding: 24px 0 40px; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 16px; }
+    h1.hero-title { font-size: 28px; line-height: 1.08; }
+    .hero-title-sub { font-size: 16px; }
+    .hero-stat-n { font-size: 20px; }
+    .form-card { padding: 20px; }
+    .hero-sub { font-size: 15px; }
+    .live-counter {
+      width: 100%;
+      justify-content: flex-start;
+      font-size: 11px;
+    }
+    .live-counter .live-text {
+      white-space: normal;
+      line-height: 1.4;
+    }
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+  }
+  @media (max-width: 720px) { section { padding: 56px 0; } }
+
+  .sec-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+  .sec-tag::before { content: '§'; color: var(--muted); }
+
+  .sec-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin-bottom: 20px;
+  }
+  .sec-title .italic { font-style: italic; font-weight: 400; color: var(--muted); }
+  .sec-title .accent { color: var(--accent); }
+
+  .sec-intro {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 620px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  /* ===== PAINS ===== */
+  .pains { background: var(--bg-2); }
+  .pains-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .pain {
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    position: relative;
+    transition: all 0.3s;
+    box-shadow: 0 1px 2px rgba(15,31,28,0.03);
+  }
+  .pain:hover {
+    border-color: var(--line-2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(15,31,28,0.08);
+  }
+  .pain.wide { grid-column: span 2; }
+  .pain-n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    letter-spacing: 0.08em;
+  }
+  .pain-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .pain-title .red { color: var(--danger); }
+  .pain-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .pain-body strong { color: var(--text); font-weight: 600; }
+  .pain-fix {
+    padding-top: 14px;
+    border-top: 1px dashed var(--line-2);
+    font-size: 13px;
+    color: var(--text);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .pain-fix::before {
+    content: '→';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .pain.pain-wide { grid-column: span 2; }
+
+  /* Pains toggle (свёрнутые боли) */
+  .pains-more { margin-top: 16px; }
+  .pains-toggle {
+    width: 100%;
+    background: transparent;
+    border: 1px dashed var(--line-2);
+    color: var(--muted);
+    padding: 16px 20px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+    min-height: 52px;
+  }
+  .pains-toggle:hover, .pains-toggle:active {
+    border-color: var(--accent);
+    color: var(--text);
+    background: rgba(13,110,92,0.03);
+  }
+  .pains-toggle-icon {
+    transition: transform 0.3s;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .pains-more.open .pains-toggle-icon { transform: rotate(180deg); }
+  .pains-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
+  .pains-more.open .pains-hidden {
+    max-height: 2000px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 720px) {
+    .pains-grid { grid-template-columns: 1fr; gap: 12px; }
+    .pain.pain-wide, .pain.wide { grid-column: span 1; }
+    .pain { padding: 20px; }
+    .pain-title { font-size: 18px; }
+  }
+
+  /* ===== NUMBERS ===== */
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .num-card {
+    padding: 24px 0;
+    border-top: 1px solid var(--line-2);
+  }
+  .num-val {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .num-label {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .num-label strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 3px; }
+  @media (max-width: 900px) {
+    .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .num-val { font-size: 36px; }
+    .num-card { padding: 20px 0; }
+  }
+
+  /* ===== CASES ===== */
+  .cases { background: var(--bg-2); }
+  .cases-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .case {
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .case-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .case-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .case-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .case-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    padding: 4px 8px;
+    background: rgba(13,110,92,0.1);
+    border: 1px solid rgba(13,110,92,0.2);
+    border-radius: 4px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+  .case-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .case-metric {
+    background: var(--bg-3);
+    padding: 12px;
+  }
+  .case-metric-v {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .case-metric-l {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+  .case-highlight {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line-2);
+    font-size: 13px;
+    color: var(--text);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .case-highlight::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 960px) {
+    .cases-scroll {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 0 8px 0;
+      gap: 12px;
+      margin: 0;
+    }
+    .cases-scroll::-webkit-scrollbar { display: none; }
+    .case {
+      min-width: 280px;
+      max-width: 300px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      padding: 20px;
+    }
+    .case:last-child { margin-right: 16px; }
+    .case-title { font-size: 16px; }
+    .case-metric-v { font-size: 20px; }
+  }
+
+  .cases-hint {
+    display: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 16px;
+    letter-spacing: 0.08em;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(13,110,92,0.05);
+    border: 1px solid rgba(13,110,92,0.15);
+    border-radius: 100px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cases-hint .arrow-anim {
+    color: var(--accent);
+    animation: arrowSlide 1.2s ease-in-out infinite;
+    display: inline-block;
+  }
+  @keyframes arrowSlide {
+    0%, 100% { transform: translateX(0); opacity: 1; }
+    50% { transform: translateX(4px); opacity: 0.5; }
+  }
+  @media (max-width: 960px) { .cases-hint { display: flex; } }
+
+  /* ===== SERVICES ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .svc {
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .svc-n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    letter-spacing: 0.08em;
+  }
+  .svc-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    line-height: 1.22;
+  }
+  .svc-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  @media (max-width: 720px) {
+    .services-grid { grid-template-columns: 1fr; gap: 12px; }
+    .svc { padding: 20px; }
+  }
+
+  /* ===== APPROACH ===== */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  /* Connector-линия прогресса через все шаги */
+  .approach-grid::before {
+    content: '';
+    position: absolute;
+    top: 58px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 100%);
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .step {
+    padding: 28px 22px;
+    border-right: 1px solid var(--line);
+    background: var(--bg-2);
+    position: relative;
+    z-index: 1;
+  }
+  .step:last-child { border-right: none; }
+  .step-n {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+  .step-n::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-2);
+    flex-shrink: 0;
+  }
+  .step-n::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line-2);
+  }
+  .step-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .step-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  @media (max-width: 900px) {
+    .approach-grid { grid-template-columns: repeat(2, 1fr); }
+    .approach-grid::before { display: none; }
+    .step:nth-child(1), .step:nth-child(2) { border-bottom: 1px solid var(--line); }
+    .step:nth-child(2), .step:nth-child(4) { border-right: none; }
+  }
+  @media (max-width: 520px) {
+    .approach-grid { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid var(--line); padding: 24px 20px; }
+    .step:last-child { border-bottom: none; }
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list { max-width: 900px; }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+    cursor: pointer;
+  }
+  .faq-item:first-child { border-top: 1px solid var(--line); }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+  .faq-toggle {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 20px;
+    transition: transform 0.3s;
+    line-height: 1;
+  }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    margin-top: 14px;
+  }
+  @media (max-width: 520px) { .faq-q { font-size: 15px; } }
+
+  /* ===== CTA FINAL ===== */
+  /* Тёмный финальный блок на светлом сайте — визуальный якорь к конверсии */
+  .cta-final {
+    background: linear-gradient(180deg, #0f1f1c 0%, #0a1714 100%);
+    padding: 72px 0 60px;
+    color: #fafaf7;
+  }
+  .cta-final .sec-tag { color: rgba(250,250,247,0.55); }
+  .cta-final .sec-tag::before { color: rgba(250,250,247,0.4); }
+  .cta-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .cta-left h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: clamp(30px, 4.2vw, 52px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    color: #fafaf7;
+  }
+  .cta-left h2 .accent { color: #6dd9b8; } /* осветлённый акцент для тёмного фона */
+  .cta-left p {
+    font-size: 15px;
+    color: rgba(250,250,247,0.65);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .cta-bullets { list-style: none; padding: 0; }
+  .cta-bullets li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(250,250,247,0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(250,250,247,0.9);
+    line-height: 1.5;
+  }
+  .cta-bullets li::before {
+    content: '✓';
+    color: #6dd9b8;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 900px) {
+    .cta-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .cta-final { padding: 56px 0 80px; }
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 32px 0 40px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .foot-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .foot-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+  }
+  .foot-links {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+  }
+  .foot-links a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 0;
+  }
+  .foot-links a:active, .foot-links a:hover { color: var(--accent); }
+  @media (max-width: 520px) { footer { padding-bottom: 100px; } }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 32px 20px;
+  }
+  .form-success.show { display: block; }
+  .form-success-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    background: rgba(13,110,92,0.15);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    font-size: 24px;
+  }
+  .form-success-t {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .form-success-s {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ===== COMPARE TABLE ===== */
+  .compare-table {
+    border: 1px solid var(--line-2);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-3);
+    box-shadow: 0 1px 3px rgba(15,31,28,0.04);
+  }
+  .compare-head, .compare-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    border-bottom: 1px solid var(--line);
+  }
+  .compare-row:nth-child(even) { background: var(--bg-2); }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-head {
+    background: rgba(13,110,92,0.05);
+    border-bottom: 1px solid var(--line-2);
+  }
+  .compare-cell {
+    padding: 16px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    border-right: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+  }
+  .compare-cell:last-child { border-right: none; }
+  .compare-cell-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .compare-h-us { color: var(--accent); }
+  .compare-bad {
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+  .compare-good {
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  @media (max-width: 720px) {
+    .compare-head, .compare-row {
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+    }
+    .compare-cell { padding: 12px 14px; font-size: 13px; }
+    .compare-cell-h { font-size: 10px; }
+    .compare-bad, .compare-good { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">W</div>
+      <span>WEBNOSTRA</span>
+    </div>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      <span>СПЕЦИАЛИЗИРУЕМСЯ НА СТОМАТОЛОГИИ С 2022</span>
+    </div>
+    <a href="#form-final" class="nav-cta">Обсудить →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-label">ДЛЯ СТОМАТОЛОГИЧЕСКИХ КЛИНИК</div>
+
+        <h1 class="hero-title">
+          Реальные записи в&nbsp;стоматологию — <span class="accent">от $8.</span>
+        </h1>
+        <div class="hero-title-sub">Доходимость до кресла <span class="accent">45%+</span></div>
+
+        <p class="hero-sub">
+          Мы <strong>не льём заявки в&nbsp;лидформы и&nbsp;не отчитываемся «принесли 200 лидов»</strong>. Приводим пациентов, которые доходят до&nbsp;кресла и&nbsp;записываются на&nbsp;процедуру. Считаем экономику по&nbsp;каждой услуге — от&nbsp;терапии до&nbsp;all-on-6.
+        </p>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-n">$8–12</div>
+            <div class="hero-stat-l">стоимость записи в клинику</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-n">45%+</div>
+            <div class="hero-stat-l">доходимость до кресла</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-n">$1,2M</div>
+            <div class="hero-stat-l">открутили за 6 мес</div>
+          </div>
+        </div>
+
+        <!-- LIVE COUNTER -->
+        <div class="live-counter">
+          <span class="live-dot"></span>
+          <span class="live-text">
+            СЕЙЧАС В РАБОТЕ: <strong>14 клиник</strong> · <strong>80%+</strong> загрузка кресла у клиентов
+          </span>
+        </div>
+
+        <!-- КЛИЕНТЫ — логоряд -->
+        <div class="clients-row">
+          <div class="clients-label">работаем со стоматологиями:</div>
+          <div class="clients-list">
+            <span class="client-chip">СНГ</span>
+            <span class="client-chip">Европа</span>
+            <span class="client-chip">ОАЭ</span>
+            <span class="client-chip">ЮВА</span>
+            <span class="client-chip">RU · EN · DE</span>
+            <span class="client-chip">AR · ZH · KZ</span>
+            <span class="client-chip client-more">7 языков</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="form-card hero-form" id="form-top">
+        <div class="form-head">
+          <div class="form-title">Бесплатный аудит и&nbsp;медиаплан</div>
+          <div class="form-sub">Покажем, где клиника теряет пациентов. Ответим за 24 часа.</div>
+        </div>
+
+        <form id="leadForm" onsubmit="return submitForm(event, 'top')">
+          <div class="form-row">
+            <label class="form-label">Ваше имя</label>
+            <input type="text" name="name" class="form-input" placeholder="Как к вам обращаться" autocomplete="given-name" required>
+          </div>
+
+          <div class="form-row">
+            <label class="form-label">Телеграм или WhatsApp</label>
+            <input type="text" name="contact" class="form-input" placeholder="@magosh или +66 8..." autocomplete="tel" required>
+          </div>
+
+          <div class="form-row">
+            <label class="form-label">Ваш сегмент <span class="form-optional">(по желанию)</span></label>
+            <div class="form-chips" data-group="market-top">
+              <div class="chip active" data-value="GENERAL">Общая</div>
+              <div class="chip" data-value="IMPLANT">Имплантация</div>
+              <div class="chip" data-value="PREMIUM">Премиум</div>
+              <div class="chip" data-value="KIDS">Детская</div>
+            </div>
+            <input type="hidden" name="market" id="market-top" value="GENERAL">
+          </div>
+
+          <button type="submit" class="form-submit">
+            Получить расчёт по записям
+            <span class="arrow">→</span>
+          </button>
+
+          <p class="form-note">Без спама. Не передаём данные третьим лицам.</p>
+        </form>
+
+        <div class="form-success">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-t">Заявка принята</div>
+          <div class="form-success-s">Свяжемся в течение рабочего дня удобным для вас способом.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAINS -->
+<section class="pains">
+  <div class="wrap">
+    <div class="sec-tag">01 — ЧТО ПРОИСХОДИТ В КЛИНИКЕ СЕЙЧАС</div>
+    <h2 class="sec-title">Вот где у клиники <span class="italic">сливается</span> прибыль.</h2>
+    <p class="sec-intro">Каждый день нам пишут стоматологии с одинаковыми болями. Подрядчик отчитывается красивыми цифрами, а кресло простаивает. Три самые дорогие проблемы — ниже.</p>
+
+    <div class="pains-grid">
+      <div class="pain">
+        <div class="pain-n">01</div>
+        <div class="pain-title">«Привезли 200 заявок» — а в&nbsp;кресле <span class="red">пусто</span>.</div>
+        <p class="pain-body">Подрядчик отчитывается потоком лидов по&nbsp;$3. До&nbsp;кресла из&nbsp;200 доходит 5–10 человек. Остальные не&nbsp;берут трубку или передумали. <strong>Вы платите за&nbsp;цифры в&nbsp;отчёте, а не за&nbsp;пациентов.</strong></p>
+        <div class="pain-fix">Оптимизируем рекламу не на CPL, а на дошедших до клиники. Доходимость 45%+ против 20–30% по рынку.</div>
+      </div>
+
+      <div class="pain">
+        <div class="pain-n">02</div>
+        <div class="pain-title">Кресло простаивает <span class="red">40% времени</span>.</div>
+        <p class="pain-body">Аренда идёт, врач на&nbsp;ставке, материалы куплены — а в&nbsp;расписании дыры. Час простоя кресла — <strong>$50–150 упущенной прибыли</strong>. Три часа дыры в&nbsp;день — это $4&#x202F;500 в&nbsp;месяц с одного кресла.</p>
+        <div class="pain-fix">У наших клиентов загрузка 80%+. Не за счёт демпинга — за счёт правильного трафика и работы администраторов.</div>
+      </div>
+
+      <div class="pain pain-wide">
+        <div class="pain-n">03</div>
+        <div class="pain-title">Льют трафик на&nbsp;пломбы — а&nbsp;<span class="red">премиум простаивает</span>.</div>
+        <p class="pain-body">Реклама даёт дешёвые заявки на чистку и кариес. А имплантация, all-on-4, виниры, ортодонтия — простаивают. Алгоритм учится на&nbsp;дешёвых заявках, а&nbsp;<strong>премиум-процедуры дают 70% выручки клиники</strong>.</p>
+        <div class="pain-fix">Сегментируем кампании отдельно по каждой процедуре. Считаем CAC, LTV и маржу до старта.</div>
+      </div>
+    </div>
+
+    <!-- Свёрнутые боли -->
+    <div class="pains-more" id="painsMore">
+      <button class="pains-toggle" type="button" onclick="togglePainsMore()">
+        <span class="pains-toggle-text">+ Ещё 3 проблемы, которые чиним</span>
+        <span class="pains-toggle-icon">↓</span>
+      </button>
+
+      <div class="pains-hidden">
+        <div class="pains-grid">
+          <div class="pain">
+            <div class="pain-n">04</div>
+            <div class="pain-title">«Тестируем гипотезы» уже <span class="red">4 месяца</span>.</div>
+            <p class="pain-body">Подрядчик меняет креативы, обещает «вот-вот пойдёт», план записей не&nbsp;выполняется. <strong>4 месяца без результата = 80–120 упущенных пациентов.</strong> Это потерянная выручка, которую никто не&nbsp;вернёт.</p>
+            <div class="pain-fix">Первые записи — в первые 24–48 часов после запуска. Если за 30 дней ноль — возвращаем оплату за ведение.</div>
+          </div>
+
+          <div class="pain">
+            <div class="pain-n">05</div>
+            <div class="pain-title">Администратор <span class="red">сливает</span> входящие.</div>
+            <p class="pain-body">Заявки приходят, администратор отвечает «мы перезвоним», не&nbsp;записывает на&nbsp;консультацию, не&nbsp;работает с&nbsp;возражениями. <strong>70% лидов сгорает на&nbsp;первом контакте.</strong> Никакой бюджет это не&nbsp;спасёт.</p>
+            <div class="pain-fix">Бесплатно слушаем звонки, пишем регламенты и скрипты, проводим стратегические сессии с админами.</div>
+          </div>
+
+          <div class="pain pain-wide">
+            <div class="pain-n">06</div>
+            <div class="pain-title">Подрядчик не&nbsp;знает, сколько стоит пациент <span class="red">на&nbsp;all-on-6</span>.</div>
+            <p class="pain-body">Спросите вашего таргетолога: какой CAC на&nbsp;имплантацию? Какая маржа после рекламы? LTV пациента? Если в&nbsp;ответ слышите «стоимость лида $2,5» — он&nbsp;не&nbsp;понимает экономику клиники. <strong>Без расчёта теряете до&nbsp;70% выручки.</strong></p>
+            <div class="pain-fix">Считаем CAC, LTV и маржу по каждой процедуре до старта. Прогноз по записям и выручке на 3–6 месяцев.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases">
+  <div class="wrap">
+    <div class="sec-tag">02 — РЕАЛЬНЫЕ РЕЗУЛЬТАТЫ</div>
+    <h2 class="sec-title">Кейсы клиник, которые <span class="italic">готовы подтвердить.</span></h2>
+    <p class="sec-intro">Цифры из реальных рекламных кабинетов. Стоматологии в СНГ, Европе и&nbsp;ОАЭ — от&nbsp;общей терапии до&nbsp;премиальной имплантации. Имена раскрываем на&nbsp;созвоне под NDA.</p>
+
+    <div class="cases-scroll" id="casesScroll">
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <div class="case-title">Сеть клиник, Алматы</div>
+            <div class="case-sub">4 филиала, имплантация + all-on-4</div>
+          </div>
+          <div class="case-tag">META + GOOGLE</div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-v">$48K</div><div class="case-metric-l">потрачено</div></div>
+          <div class="case-metric"><div class="case-metric-v">9 200</div><div class="case-metric-l">заявок</div></div>
+          <div class="case-metric"><div class="case-metric-v">$11</div><div class="case-metric-l">цена записи</div></div>
+          <div class="case-metric"><div class="case-metric-v">47%</div><div class="case-metric-l">доходимость</div></div>
+        </div>
+        <div class="case-highlight">184 сделки на имплантацию. ROI 590%. Загрузка кресла с 55% до 84%.</div>
+      </div>
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <div class="case-title">Премиум клиника, Прага</div>
+            <div class="case-sub">Имплантация all-on-4 / all-on-6</div>
+          </div>
+          <div class="case-tag">META + GOOGLE</div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-v">$8,5K</div><div class="case-metric-l">потрачено</div></div>
+          <div class="case-metric"><div class="case-metric-v">1 420</div><div class="case-metric-l">заявок</div></div>
+          <div class="case-metric"><div class="case-metric-v">$27</div><div class="case-metric-l">цена записи</div></div>
+          <div class="case-metric"><div class="case-metric-v">9</div><div class="case-metric-l">сделок all-on</div></div>
+        </div>
+        <div class="case-highlight">Средний чек $7&#x202F;200. ROI 660%. Окупились за 28 дней работы.</div>
+      </div>
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <div class="case-title">Ортодонтия, Дубай</div>
+            <div class="case-sub">Виниры и элайнеры для экспатов</div>
+          </div>
+          <div class="case-tag">META · EN+RU</div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-v">$22K</div><div class="case-metric-l">потрачено</div></div>
+          <div class="case-metric"><div class="case-metric-v">1 180</div><div class="case-metric-l">заявок</div></div>
+          <div class="case-metric"><div class="case-metric-v">387</div><div class="case-metric-l">записей</div></div>
+          <div class="case-metric"><div class="case-metric-v">41</div><div class="case-metric-l">сделка</div></div>
+        </div>
+        <div class="case-highlight">Средний чек $4&#x202F;500. ROI 740%. Работа в 2 языковых группах параллельно.</div>
+      </div>
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <div class="case-title">Детская стоматология, СПб</div>
+            <div class="case-sub">Сеть из 2 клиник</div>
+          </div>
+          <div class="case-tag">VK + ЯНДЕКС</div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-v">$3,8K</div><div class="case-metric-l">потрачено</div></div>
+          <div class="case-metric"><div class="case-metric-v">1 520</div><div class="case-metric-l">заявок</div></div>
+          <div class="case-metric"><div class="case-metric-v">$4,9</div><div class="case-metric-l">цена записи</div></div>
+          <div class="case-metric"><div class="case-metric-v">51%</div><div class="case-metric-l">доходимость</div></div>
+        </div>
+        <div class="case-highlight">Средний чек $320. Рекорд по нише по доходимости. Запись на 3 недели вперёд.</div>
+      </div>
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <div class="case-title">Общая стоматология, Минск</div>
+            <div class="case-sub">Терапия и ортопедия</div>
+          </div>
+          <div class="case-tag">ЯНДЕКС + TG ADS</div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-v">$4,2K</div><div class="case-metric-l">потрачено</div></div>
+          <div class="case-metric"><div class="case-metric-v">2 100</div><div class="case-metric-l">заявок</div></div>
+          <div class="case-metric"><div class="case-metric-v">$4,4</div><div class="case-metric-l">цена записи</div></div>
+          <div class="case-metric"><div class="case-metric-v">45%</div><div class="case-metric-l">доходимость</div></div>
+        </div>
+        <div class="case-highlight">Окупаемость с первого месяца. Кресла забиты на месяц вперёд.</div>
+      </div>
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <div class="case-title">Открытие клиники, Астана</div>
+            <div class="case-sub">Запуск с нуля</div>
+          </div>
+          <div class="case-tag">GOOGLE + META</div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-v">$6,5K</div><div class="case-metric-l">потрачено</div></div>
+          <div class="case-metric"><div class="case-metric-v">2 800</div><div class="case-metric-l">заявок</div></div>
+          <div class="case-metric"><div class="case-metric-v">1 150</div><div class="case-metric-l">записей</div></div>
+          <div class="case-metric"><div class="case-metric-v">41 день</div><div class="case-metric-l">самоокупаемость</div></div>
+        </div>
+        <div class="case-highlight">312 сделок разного уровня. К концу 2-го месяца — запись на месяц вперёд.</div>
+      </div>
+
+    </div>
+
+    <div class="cases-hint">
+      СВАЙП <span class="arrow-anim">→</span> 6 КЕЙСОВ
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section>
+  <div class="wrap">
+    <div class="sec-tag">03 — ЦИФРЫ, А НЕ ОБЕЩАНИЯ</div>
+    <h2 class="sec-title">Что мы делаем <span class="italic">на практике.</span></h2>
+
+    <div class="numbers-grid">
+      <div class="num-card">
+        <div class="num-val">$8–12</div>
+        <div class="num-label"><strong>Стоимость записи в клинику</strong>Не CPL, а доехавшая до кресла запись</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">45%+</div>
+        <div class="num-label"><strong>Доходимость до кресла</strong>Против 20–30% по рынку</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">48&#x202F;ч</div>
+        <div class="num-label"><strong>До первых записей</strong>От запуска кампании до пациента в клинике</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">80%+</div>
+        <div class="num-label"><strong>Загрузка кресла</strong>У клиентов на тарифе с контролем ОП</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section style="background: var(--bg-2);">
+  <div class="wrap">
+    <div class="sec-tag">04 — ЧТО ВХОДИТ В РАБОТУ</div>
+    <h2 class="sec-title">Четыре вещи. <span class="italic">Делаем хорошо.</span></h2>
+    <p class="sec-intro">Никаких «комплексных решений» и&nbsp;меню из&nbsp;47 услуг. Четыре блока, которые реально загружают кресло — от&nbsp;первого клика до&nbsp;дошедшего пациента.</p>
+
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-n">01 — АУДИТ</div>
+        <div class="svc-title">Считаем экономику клиники до запуска</div>
+        <p class="svc-body">CAC, LTV и маржа по&nbsp;каждой процедуре. Прогноз стоимости записи. Аудит работы администраторов и&nbsp;текущих кампаний. За&nbsp;это не&nbsp;платите.</p>
+      </div>
+
+      <div class="svc">
+        <div class="svc-n">02 — СЕГМЕНТАЦИЯ</div>
+        <div class="svc-title">Каждая процедура — своя кампания</div>
+        <p class="svc-body">Терапия отдельно. Имплантация отдельно. All-on-4 / all-on-6 — в&nbsp;премиум-сегмент. Алгоритм не&nbsp;учится на&nbsp;дешёвых заявках, премиум не&nbsp;растворяется в&nbsp;потоке.</p>
+      </div>
+
+      <div class="svc">
+        <div class="svc-n">03 — РЕКЛАМА</div>
+        <div class="svc-title">Meta, Google, Яндекс, VK</div>
+        <p class="svc-body">Свои квизы и&nbsp;посадочные. До&nbsp;6 языковых групп. Ретаргет и&nbsp;Lookalike по&nbsp;пациентам. Оптимизируем не&nbsp;на&nbsp;CPL, а&nbsp;на&nbsp;дошедших до&nbsp;клиники.</p>
+      </div>
+
+      <div class="svc">
+        <div class="svc-n">04 — КОНТРОЛЬ ОП</div>
+        <div class="svc-title">Курируем ваших администраторов</div>
+        <p class="svc-body">Слушаем звонки, пишем регламенты и&nbsp;скрипты, проводим стратегические сессии. Конверсия заявки в&nbsp;запись с&nbsp;15–25% до&nbsp;40%+. <strong>Это часть услуги.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section>
+  <div class="wrap">
+    <div class="sec-tag">05 — ПОКАЗАТЕЛЬ : РЫНОК vs WEBNOSTRA</div>
+    <h2 class="sec-title">Сравните <span class="italic">по цифрам.</span></h2>
+    <p class="sec-intro">8 ключевых метрик, по которым клиника видит разницу с обычным подрядчиком уже в первый месяц.</p>
+
+    <div class="compare-table">
+      <div class="compare-head">
+        <div class="compare-cell compare-cell-h">ПОКАЗАТЕЛЬ</div>
+        <div class="compare-cell compare-cell-h">РЫНОК</div>
+        <div class="compare-cell compare-cell-h compare-h-us">WEBNOSTRA</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Стоимость заявки</div>
+        <div class="compare-cell compare-bad">$5–10</div>
+        <div class="compare-cell compare-good">$1–3</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Стоимость записи в клинику</div>
+        <div class="compare-cell compare-bad">$25–40</div>
+        <div class="compare-cell compare-good">$8–12</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Доходимость до кресла</div>
+        <div class="compare-cell compare-bad">20–30%</div>
+        <div class="compare-cell compare-good">45%+</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Конверсия заявки в запись</div>
+        <div class="compare-cell compare-bad">15–25%</div>
+        <div class="compare-cell compare-good">40%+</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Первые результаты</div>
+        <div class="compare-cell compare-bad">от 1 недели</div>
+        <div class="compare-cell compare-good">48 часов</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Языки рекламы</div>
+        <div class="compare-cell compare-bad">только RU</div>
+        <div class="compare-cell compare-good">любые (7+)</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Загрузка кресла</div>
+        <div class="compare-cell compare-bad">30–40%</div>
+        <div class="compare-cell compare-good">80%+</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell">Контроль отдела продаж</div>
+        <div class="compare-cell compare-bad">нет</div>
+        <div class="compare-cell compare-good">да, бесплатно</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section>
+  <div class="wrap">
+    <div class="sec-tag">06 — КАК ЗАПУСКАЕМ</div>
+    <h2 class="sec-title">От заявки до пациентов <span class="accent">за 5 дней.</span></h2>
+    <p class="sec-intro">Никакого «погружения на&nbsp;месяц». Запускаемся быстро — первые записи приходят в&nbsp;первые 24–48 часов после старта кампаний.</p>
+
+    <div class="approach-grid">
+      <div class="step">
+        <div class="step-n">ДЕНЬ 01</div>
+        <div class="step-title">Аудит и стратегия</div>
+        <p class="step-body">Анализируем метрики клиники, считаем экономику процедур, прогнозируем стоимость записи по каждой услуге, аудируем работу администраторов.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">ДНИ 02–03</div>
+        <div class="step-title">Подготовка</div>
+        <p class="step-body">Креативы под каждую процедуру, посадочные, настройка трекинга, интеграция с CRM, регламенты для ОП и скрипты для администраторов.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">ДЕНЬ 04</div>
+        <div class="step-title">Запуск</div>
+        <p class="step-body">Тестируем разные связки, разные процедуры, разные аудитории. Параллельно подключаем ретаргет на тех, кто уже взаимодействовал с клиникой.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">ДЕНЬ 05</div>
+        <div class="step-title">Пациенты в кресле</div>
+        <p class="step-body">Первые записи — в&nbsp;первые 24–48 часов. Отключаем неработающее, масштабируем выигрышные связки, корректируем работу администраторов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: var(--bg-2);">
+  <div class="wrap">
+    <div class="sec-tag">07 — ВОПРОСЫ ПЕРЕД ПЕРВЫМ СОЗВОНОМ</div>
+    <h2 class="sec-title">Что обычно <span class="italic">спрашивают.</span></h2>
+
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Что, если за 30 дней не дадите обещанный результат?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">На тарифе «База» — если за 30 дней ноль квалифицированных записей, возвращаем оплату за ведение. На тарифе «Эксперт» — если не выходим на целевой CPL за 45 дней, следующий месяц ведения бесплатный. Не работаем по принципу «дайте ещё 4 месяца, скоро пойдёт».</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">У нас уже есть таргетолог. Зачем вы нам?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">Большинство таргетологов работают с одной клиникой и не видят картину по нише. Мы ведём 14 стоматологий параллельно — видим, что работает в каждом сегменте: терапия, имплантация, ортодонтия, премиум, детская. Плюс — бесплатно курируем работу администраторов. Этого таргетологи обычно не делают вообще.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Сколько стоит? Какие тарифы?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">Два тарифа. «База» — $900/мес ведения + бюджет от $700: один канал, до 3 языковых групп, 8–12 креативов в месяц, регламенты для ОП. «Эксперт» — $2&#x202F;100/мес + бюджет от $3&#x202F;000: 2 канала параллельно, до 6 языковых групп, сквозная аналитика до сделки и LTV, AI-контроль качества лидов, ретаргет и Lookalike. Цифры обсуждаем после аудита, когда понятен объём работы.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Какой нужен бюджет на рекламу?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">Минимум $700 в месяц на тарифе «База» — этого хватит для одного канала и стабильного потока 120–260 записей. Для премиум-процедур и масштабирования — от $3&#x202F;000 на «Эксперте». Меньше можно тестировать, но статистика будет недостоверной и решения принимать не по чему.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Работаете со стоматологиями вне СНГ?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">Да. У нас есть кейсы в СНГ (Казахстан, Беларусь, Россия), Европе (Чехия), ОАЭ (Дубай) и ЮВА. Работаем на 7+ языках: RU, EN, DE, FR, AR, ZH, KZ. Носители в команде — никаких креативов через Google Translate.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Что входит в бесплатный аудит ОП?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">Слушаем запись 10–20 звонков ваших администраторов, оцениваем скорость ответа, работу с возражениями, конверсию заявки в запись. Пишем регламенты обработки, скрипты на типовые ситуации, проводим стратегическую сессию с командой администраторов. Это часть услуги, а не доп.опция.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">За сколько дней увидим первые записи?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">Первые записи в клинику — в первые 24–48 часов после запуска кампаний. Стабильный поток по нужной цене — через 2–3 недели, когда отработают тесты. Быстрее обещают только те, кто никогда не работал с реальной воронкой клиники.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final" id="form-final">
+  <div class="wrap">
+    <div class="cta-wrap">
+      <div class="cta-left">
+        <div class="sec-tag">ПРОСТО НАЧАТЬ</div>
+        <h2>Готовы заполнить <span class="accent">расписание</span> клиники?</h2>
+        <p>Расскажите о&nbsp;вашей клинике — рассчитаем прогноз по&nbsp;записям и&nbsp;стоимости за&nbsp;24 часа. Бесплатно, с&nbsp;аудитом отдела продаж и&nbsp;разбором текущей воронки.</p>
+        <ul class="cta-bullets">
+          <li>Посчитаем экономику клиники по каждой процедуре</li>
+          <li>Сравним вашу цену записи с рынком</li>
+          <li>Послушаем звонки администраторов и дадим рекомендации</li>
+          <li>Ответим за 24 часа удобным способом</li>
+        </ul>
+      </div>
+
+      <div class="form-card">
+        <div class="form-head">
+          <div class="form-title">Оставьте заявку на аудит</div>
+          <div class="form-sub">Ответим за 24 часа удобным для вас способом.</div>
+        </div>
+
+        <form id="leadFormFinal" onsubmit="return submitForm(event, 'final')">
+          <div class="form-row">
+            <label class="form-label">Ваше имя</label>
+            <input type="text" name="name" class="form-input" placeholder="Как к вам обращаться" autocomplete="given-name" required>
+          </div>
+
+          <div class="form-row">
+            <label class="form-label">Телеграм или WhatsApp</label>
+            <input type="text" name="contact" class="form-input" placeholder="@magosh или +66 8..." autocomplete="tel" required>
+          </div>
+
+          <div class="form-row">
+            <label class="form-label">Ваш сегмент <span class="form-optional">(по желанию)</span></label>
+            <div class="form-chips" data-group="market-final">
+              <div class="chip active" data-value="GENERAL">Общая</div>
+              <div class="chip" data-value="IMPLANT">Имплантация</div>
+              <div class="chip" data-value="PREMIUM">Премиум</div>
+              <div class="chip" data-value="KIDS">Детская</div>
+            </div>
+            <input type="hidden" name="market" id="market-final" value="GENERAL">
+          </div>
+
+          <button type="submit" class="form-submit">
+            Получить расчёт по записям
+            <span class="arrow">→</span>
+          </button>
+
+          <p class="form-note">Без спама. Не передаём данные третьим лицам.</p>
+        </form>
+
+        <div class="form-success">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-t">Заявка принята</div>
+          <div class="form-success-s">Свяжемся в течение рабочего дня удобным для вас способом.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="logo">
+        <div class="logo-mark">W</div>
+        <span>WEBNOSTRA</span>
+      </div>
+      <div class="foot-meta">© 2018–2026 · PHUKET · PERFORMANCE FOR DENTAL</div>
+      <div class="foot-links">
+        <a href="https://instagram.com/webnostra" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://t.me/m/o8bYoFHBZmRi" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://t.me/+uiQBTcL9yw9mOGVi" target="_blank" rel="noopener">Канал</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#form-final">
+    <span class="sticky-cta-dot"></span>
+    Получить расчёт по записям
+    <span class="sticky-cta-meta">Ответ за 24ч</span>
+  </a>
+</div>
+
+<script>
+  // ===== UTM + tech params =====
+  // Забираем UTM-метки из URL при загрузке страницы
+
+  // Webhook для dental-воронки
+  const ALBATO_WEBHOOK = 'https://h.albato.ru/wh/38/1lfbu2f/_iLNEcqUOACnXPL4W12d3lARb5EJkRMcRwJla8A8QI4/';
+
+  function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+      utm_content: params.get('utm_content') || '',
+      utm_term: params.get('utm_term') || '',
+      fbclid: params.get('fbclid') || '',
+      gclid: params.get('gclid') || '',
+      yclid: params.get('yclid') || ''
+    };
+  }
+
+  // Сохраняем UTM в sessionStorage, чтобы пережили навигацию по якорям/FAQ-кликам
+  (function persistUtm() {
+    const current = getUrlParams();
+    const hasAny = Object.values(current).some(v => v);
+    if (hasAny) {
+      try { sessionStorage.setItem('wn_utm', JSON.stringify(current)); } catch(e) {}
+    }
+  })();
+
+  function getStoredUtm() {
+    try {
+      const stored = sessionStorage.getItem('wn_utm');
+      if (stored) return JSON.parse(stored);
+    } catch(e) {}
+    return getUrlParams();
+  }
+
+  // ===== Chips =====
+  document.querySelectorAll('.form-chips').forEach(group => {
+    const chips = group.querySelectorAll('.chip');
+    const targetId = group.dataset.group;
+    const input = document.getElementById(targetId);
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        if (input) input.value = chip.dataset.value;
+      });
+    });
+  });
+
+  // ===== FAQ =====
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+
+  // ===== Pains more (свёрнутые боли) =====
+  function togglePainsMore() {
+    const block = document.getElementById('painsMore');
+    if (!block) return;
+    block.classList.toggle('open');
+    const toggleText = block.querySelector('.pains-toggle-text');
+    if (block.classList.contains('open')) {
+      toggleText.textContent = '− Скрыть';
+      if (typeof ym === 'function') {
+        try { ym(96858541, 'reachGoal', 'pains_more_open'); } catch(e){}
+      }
+    } else {
+      toggleText.textContent = '+ Ещё 3 проблемы, которые чиним';
+    }
+  }
+
+  // ===== Form submit → Albato webhook + Telegram bot + localStorage backup + Meta Pixel =====
+
+  // Telegram bot — дублирующий канал доставки лидов
+  const TG_BOT_TOKEN = '8736522279:AAEt7FLqxE2AFheHE2ftOsqqmXxiAQT9Qpw';
+  const TG_CHAT_ID = '-1002474936647';
+
+  // Форматируем лид в читаемое сообщение для Telegram
+  function formatLeadForTelegram(payload) {
+    const marketNames = {
+      GENERAL: 'Общая стоматология',
+      IMPLANT: 'Имплантация',
+      PREMIUM: 'Премиум',
+      KIDS: 'Детская'
+    };
+    const sourceName = payload.form_source === 'hero_form' ? 'Первый экран' : 'Финальный блок';
+
+    // Собираем UTM-блок только из заполненных полей
+    const utmLines = [];
+    if (payload.utm_source) utmLines.push(`source: ${payload.utm_source}`);
+    if (payload.utm_medium) utmLines.push(`medium: ${payload.utm_medium}`);
+    if (payload.utm_campaign) utmLines.push(`campaign: ${payload.utm_campaign}`);
+    if (payload.utm_content) utmLines.push(`content: ${payload.utm_content}`);
+    if (payload.utm_term) utmLines.push(`term: ${payload.utm_term}`);
+    if (payload.fbclid) utmLines.push(`fbclid: ${payload.fbclid}`);
+    if (payload.gclid) utmLines.push(`gclid: ${payload.gclid}`);
+    if (payload.yclid) utmLines.push(`yclid: ${payload.yclid}`);
+
+    const utmBlock = utmLines.length
+      ? `\n<b>UTM:</b>\n<code>${utmLines.join('\n')}</code>`
+      : '\n<b>UTM:</b> прямой заход';
+
+    const time = new Date(payload.timestamp).toLocaleString('ru-RU', {
+      timeZone: 'Asia/Bangkok',
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+
+    return `🦷 <b>Новый лид — стоматология</b>
+
+<b>Имя:</b> ${escapeHtml(payload.name)}
+<b>Контакт:</b> ${escapeHtml(payload.contact)}
+<b>Сегмент:</b> ${marketNames[payload.market] || payload.market}
+<b>Форма:</b> ${sourceName}${utmBlock}
+
+<b>Время (Bangkok):</b> ${time}`;
+  }
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  // Отправка лида в Telegram-бот (напрямую из браузера)
+  async function sendToTelegram(payload) {
+    const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+    const body = {
+      chat_id: TG_CHAT_ID,
+      text: formatLeadForTelegram(payload),
+      parse_mode: 'HTML',
+      disable_web_page_preview: true
+    };
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    return response.ok;
+  }
+
+  // Бекап лидов в localStorage (на случай если оба канала упали)
+  // Посмотреть бекап: localStorage.getItem('wn_leads_backup')
+  // Посмотреть только неотправленные: wnGetFailedLeads()
+  // Очистить: localStorage.removeItem('wn_leads_backup')
+  function saveLeadBackup(payload, status) {
+    try {
+      const backup = JSON.parse(localStorage.getItem('wn_leads_backup') || '[]');
+      backup.push({ ...payload, _backup_status: status, _backup_id: Date.now() + '_' + Math.random().toString(36).slice(2, 8) });
+      // Ограничиваем бекап последними 200 лидами, чтобы не раздувать storage
+      const trimmed = backup.slice(-200);
+      localStorage.setItem('wn_leads_backup', JSON.stringify(trimmed));
+    } catch(e) {
+      console.warn('Backup save failed:', e);
+    }
+  }
+
+  // Обновляем статус бекапа (sent / failed) по ID
+  function updateBackupStatus(backupId, status) {
+    try {
+      const backup = JSON.parse(localStorage.getItem('wn_leads_backup') || '[]');
+      const idx = backup.findIndex(l => l._backup_id === backupId);
+      if (idx !== -1) {
+        backup[idx]._backup_status = status;
+        localStorage.setItem('wn_leads_backup', JSON.stringify(backup));
+      }
+    } catch(e) {}
+  }
+
+  // Утилиты для вытаскивания бекапа (вызывать из консоли при необходимости)
+  window.wnGetAllLeads = function() {
+    try { return JSON.parse(localStorage.getItem('wn_leads_backup') || '[]'); }
+    catch(e) { return []; }
+  };
+  window.wnGetFailedLeads = function() {
+    return window.wnGetAllLeads().filter(l => l._backup_status === 'failed');
+  };
+  window.wnExportLeadsCsv = function() {
+    const leads = window.wnGetAllLeads();
+    if (!leads.length) { console.log('No leads in backup'); return; }
+    const keys = Object.keys(leads[0]);
+    const csv = [keys.join(',')].concat(leads.map(l => keys.map(k => JSON.stringify(l[k] ?? '')).join(','))).join('\n');
+    console.log(csv);
+    return csv;
+  };
+
+  async function submitForm(e, which) {
+    e.preventDefault();
+    const form = e.target;
+    const card = form.closest('.form-card');
+    const success = card.querySelector('.form-success');
+    const submitBtn = form.querySelector('.form-submit');
+    const data = new FormData(form);
+
+    // Рынок теперь опциональный (RU стоит по умолчанию).
+    // Если пустой по какой-то причине — отправим с пометкой "не указан".
+    if (!data.get('market')) {
+      data.set('market', '');
+    }
+
+    // Блокируем кнопку
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.6';
+    submitBtn.innerHTML = 'Отправляем...';
+
+    // Собираем payload
+    const utm = getStoredUtm();
+    const payload = {
+      // Данные из формы
+      name: data.get('name') || '',
+      contact: data.get('contact') || '',
+      market: data.get('market') || '',
+
+      // Откуда отправили
+      form_source: which === 'top' ? 'hero_form' : 'final_form',
+
+      // UTM и clickId
+      utm_source: utm.utm_source,
+      utm_medium: utm.utm_medium,
+      utm_campaign: utm.utm_campaign,
+      utm_content: utm.utm_content,
+      utm_term: utm.utm_term,
+      fbclid: utm.fbclid,
+      gclid: utm.gclid,
+      yclid: utm.yclid,
+
+      // Техника
+      page_url: window.location.href,
+      referrer: document.referrer || '',
+      user_agent: navigator.userAgent,
+      screen_resolution: window.screen.width + 'x' + window.screen.height,
+      timestamp: new Date().toISOString(),
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || ''
+    };
+
+    // 1. СНАЧАЛА — локальный бекап (на случай если все упадет)
+    const backupId = Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+    payload._backup_id = backupId;
+    try {
+      const backup = JSON.parse(localStorage.getItem('wn_leads_backup') || '[]');
+      backup.push({ ...payload, _backup_status: 'pending' });
+      localStorage.setItem('wn_leads_backup', JSON.stringify(backup.slice(-200)));
+    } catch(e) {}
+
+    // 2. Meta Pixel — событие Lead (сразу, не ждем сервер)
+    try {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: payload.form_source,
+          content_category: 'dental_clinics',
+          value: 1,
+          currency: 'USD'
+        });
+      }
+    } catch(e) {
+      console.warn('fbq Lead event failed:', e);
+    }
+
+    // 2.1. Яндекс.Метрика — достижение цели lead
+    try {
+      if (typeof ym === 'function') {
+        ym(96858541, 'reachGoal', 'lead', {
+          form_source: payload.form_source,
+          market: payload.market
+        });
+      }
+    } catch(e) {
+      console.warn('ym reachGoal failed:', e);
+    }
+
+    // 3. Параллельная отправка в Albato и Telegram
+    // Promise.allSettled — ждем оба, но не падаем если один упал
+    const results = await Promise.allSettled([
+      fetch(ALBATO_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(r => ({ channel: 'albato', ok: r.ok, status: r.status })),
+
+      sendToTelegram(payload).then(ok => ({ channel: 'telegram', ok }))
+    ]);
+
+    // Логируем результаты
+    const outcomes = results.map(r => r.status === 'fulfilled' ? r.value : { channel: 'unknown', ok: false, error: r.reason });
+    console.log('Lead delivery:', outcomes);
+
+    // Статус для бекапа: sent если хотя бы один канал доставил, failed если оба упали
+    const anyDelivered = outcomes.some(o => o.ok);
+    updateBackupStatus(backupId, anyDelivered ? 'sent' : 'failed');
+
+    if (!anyDelivered) {
+      console.error('⚠ ALL CHANNELS FAILED. Lead saved to localStorage only. Payload:', payload);
+    }
+
+    // 4. Показываем success в любом случае (лид в бекапе точно есть)
+    form.style.display = 'none';
+    success.classList.add('show');
+
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+
+    return false;
+  }
+
+  // ===== Reveal on scroll =====
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('section').forEach(s => {
+    s.classList.add('reveal');
+    io.observe(s);
+  });
+
+  // ===== Cases auto-hint: подсказка, что можно свайпить =====
+  // На мобильном при первом появлении секции — плавно скроллим первый кейс,
+  // чтобы пользователь увидел: "о, тут есть ещё"
+  (function initCasesHint() {
+    if (window.innerWidth > 960) return;
+    const casesEl = document.getElementById('casesScroll');
+    if (!casesEl) return;
+
+    let hinted = false;
+    const hintObserver = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting && !hinted) {
+          hinted = true;
+          // Ждём немного чтобы пользователь увидел секцию целиком
+          setTimeout(() => {
+            try {
+              casesEl.scrollTo({ left: 80, behavior: 'smooth' });
+              setTimeout(() => {
+                casesEl.scrollTo({ left: 0, behavior: 'smooth' });
+              }, 900);
+            } catch(e) {}
+          }, 600);
+          hintObserver.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    hintObserver.observe(casesEl);
+  })();
+
+  // ===== Sticky CTA =====
+  const stickyCta = document.getElementById('stickyCta');
+  const heroSection = document.querySelector('.hero');
+  const finalSection = document.getElementById('form-final');
+
+  if (stickyCta && heroSection && finalSection) {
+    window.addEventListener('scroll', () => {
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      const finalTop = finalSection.offsetTop;
+      const scrollBottom = window.scrollY + window.innerHeight;
+
+      if (window.scrollY > heroBottom && scrollBottom < finalTop) {
+        stickyCta.classList.add('show');
+      } else {
+        stickyCta.classList.remove('show');
+      }
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
