@@ -34,6 +34,13 @@ export const LEAD_SOURCE_LABELS: Record<string, string> = {
   'georgia': 'Грузия',
   'russia': 'Россия',
 
+  // Районы Пхукета
+  'thailand_rawai': 'Пхукет: Раваи',
+  'thailand_bang_tao': 'Пхукет: Банг Тао',
+  'thailand_kata': 'Пхукет: Ката',
+  'thailand_patong': 'Пхукет: Патонг',
+  'thailand_chalong': 'Пхукет: Чалонг',
+
   // Отрасли
   'industries': 'Отрасли (хаб)',
   'industry-real-estate': 'Отрасль: недвижимость',
