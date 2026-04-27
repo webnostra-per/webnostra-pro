@@ -41,6 +41,13 @@ export const LEAD_SOURCE_LABELS: Record<string, string> = {
   'thailand_patong': 'Пхукет: Патонг',
   'thailand_chalong': 'Пхукет: Чалонг',
 
+  // Районы Дубая
+  'dubai_downtown': 'Дубай: Downtown',
+  'dubai_marina': 'Дубай: Marina',
+  'dubai_palm_jumeirah': 'Дубай: Palm Jumeirah',
+  'dubai_jvc': 'Дубай: JVC',
+  'dubai_business_bay': 'Дубай: Business Bay',
+
   // Отрасли
   'industries': 'Отрасли (хаб)',
   'industry-real-estate': 'Отрасль: недвижимость',

@@ -1,0 +1,348 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroLeaf from '@components/hero/HeroLeaf.astro';
+import Toc from '@components/ui/Toc.astro';
+import StickyMobileCta from '@components/ui/StickyMobileCta.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import Faq from '@components/sections/Faq.astro';
+import Label from '@components/ui/Label.astro';
+
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
+
+const title = 'Реклама недвижимости в Dubai Marina: апартаменты, JBR, ликвидность - WEBNOSTRA PERFORMANCE';
+const description =
+  'Performance-маркетинг для застройщиков и брокеров в Dubai Marina. Апартаменты $250K-800K, JBR-сегмент до $1.5M, аудитория - инвесторы в краткосрочную доходность и долгий капитал. Команда WEBNOSTRA PERFORMANCE работает с проектами Дубая с 2022 года.';
+const canonical = 'https://webnostra.pro/real-estate/dubai/dubai-marina/';
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Недвижимость', url: '/real-estate/' },
+  { name: 'Дубай', url: '/real-estate/dubai/' },
+  { name: 'Dubai Marina', url: '/real-estate/dubai/dubai-marina/' },
+];
+
+const toc = [
+  { id: 'dlya-kogo', label: 'Кто покупает в Marina' },
+  { id: 'specifika', label: 'Специфика района' },
+  { id: 'kanaly', label: 'Каналы рекламы' },
+  { id: 'keysy', label: 'Кейсы рядом' },
+  { id: 'sosedi', label: 'Соседние районы' },
+  { id: 'faq', label: 'Вопросы и ответы' },
+  { id: 'form-final', label: 'Обсудить проект' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <HeroLeaf
+    label="Дубай · Marina"
+    title='Реклама недвижимости в <span class="accent">Dubai Marina</span> и JBR - самый ликвидный район для аренды и продажи'
+    description="Dubai Marina и соседний JBR (Jumeirah Beach Residence) - самая узнаваемая прибрежная зона эмирата с 7-километровой яхтенной мариной, променадом, пляжами и небоскребами. Идеальное сочетание аренды (туристы, экспаты) и продажи. Средний чек апартаментов $250K-800K в Marina, до $1.5M в JBR. Аудитория мультинациональная - русскоязычные, индийские, европейские, арабские инвесторы. Один из самых ликвидных вторичных рынков Дубая - купить и продать с прибылью можно за 12-24 месяца."
+    ctaText="Обсудить проект"
+    ctaHref="#form-final"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="27 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="Dubai Marina - ликвидный freehold-район для инвестиций"
+    summary="Один из топ-3 freehold-районов Дубая по объему сделок. Высокая ликвидность вторичного рынка, сильная аренда (туристическая и долгосрочная), сбалансированный yield (5.5-7.5% gross). Подходит инвесторам с горизонтом 2-5 лет и капиталом $250K-800K. Команда WEBNOSTRA PERFORMANCE регулярно работает с проектами Marina."
+    items={[
+      { label: "Тип недвижимости", value: "Апартаменты $250K-800K, JBR-сегмент $400K-1.5M, виллы редко (от $1M)" },
+      { label: "Цены за м2", value: "Marina: $5,000-9,000/м2, JBR (фронтлайн): $7,000-12,000/м2" },
+      { label: "Главная аудитория", value: "Русскоязычные инвесторы $300K-600K, индусы, европейцы, экспаты для собственного проживания" },
+      { label: "Доходность", value: "Long-term gross 5.5-7%, short-term (Airbnb) gross 8-11% в зависимости от сезона" },
+      { label: "Ключевые каналы", value: "Meta Ads (доминирует), Google Ads (RU/EN), Яндекс Директ для русских инвесторов" },
+      { label: "Языки в креативах", value: "RU (45%), EN (30%), AR (10%), Hindi (10%), CN (5%)" },
+      { label: "Цикл сделки", value: "1.5-3 месяца для апартаментов $250K-500K, 3-5 месяцев для $500K+" },
+    ]}
+  />
+
+  <Toc items={toc} />
+
+  <section id="dlya-kogo" class="section">
+    <div class="container narrow">
+      <Label text="Аудитория" />
+      <h2>Кто покупает в Dubai Marina и JBR</h2>
+      <p>
+        Marina - самая мультиаудиторная зона в нашем портфеле проектов Дубая.
+        Здесь пересекаются 4 разных сегмента покупателей с разными мотивациями
+        и циклами сделки:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Русскоязычные инвесторы $300K-600K</h3>
+          <p>
+            Самая большая группа в Marina за последние 3 года. Бюджет студии или
+            однокомнатной квартиры $300K-450K, двухкомнатной $500K-700K. Цикл
+            принятия решения 1.5-3 месяца. Платеж чаще всего через крипту-OTC
+            или офшор. Кейс <a href="/portfolio/dubai-real-estate/">Dubai Real
+            Estate</a>: 12 сделок при CPL $78 - в значительной части через
+            проекты в Marina и JVC.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Инвесторы для краткосрочной (Airbnb) аренды</h3>
+          <p>
+            Marina и JBR - топ-1 район Дубая для Airbnb. Туристический поток
+            12 месяцев в году, загрузка 75-85%, средняя стоимость ночи $180-350.
+            Аудитория - опытные инвесторы из СНГ, Европы, Индии, которые уже
+            делали Airbnb в Лондоне или Барселоне. Цикл короткий (30-60 дней),
+            решение по числам.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Экспаты для собственного проживания</h3>
+          <p>
+            Marina - топ выбор для экспатов с зарплатой $80K-200K в год. Часто
+            покупают вместо аренды (ставка ипотеки 4-5.5% годовых сопоставима
+            с арендной платой). Цикл сделки 2-4 месяца, эмоциональный компонент
+            важен (нужно жить в этой квартире). Креативы под этот сегмент - не
+            yield, а образ жизни в Marina.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Индийские и пакистанские покупатели</h3>
+          <p>
+            Индия - страна номер 1 по сделкам в Дубае. В Marina покупают
+            бюджет $400K-800K. Цикл короткий (1-2 месяца), сделка часто
+            закрывается удаленно через индийских брокеров с туром в Дубай на
+            2-3 дня. Креативы на английском, таргет на крупные индийские
+            диаспоры (Mumbai, Delhi, NRI Singapore, NRI USA).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="specifika" class="section bg-dark">
+    <div class="container narrow">
+      <Label text="Район" />
+      <h2>Что важно знать про Marina для рекламы</h2>
+      <p>
+        Marina - самый понятный freehold-район для нового инвестора в Дубай.
+        Здесь все знакомо: вода, променад, рестораны, метро. Это влияет на
+        логику рекламы:
+      </p>
+
+      <ul class="problems-list">
+        <li>
+          <strong>Ликвидность - главный USP над JVC и Business Bay.</strong> Marina
+          и JBR держат 15-20% всех вторичных сделок Дубая. Это значит: купив
+          здесь сегодня, через 18-24 месяца можно продать с прибылью при условии
+          грамотного входа. Этот аргумент сильно работает в креативах для
+          инвесторов с горизонтом 2-5 лет: 'купите в Marina - продайте за 18
+          месяцев с прибылью 12-20%'.
+        </li>
+        <li>
+          <strong>Airbnb-friendly здания vs обычные.</strong> Не все комплексы
+          Marina разрешают краткосрочную аренду (DTCM-лицензия от управляющей
+          компании). Перед запуском рекламы инвестору в Airbnb-сегмент нужно
+          проверить разрешен ли short-term rental в конкретном комплексе.
+          Реклама без этой проверки приведет недовольных покупателей, которые
+          купили и не могут сдавать через Airbnb.
+        </li>
+        <li>
+          <strong>JBR - отдельный микрорайон с премиальностью.</strong> JBR
+          (Jumeirah Beach Residence) - это пляжная зона Marina с прямым
+          выходом к морю. Цены на 30-50% выше чем в основной части Marina,
+          аудитория более премиальная. В креативах акцентируем 'фронтлайн' или
+          'beachfront', это поднимает CTR на 25-40% в JBR-сегменте.
+        </li>
+        <li>
+          <strong>Marina станция метро - сильный аргумент.</strong> Метро
+          Dubai Marina и DAMAC Properties (Marina) - это два самых загруженных
+          узла на Tram Line. До Downtown 25 минут на метро, до аэропорта 30
+          минут. Для аудитории экспатов и туристических апартаментов этот
+          аргумент в hero-блоке поднимает релевантность.
+        </li>
+        <li>
+          <strong>Конкуренция между брокерами очень высокая.</strong> В Marina
+          одновременно работает 1500+ агентств и тысячи частных брокеров. Для
+          выделения проекта в рекламе нужны не общие фразы, а конкретные
+          триггеры: фотографии конкретной квартиры с видом, текущий yield от
+          существующих собственников, гарантия rental pool. Без этого реклама
+          растворяется в общем шуме.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="kanaly" class="section">
+    <div class="container narrow">
+      <Label text="Каналы" />
+      <h2>Какие каналы работают в Marina</h2>
+      <p>
+        Marina - один из немногих районов Дубая, где работает практически
+        полный мультиканальный стек. Аудитория широкая, бюджеты разные,
+        каналы под каждый сегмент:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Meta Ads - 50-65% бюджета</h3>
+          <p>
+            <a href="/services/meta-ads/">Meta Ads</a> доминирует. CPL $35-90
+            на квал-лида в зависимости от сегмента. Креативы с дроновой съемкой
+            Marina, видео заката над JBR, фото квартир с видом на яхтенную
+            гавань. Look-alike от уже купивших инвесторов в комплексе работает
+            в 2-3 раза лучше широких интересов.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Google Ads - 20-30% бюджета</h3>
+          <p>
+            <a href="/services/google-ads/">Google Ads</a> сильно работает в
+            Marina, потому что много поискового интента: 'dubai marina apartment
+            buy', 'JBR property investment', 'marina dubai 1 bedroom'.
+            Performance Max на продуктовом фиде с конкретными квартирами и
+            ценами дает наиболее квалифицированный трафик.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Яндекс Директ - 10-15% бюджета</h3>
+          <p>
+            <a href="/services/yandex-direct/">Яндекс Директ</a> для русских
+            инвесторов внутри РФ. Запросы 'купить квартиру Dubai Marina',
+            'недвижимость Дубай Марина', 'JBR купить'. Объем меньше Meta, но
+            конверсия в квал-лид выше за счет ярко выраженного интента.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Telegram-канал и контент-маркетинг</h3>
+          <p>
+            Telegram-канал застройщика или агентства про инвестиции в Marina
+            работает как длинный прогрев. Контент: разбор конкретных
+            проектов, текущие yield, Airbnb-friendly здания, юридика. Кейс <a
+            href="/portfolio/ibg-property/">IBG Property</a> на Пхукете
+            показывает экономику: подписчик за $1.10 окупается через 3-6
+            месяцев через сделку.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="keysy" class="section bg-dark">
+    <div class="container narrow">
+      <Label text="Кейсы" />
+      <h2>Цифры из проектов в Дубае</h2>
+      <p>
+        Активные клиенты в Marina под NDA. Публичные кейсы по аналогичной
+        аудитории:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>
+            <a href="/portfolio/dubai-real-estate/">Dubai Real Estate</a> -
+            12 сделок при чеке $450K
+          </h3>
+          <p>
+            Проект для русскоязычных инвесторов в Дубае. 234 лида, CPL $78,
+            12 закрытых сделок при среднем чеке $450K. Ключевая часть стратегии:
+            подробное объяснение схем покупки через крипту, кейсы 50+ россиян
+            уже купивших, русскоязычный менеджер 24/7. Аудитория полностью
+            пересекается с покупателями в Marina среднего сегмента.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            <a href="/portfolio/dubai-furniture-rental/">Dubai Furniture Rental</a> -
+            210 заявок экспатов
+          </h3>
+          <p>
+            Аренда мебели для экспатов в Дубае. $3,840 бюджет, 210 заявок, CPL
+            $18.28, конверсия 35%. Кейс важен потому, что показывает аудиторию
+            которая активно живет в Marina - экспаты с горизонтом 1-3 года, не
+            покупают, а арендуют. Это база, из которой через 1-2 года растут
+            покупатели $300K-500K квартир в Marina.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sosedi" class="section">
+    <div class="container narrow">
+      <Label text="Соседи" />
+      <h2>Соседние районы Дубая</h2>
+      <p>
+        Marina граничит с Palm Jumeirah на восток через мост, JLT и Media City
+        на север, JBR (часть Marina) на юг. Соседние страницы из нашего покрытия:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3><a href="/real-estate/dubai/palm-jumeirah/">Palm Jumeirah</a></h3>
+          <p>
+            В 5-10 минутах через мост. Топ-люкс сегмент с виллами $5M-50M+ и
+            апартаментами $1.5M-10M. Аудитория сильно отличается от Marina -
+            UHNW и branded residences. Иногда инвесторы Marina расширяют
+            портфель на Palm для семейной резиденции.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3><a href="/real-estate/dubai/downtown/">Downtown Dubai</a></h3>
+          <p>
+            В 20-25 минутах. Премиум-сегмент с Burj Khalifa и Dubai Mall.
+            Покупатели Downtown идут за статусом и капиталом, покупатели
+            Marina - за ликвидностью и доходностью. Часто рассматривают
+            оба района при планировании портфеля.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3><a href="/real-estate/dubai/business-bay/">Business Bay</a></h3>
+          <p>
+            В 25-30 минутах. Альтернатива Marina по похожему чеку ($200K-700K),
+            но более ориентирован на офисы и фрилансеров. Без пляжа, поэтому
+            yield от Airbnb ниже, но stabler long-term. Часто инвесторы
+            выбирают между этими двумя районами.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3><a href="/real-estate/dubai/jvc/">JVC (Jumeirah Village Circle)</a></h3>
+          <p>
+            В 15-20 минутах. Бюджетный freehold с входом от $109K. Полная
+            противоположность Marina по логике: yield-focused, длинный
+            горизонт, без ликвидности вторички. Часто инвесторы берут портфель:
+            JVC для cash flow, Marina для capital.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section bg-dark">
+    <div class="container narrow">
+      <Faq tag="dubai-marina" title="Вопросы по рекламе недвижимости в Dubai Marina" label="FAQ" />
+    </div>
+  </section>
+
+  <StickyMobileCta targetHash="#form-final" label="Обсудить проект" />
+
+  <CtaSection
+    title="Обсудим проект в Dubai Marina"
+    description="Бесплатная 40-минутная встреча с руководителем команды недвижимости. Если у вас апартаменты в Marina, JBR или брокерская компания - разберем объект, посчитаем экономику long-term и short-term аренды, дадим кейсы из аналогичного сегмента ОАЭ. Команда работает с проектами Дубая с 2022 года."
+    leadSource="dubai_marina"
+    contentCategory="real-estate"
+    formTitle="Получить расчет по Marina"
+    bullets={[
+      'Кейсы по апартаментам Marina, JBR, среднему сегменту Дубая',
+      'Прогноз CPL и квал-лидов в инвестиционном и экспат-сегментах',
+      'Анализ Airbnb-friendly комплексов в районе',
+    ]}
+  />
+</BaseLayout>

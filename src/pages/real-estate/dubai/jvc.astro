@@ -1,0 +1,343 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroLeaf from '@components/hero/HeroLeaf.astro';
+import Toc from '@components/ui/Toc.astro';
+import StickyMobileCta from '@components/ui/StickyMobileCta.astro';
+import CtaSection from '@components/sections/CtaSection.astro';
+import Faq from '@components/sections/Faq.astro';
+import Label from '@components/ui/Label.astro';
+
+import QuickAnswer from '@components/seo/QuickAnswer.astro';
+import LastUpdated from '@components/seo/LastUpdated.astro';
+
+const title = 'Реклама недвижимости в JVC, Дубай: бюджетный сегмент, доходность 8% - WEBNOSTRA PERFORMANCE';
+const description =
+  'Performance-маркетинг для застройщиков и брокеров в Jumeirah Village Circle (JVC). Студии и квартиры $109K-400K, доходность 7-9% gross, аудитория - инвесторы в yield, начинающие, семьи. Команда WEBNOSTRA PERFORMANCE работает с проектами Дубая с 2022 года.';
+const canonical = 'https://webnostra.pro/real-estate/dubai/jvc/';
+
+const breadcrumbs = [
+  { name: 'Главная', url: '/' },
+  { name: 'Недвижимость', url: '/real-estate/' },
+  { name: 'Дубай', url: '/real-estate/dubai/' },
+  { name: 'JVC', url: '/real-estate/dubai/jvc/' },
+];
+
+const toc = [
+  { id: 'dlya-kogo', label: 'Кто покупает в JVC' },
+  { id: 'specifika', label: 'Специфика района' },
+  { id: 'kanaly', label: 'Каналы рекламы' },
+  { id: 'keysy', label: 'Кейсы рядом' },
+  { id: 'sosedi', label: 'Соседние районы' },
+  { id: 'faq', label: 'Вопросы и ответы' },
+  { id: 'form-final', label: 'Обсудить проект' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <HeroLeaf
+    label="Дубай · JVC"
+    title='Реклама недвижимости в <span class="accent">JVC</span> - бюджетный freehold с самой высокой доходностью среди престижных районов'
+    description="JVC (Jumeirah Village Circle) - центральный freehold-район Дубая, 110 жилых комплексов, 50,000+ квартир. Основной бюджетный вход на рынок ОАЭ: студия от $109K, однокомнатная от $150K, двухкомнатная от $250K. Доходность 7-9% gross - одна из самых высоких среди крупных freehold-зон. Аудитория - начинающие инвесторы, yield-focused покупатели, молодые семьи и фрилансеры. Самый понятный маркетинг с самой массовой воронкой и быстрым циклом сделки."
+    ctaText="Обсудить проект"
+    ctaHref="#form-final"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <LastUpdated date="27 апреля 2026" version="v1.0" author={{ name: "Магош Альшанский", url: "/authors/magosh/" }} />
+
+  <QuickAnswer
+    title="JVC - бюджетный freehold-район Дубая"
+    summary="Самый доступный вход на рынок Дубая через freehold-владение. Студии от 400,000 AED ($109K), доходность от long-term аренды 7-9% gross. Основной маркетинговый сегмент: начинающие инвесторы из СНГ, фрилансеры, молодые семьи. Команда WEBNOSTRA PERFORMANCE работает с массовыми проектами Дубая через стандартные performance-каналы."
+    items={[
+      { label: "Тип недвижимости", value: "Студии $109K-180K, 1 BR $150K-280K, 2 BR $250K-400K, виллы редко (от $400K)" },
+      { label: "Цены за м2", value: "Студии и 1 BR: $2,800-4,500/м2, premium-комплексы: $4,500-6,500/м2" },
+      { label: "Главная аудитория", value: "Начинающие русскоязычные инвесторы, фрилансеры, индийские и пакистанские покупатели, молодые семьи" },
+      { label: "Доходность", value: "Long-term gross 7-9%, после расходов 5-6.5% net - выше среднего по Дубаю" },
+      { label: "Ключевые каналы", value: "Meta Ads (доминирует), Яндекс Директ, Google Ads (RU/EN/Hindi)" },
+      { label: "Языки в креативах", value: "RU (50%), EN (25%), Hindi (15%), AR (5%), CN (5%)" },
+      { label: "Цикл сделки", value: "30-60 дней для готовых студий, 1.5-3 месяца для off-plan, 2-4 месяца для $250K+" },
+    ]}
+  />
+
+  <Toc items={toc} />
+
+  <section id="dlya-kogo" class="section">
+    <div class="container narrow">
+      <Label text="Аудитория" />
+      <h2>Кто покупает в JVC и почему</h2>
+      <p>
+        JVC - это рынок массового сегмента Дубая. Здесь не покупают за статусом
+        Burj Khalifa или приватностью Palm. Здесь покупают за реальной
+        экономикой: низкий чек, высокая доходность, ликвидность аренды. Четыре
+        типичных портрета покупателя:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Начинающие русскоязычные инвесторы</h3>
+          <p>
+            Самая большая группа в JVC. Бюджет $150K-300K на одну квартиру,
+            первая зарубежная инвестиция. Возраст 30-50 лет. Yield 7-9% и
+            простой вход через freehold - главные триггеры. Платеж чаще через
+            крипту-OTC или офшорные переводы. Кейс <a
+            href="/portfolio/dubai-real-estate/">Dubai Real Estate</a>
+            частично работал именно на этот сегмент в JVC и Marina.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Фрилансеры и digital-номады из СНГ</h3>
+          <p>
+            25-40 лет, IT, e-commerce, инфобизнес. Бюджет $109K-200K на студию
+            или 1 BR. Часто покупают для собственного проживания (Dubai как
+            хаб) плюс сдача через Airbnb на время поездок. Цикл короткий
+            (1-2 месяца), решение быстрое. Канал - Meta Ads (особенно
+            Instagram), плюс Telegram-каналы про номадизм и Дубай.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Индийские и пакистанские инвесторы массового сегмента</h3>
+          <p>
+            Бюджет $200K-400K на 1-2 квартиры. Это сегмент, который в Marina и
+            Downtown уходит к чекам $400K+. В JVC они находят более
+            доходный вход. Цикл 1-2 месяца, реклама на английском с акцентом
+            на yield и локацию (близость к main highway). Часто покупают
+            удаленно через брокеров.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Молодые семьи и экспаты с ипотекой</h3>
+          <p>
+            Бюджет $200K-350K на 1-2 BR. Ипотека UAE-резидента 4-5.5% годовых,
+            при первом взносе 20% (для нерезидентов 50%). Часто покупают для
+            собственного проживания вместо аренды. Цикл сделки 2-4 месяца,
+            эмоциональный компонент важен. Креативы под этот сегмент - не yield,
+            а семейная инфраструктура (парки, школы, Circle Mall).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="specifika" class="section bg-dark">
+    <div class="container narrow">
+      <Label text="Район" />
+      <h2>Что важно знать про JVC для рекламы</h2>
+      <p>
+        JVC - самый понятный массовый рынок Дубая. Здесь работает классическая
+        performance-логика: широкий трафик, быстрая воронка, конкретные
+        офферы. Пять ключевых вещей:
+      </p>
+
+      <ul class="problems-list">
+        <li>
+          <strong>Yield - главный аргумент.</strong> 7-9% gross в JVC выше
+          среднего по Дубаю (6.4%). Это рабочий триггер во всех креативах.
+          Hero-блок: '8% годовых на студию за 110K' работает в 2-3 раза
+          лучше визуальных красивостей. Конкретные цифры yield от существующих
+          собственников - сильный социальный доказательство, поднимает CTR
+          на 30-50%.
+        </li>
+        <li>
+          <strong>Высокая конкуренция между проектами.</strong> В JVC
+          одновременно строится и продается 110+ комплексов. Без четкого USP
+          (бренд застройщика, уникальная инфраструктура, гарантия yield от
+          rental pool) реклама растворяется в общем шуме. Перед запуском
+          анализируем 5-10 ближайших комплексов в радиусе и формулируем
+          конкретное отличие.
+        </li>
+        <li>
+          <strong>Off-plan vs ready - разные воронки.</strong> Off-plan со
+          скидкой 10-25% и payment plan на 5-7 лет - один тип воронки
+          (длинный квиз про планируемый бюджет, ретаргет 30-60 дней). Ready-проекты
+          с готовой к заселению квартирой - другая воронка (быстрый CTA, звонок
+          в день заявки, осмотр в течение недели). Смешивать в одной кампании
+          не получается.
+        </li>
+        <li>
+          <strong>Circle Mall - главный местный аргумент.</strong> Открылся в
+          2021, торговый центр 50,000 м2 в центре района, рестораны, фитнес,
+          супермаркеты. Близость к Circle Mall - один из топ-3 факторов
+          выбора квартиры в JVC. Этот аргумент в hero поднимает релевантность
+          для семейного сегмента.
+        </li>
+        <li>
+          <strong>Транспорт - ограниченный, но не критичный.</strong> Метро в
+          JVC нет, но есть автобусные маршруты и хорошие развязки на Sheikh
+          Mohammed Bin Zayed Road и Al Khail Road. До Marina 15-20 минут на
+          машине, до Downtown 25-30. Для рекламы этого достаточно, но в
+          креативах важно указывать конкретное время в дороге, не общие фразы.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="kanaly" class="section">
+    <div class="container narrow">
+      <Label text="Каналы" />
+      <h2>Какие каналы работают в JVC</h2>
+      <p>
+        JVC - максимально performance-ориентированный сегмент Дубая. Здесь
+        стек каналов классический и работают все основные платформы:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Meta Ads - 55-70% бюджета</h3>
+          <p>
+            <a href="/services/meta-ads/">Meta Ads</a> доминирует в JVC. CPL
+            $20-50 на квал-лида в зависимости от сегмента. Креативы с
+            калькулятором yield, реальными цифрами доходности, видео внутри
+            квартир. Look-alike от уже купивших инвесторов в комплексе работает
+            в 2-3 раза лучше широких интересов.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Яндекс Директ - 20-25% бюджета</h3>
+          <p>
+            <a href="/services/yandex-direct/">Яндекс Директ</a> очень
+            эффективен в JVC под русских инвесторов. Запросы 'купить квартиру
+            JVC Дубай', 'Jumeirah Village Circle инвестиции', 'недвижимость
+            Дубай от 100K долларов'. Объем меньше Meta, но конверсия в
+            квал-лид часто выше (выраженный поисковый интент).
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Google Ads - 15-20% бюджета</h3>
+          <p>
+            <a href="/services/google-ads/">Google Ads</a> работает на запросы
+            'JVC apartment buy', 'Jumeirah Village Circle investment', 'cheap
+            apartment Dubai'. Performance Max на продуктовом фиде с
+            конкретными квартирами и ценами дает квалифицированный трафик.
+            Сильно работает на индийскую и пакистанскую аудиторию.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Telegram-канал и квиз-фильтр</h3>
+          <p>
+            На широком трафике в JVC приходит много нерелевантных лидов
+            ('у меня $30K, подойдет?'). Квиз-фильтр на бюджет, валюту платежа,
+            опыт инвестиций отсеивает 50-60% таких заявок до отдела продаж.
+            Telegram-канал работает как длинный прогрев на 6-12 месяцев,
+            подписчик за $1.10-1.80 окупается через сделку.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="keysy" class="section bg-dark">
+    <div class="container narrow">
+      <Label text="Кейсы" />
+      <h2>Цифры из проектов в Дубае</h2>
+      <p>
+        Активные клиенты в JVC под NDA. Публичные кейсы по аналогичной
+        аудитории и подходу:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>
+            <a href="/portfolio/dubai-real-estate/">Dubai Real Estate</a> -
+            12 сделок при чеке $450K
+          </h3>
+          <p>
+            Проект для русскоязычных инвесторов в Дубае с объектами в нескольких
+            районах, включая JVC. 234 лида, CPL $78, 12 закрытых сделок при
+            среднем чеке $450K. Подробное объяснение схем покупки через крипту,
+            кейсы 50+ россиян, русскоязычный менеджер 24/7.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            <a href="/portfolio/phuket-developer/">Phuket Developer</a> -
+            12 сделок по $8 за лид
+          </h3>
+          <p>
+            Аналог по методологии для бюджетного сегмента ЮВА: $3,584 бюджета,
+            449 заявок, CPL $8, 12 сделок. Юридическая прозрачность (онлайн-камеры
+            на стройке, escrow), русскоязычный отдел продаж. На JVC-проектах
+            методология полностью переносится с поправкой на специфику Дубая.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sosedi" class="section">
+    <div class="container narrow">
+      <Label text="Соседи" />
+      <h2>Соседние районы Дубая</h2>
+      <p>
+        JVC расположен в центральной части Нового Дубая, граничит с Dubai
+        Sports City, Motor City, Al Barsha South, Arjan-Dubailand. Соседние
+        страницы из нашего покрытия:
+      </p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3><a href="/real-estate/dubai/dubai-marina/">Dubai Marina</a></h3>
+          <p>
+            В 15-20 минутах. Средний сегмент с апартаментами $250K-800K,
+            ликвидность вторички. Часто инвесторы JVC расширяют портфель в
+            Marina при росте капитала.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3><a href="/real-estate/dubai/business-bay/">Business Bay</a></h3>
+          <p>
+            В 20-25 минутах. Альтернатива JVC по среднему чеку ($200K-700K),
+            но более центральная локация, без премиальной yield. Иногда
+            инвесторы сравнивают эти два района.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3><a href="/real-estate/dubai/downtown/">Downtown Dubai</a></h3>
+          <p>
+            В 25-30 минутах. Премиум-сегмент с Burj Khalifa. Не пересекается с
+            JVC по аудитории - другой класс цены. Иногда HNWI-инвесторы Downtown
+            берут JVC дополнительно как доходный актив.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3><a href="/real-estate/dubai/palm-jumeirah/">Palm Jumeirah</a></h3>
+          <p>
+            В 25-30 минутах. Топ-люкс. Полная противоположность JVC по логике
+            и аудитории. Не пересекается, иногда UHNW берут JVC как
+            yield-актив рядом с резиденцией на Palm.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section bg-dark">
+    <div class="container narrow">
+      <Faq tag="dubai-jvc" title="Вопросы по рекламе недвижимости в JVC" label="FAQ" />
+    </div>
+  </section>
+
+  <StickyMobileCta targetHash="#form-final" label="Обсудить проект" />
+
+  <CtaSection
+    title="Обсудим проект в JVC"
+    description="Бесплатная 40-минутная встреча с руководителем команды недвижимости. Если у вас квартиры или апарт-проект в Jumeirah Village Circle - разберем объект, посчитаем экономику yield-инвестиции, дадим кейсы из массового сегмента Дубая. Команда работает с проектами ОАЭ с 2022 года."
+    leadSource="dubai_jvc"
+    contentCategory="real-estate"
+    formTitle="Получить расчет по JVC"
+    bullets={[
+      'Кейсы по массовому сегменту Дубая, студиям, 1-2 BR апартаментам',
+      'Прогноз CPL и квал-лидов в yield-сегменте',
+      'Анализ конкурентного окружения в радиусе 5-10 ближайших комплексов',
+    ]}
+  />
+</BaseLayout>
