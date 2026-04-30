@@ -215,21 +215,5 @@ export const TEAM_PERSONS = {
       "Работа с длинным циклом сделки",
       "Квалификация лидов"
     ]
-  }),
-
-  marat: personSchema({
-    name: "Марат",
-    jobTitle: "Head of AI",
-    worksFor: "WEBNOSTRA AI",
-    description:
-      "Head of AI WEBNOSTRA. Автоматизации на n8n, AI-интеграции, скрипты для отделов продаж.",
-    url: "https://webnostra.pro/about/",
-    knowsAbout: [
-      "Автоматизация маркетинга",
-      "n8n",
-      "AI-интеграции",
-      "API-разработка",
-      "Чат-боты для продаж"
-    ]
   })
 };
