@@ -27,12 +27,12 @@ const { title, summary, items, updated = "Апрель 2026", class: className =
         <span class="qa-updated">Обновлено: {updated}</span>
       </div>
       <h2 id="quick-answer-title" class="qa-title">{title}</h2>
-      <p class="qa-summary">{summary}</p>
+      <p class="qa-summary" set:html={summary}></p>
       <dl class="qa-list">
         {items.map((item) => (
           <div class="qa-item">
             <dt class="qa-item-label">{item.label}</dt>
-            <dd class="qa-item-value">{item.value}</dd>
+            <dd class="qa-item-value" set:html={item.value}></dd>
           </div>
         ))}
       </dl>
@@ -129,6 +129,20 @@ const { title, summary, items, updated = "Апрель 2026", class: className =
     font-size: 15px;
     font-weight: 500;
     line-height: 1.5;
+  }
+
+  .qa-item-value a,
+  .qa-summary a {
+    color: #d4af37;
+    text-decoration: underline;
+    text-decoration-color: rgba(212, 175, 55, 0.4);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .qa-item-value a:hover,
+  .qa-summary a:hover {
+    text-decoration-color: #d4af37;
   }
 
   @media (max-width: 720px) {
