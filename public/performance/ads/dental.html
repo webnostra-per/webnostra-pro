@@ -1913,78 +1913,14 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     }
   }
 
-  // ===== Form submit → Albato webhook + Telegram bot + localStorage backup + Meta Pixel =====
+  // ===== Form submit → Albato webhook + localStorage backup + Meta Pixel =====
+  //
+  // ВАЖНО: токен Telegram-бота никогда не должен быть в коде сайта (HTML/JS),
+  // иначе спамеры автоматически его крадут со всех публичных страниц
+  // и перехватывают бот. Уведомления в Telegram настроены на стороне Альбато:
+  // вебхук → Альбато → отправка в Telegram (токен хранится зашифрованно у Альбато).
 
-  // Telegram bot — дублирующий канал доставки лидов
-  const TG_BOT_TOKEN = '8736522279:AAEt7FLqxE2AFheHE2ftOsqqmXxiAQT9Qpw';
-  const TG_CHAT_ID = '-1002474936647';
-
-  // Форматируем лид в читаемое сообщение для Telegram
-  function formatLeadForTelegram(payload) {
-    const marketNames = {
-      GENERAL: 'Общая стоматология',
-      IMPLANT: 'Имплантация',
-      PREMIUM: 'Премиум',
-      KIDS: 'Детская'
-    };
-    const sourceName = payload.form_source === 'hero_form' ? 'Первый экран' : 'Финальный блок';
-
-    // Собираем UTM-блок только из заполненных полей
-    const utmLines = [];
-    if (payload.utm_source) utmLines.push(`source: ${payload.utm_source}`);
-    if (payload.utm_medium) utmLines.push(`medium: ${payload.utm_medium}`);
-    if (payload.utm_campaign) utmLines.push(`campaign: ${payload.utm_campaign}`);
-    if (payload.utm_content) utmLines.push(`content: ${payload.utm_content}`);
-    if (payload.utm_term) utmLines.push(`term: ${payload.utm_term}`);
-    if (payload.fbclid) utmLines.push(`fbclid: ${payload.fbclid}`);
-    if (payload.gclid) utmLines.push(`gclid: ${payload.gclid}`);
-    if (payload.yclid) utmLines.push(`yclid: ${payload.yclid}`);
-
-    const utmBlock = utmLines.length
-      ? `\n<b>UTM:</b>\n<code>${utmLines.join('\n')}</code>`
-      : '\n<b>UTM:</b> прямой заход';
-
-    const time = new Date(payload.timestamp).toLocaleString('ru-RU', {
-      timeZone: 'Asia/Bangkok',
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit'
-    });
-
-    return `🦷 <b>Новый лид — стоматология</b>
-
-<b>Имя:</b> ${escapeHtml(payload.name)}
-<b>Контакт:</b> ${escapeHtml(payload.contact)}
-<b>Сегмент:</b> ${marketNames[payload.market] || payload.market}
-<b>Форма:</b> ${sourceName}${utmBlock}
-
-<b>Время (Bangkok):</b> ${time}`;
-  }
-
-  function escapeHtml(str) {
-    return String(str || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-  }
-
-  // Отправка лида в Telegram-бот (напрямую из браузера)
-  async function sendToTelegram(payload) {
-    const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
-    const body = {
-      chat_id: TG_CHAT_ID,
-      text: formatLeadForTelegram(payload),
-      parse_mode: 'HTML',
-      disable_web_page_preview: true
-    };
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    return response.ok;
-  }
-
-  // Бекап лидов в localStorage (на случай если оба канала упали)
+  // Бекап лидов в localStorage (на случай если канал упал)
   // Посмотреть бекап: localStorage.getItem('wn_leads_backup')
   // Посмотреть только неотправленные: wnGetFailedLeads()
   // Очистить: localStorage.removeItem('wn_leads_backup')
@@ -2113,28 +2049,25 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
       console.warn('ym reachGoal failed:', e);
     }
 
-    // 3. Параллельная отправка в Albato и Telegram
-    // Promise.allSettled — ждем оба, но не падаем если один упал
+    // 3. Отправка в Альбато (Альбато сам отправит в Telegram через свой сценарий)
     const results = await Promise.allSettled([
       fetch(ALBATO_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).then(r => ({ channel: 'albato', ok: r.ok, status: r.status })),
-
-      sendToTelegram(payload).then(ok => ({ channel: 'telegram', ok }))
+      }).then(r => ({ channel: 'albato', ok: r.ok, status: r.status }))
     ]);
 
     // Логируем результаты
     const outcomes = results.map(r => r.status === 'fulfilled' ? r.value : { channel: 'unknown', ok: false, error: r.reason });
     console.log('Lead delivery:', outcomes);
 
-    // Статус для бекапа: sent если хотя бы один канал доставил, failed если оба упали
+    // Статус для бекапа: sent если Альбато доставила, failed если упала
     const anyDelivered = outcomes.some(o => o.ok);
     updateBackupStatus(backupId, anyDelivered ? 'sent' : 'failed');
 
     if (!anyDelivered) {
-      console.error('⚠ ALL CHANNELS FAILED. Lead saved to localStorage only. Payload:', payload);
+      console.error('⚠ Albato webhook failed. Lead saved to localStorage only. Payload:', payload);
     }
 
     // 4. Показываем success в любом случае (лид в бекапе точно есть)
