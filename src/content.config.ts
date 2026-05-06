@@ -35,10 +35,12 @@ const cases = defineCollection({
       'google-ads',
       'vk-ads',
       'telegram-ads',
+      'yandex-business',
+      'avito',
     ])),
     geo: z.string(),                        // "Пхукет, Таиланд" / "Москва" / "Дубай"
     geoSlug: z.string().optional(),         // thailand / russia / dubai — для связи с real-estate
-    period: z.string(),                     // "Октябрь 2024 — Февраль 2025" / "6 месяцев"
+    period: z.string(),                     // "Октябрь 2024 - Февраль 2025" / "6 месяцев"
 
     // Оффер и описание
     shortDescription: z.string(),           // одна строка для карточки
